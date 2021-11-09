@@ -7,9 +7,9 @@ const canvas = document.querySelector('canvas')
 const scene = new THREE.Scene()
 
 const textureLoader = new THREE.TextureLoader()
-const designPattern = textureLoader.load('./static/textures/particles/wave.jpeg');
-const fanTexture = textureLoader.load('./static/textures/particles/fanTexture.jpeg')
-const grainyTexture = textureLoader.load('./static/textures/particles/oldTexture.png')
+const designPattern = textureLoader.load('./static/designs/wave.jpeg');
+const fanTexture = textureLoader.load('./static/textures/fanTexture.jpeg')
+const grainyTexture = textureLoader.load('./static/textures/oldTexture.png')
 
 const geometry = new THREE.CircleGeometry( 1, 30, 0, 2 )
 
