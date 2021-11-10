@@ -76,15 +76,6 @@ handleTexture.repeat.y = 6
 
 
 // fan handle
-const handleMaterial = {
-  clearcoat: 1.0,
-  clearcoatRoughness: 0.1,
-  metalness: 0.9,
-  roughness: 0.5,
-  normalMap: brassTexture,
-  normalScale: new THREE.Vector2(0.15, 0.15),
-  
-}
 
 const handleGeometry = new THREE.BoxGeometry( .1, 0.1, 1.05 );
 const handleMats = new THREE.MeshPhysicalMaterial({
@@ -108,15 +99,9 @@ scene.add( fanGroup )
 console.log(handleMesh)
 
 // trying to center the image...
-circle.position.x = -0.8
-line.position.x = -0.8;
-handleMesh.position.x = -0.29;
-circle.position.y = -0.5;
-line.position.y = -0.5;
-handleMesh.position.y = -0.55;
-circle.position.z = 1;
-line.position.z = 1;
-handleMesh.position.z = 1.03;
+circle.position.set(-0.8, -0.5, 1)
+line.position.set(-0.8, -0.5, 1)
+handleMesh.position.set(-0.29, -0.55, 1.03)
 
 handleMesh.rotation.y += 1.59
 // view size config
