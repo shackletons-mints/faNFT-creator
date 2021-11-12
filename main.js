@@ -5,6 +5,10 @@ import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
 import * as dat from 'dat.gui'
 import { Group, Vector2, WebGLCubeRenderTarget } from 'three'
 
+import { leafDesign, leafDesignCompare } from './properties/leaf_props'
+import { handle1 } from './properties/handle_props'
+import { background1 } from './properties/backgrounds'
+
 // controls in top right corner of page
 // could be cool to implement later to change effects on the fan
 const gui = new dat.GUI()
@@ -12,20 +16,7 @@ const gui = new dat.GUI()
 // canvas and scene config
 const canvas = document.querySelector('canvas')
 const scene = new THREE.Scene()
-
-
-// textures
-const textureLoader = new THREE.TextureLoader()
-let designPattern = textureLoader.load('./static/designs/wave.jpeg')
-let designPattern2 = textureLoader.load('./static/designs/mountain_and_boat.jpeg')
-let designPattern3 = textureLoader.load('./static/designs/wave2.jpg')
-const fanTexture = textureLoader.load('./static/textures/fanTexture.jpeg')
-const grainyTexture = textureLoader.load('./static/textures/oldTexture.png')
-const brassTexture = textureLoader.load('./static/textures/brass_albedo.png')
-const brassRoughness = textureLoader.load('./static/textures/brass_roughness.png')
-const dojo = textureLoader.load('./static/backgrounds/dojo.jpeg')
-
-scene.background = dojo;
+scene.background = background1;
 
 // fan config
 const fanGeometry = new THREE.CircleGeometry( 1, 30, 0, 2 )
@@ -58,21 +49,9 @@ const wireMaterial = new THREE.LineBasicMaterial({
 })
 const line = new THREE.LineSegments( wireframe, wireMaterial )
 line.side = THREE.DoubleSide
-// setting the textures onto the circle geometry
 
-const fanDesign = new THREE.MeshStandardMaterial({
-  map: designPattern,
-  normalMap: grainyTexture,
-  normalScale: new THREE.Vector2(0.15, 0.15),
-  side: THREE.DoubleSide
-  // wireframe: true // cool effect with this on
-})
-
-const fanDesignCompare = new THREE.MeshStandardMaterial({
-  map: designPattern,
-  side: THREE.DoubleSide
-  // wireframe: true // cool effect with this on
-})
+//----------------------------------------------------------------------|
+// this could potentially scale the images up/down, needs research/trial/error
 
 // // fan specs        width / height
 // const planeAspect = 650 / 500;
@@ -86,8 +65,11 @@ const fanDesignCompare = new THREE.MeshStandardMaterial({
 // designPattern3.offset.y = aspect > 1 ? 0 : (1 - aspect) / 2;
 // designPattern3.repeat.y = aspect > 1 ? 1 : aspect;
 
-const circle = new THREE.Mesh(fanGeometry, fanDesign)
-const circleCompare = new THREE.Mesh(fanGeometry, fanDesignCompare)
+// ----------------------------------------------------------------------|
+
+// fan leaf
+const circle = new THREE.Mesh(fanGeometry, leafDesign)
+const circleCompare = new THREE.Mesh(fanGeometry, leafDesignCompare)
 
 // setup handle realistic texture
 let handleTexture = new THREE.CanvasTexture(new FlakesTexture())
@@ -98,37 +80,28 @@ handleTexture.repeat.x = 10
 handleTexture.repeat.y = 6
 
 // fan handle
+const handleGeometry = new THREE.BoxGeometry( .1, 0.1, 1.05 )
+const handleMesh = new THREE.Mesh( handleGeometry, handle1 )
 
-const handleGeometry = new THREE.BoxGeometry( .1, 0.1, 1.05 );
-const handleMats = new THREE.MeshPhysicalMaterial({
-  map: brassTexture,
-  normalMap: brassRoughness,
-  clearcoat: 1,
-  metalness: 0.5,
-  roughness: 0.5,
-  normalScale: new THREE.Vector2(0.15, 0.15),
-  clearcoatRoughness: 0.1,
-  emissiveIntensity: 0.5
-})
-const handleMesh = new THREE.Mesh( handleGeometry, handleMats )
-
+// create fan group
+// this DOES NOT attached them together 'physically'
+// this happens below
 const fanGroup = new THREE.Group();
-fanGroup.add( circle )
-fanGroup.add( line )
-fanGroup.add( handleMesh )
+fanGroup.add( circle, line, handleMesh )
 
 // add the fan to the scene
 // add circleCompare to test textures/designs against the fanGroup
 scene.add( fanGroup )
-console.log(handleMesh)
 
-// trying to center the image...
+// trying to center the image... and
+// gives the illusion they are one object
 circle.position.set(-0.8, -0.5, 1)
 line.position.set(-0.8, -0.5, 1)
 handleMesh.position.set(-0.29, -0.55, 1.03)
 circleCompare.position.set(0.8, -0.5, 1)
 
 handleMesh.rotation.y += 1.59
+
 // view size config
 const sizes = {
   width: 1200,
@@ -161,15 +134,26 @@ controls.enableDamping = true
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas
 })
+
+// potentially useful in enhancing reflections/colors
+// need to play with these properties to flush it out
+// maybe not worth the effort
+
 // renderer.outputEncoding = THREE.sRGBEncoding;
 // renderer.toneMapping = THREE.ACESFilmicToneMapping;
 // renderer.toneMappingExposure = 1;
+
+
 renderer.setSize(sizes.width, sizes.height)
 
 // this is useful in calculating animations
 // I doubt I'll use this here
+
 // let time = Date.now()
 // const clock = new THREE.Clock()
+
+// function to rotate the object on a given point
+// need to play with this more to get more consistent results
 
 const rotateAroundPoint = (obj, point, axis, theta, pointIsWorld) => {
   pointIsWorld = (pointIsWorld === undefined)? false : pointIsWorld;
@@ -189,11 +173,20 @@ const rotateAroundPoint = (obj, point, axis, theta, pointIsWorld) => {
   obj.rotateOnAxis(axis, theta)
 }
 
+// recursively calls itself to allow for animation
 const animate = () => {
+
+  // comment these in to view rotation
+  // it's fucked up at the moment...
 
   // fanGroup.rotation.z += 0.01
   // circle.rotation.y += 0.01
   // line.rotation.y += 0.01
+
+  // these still need some testing -------------------------
+
+  // at the moment this rotation looks better than above
+  // kinda makes it look like a tiny sailboat though...
 
   // const rotationPoint = new THREE.Vector3(0, .1, 0)
   // const rotationAxis = new THREE.Vector3(0, .1, 0)
@@ -201,6 +194,9 @@ const animate = () => {
   // rotateAroundPoint(handleMesh, rotationPoint, rotationAxis, rotationTheta, false)
   // rotateAroundPoint(circle, rotationPoint, rotationAxis, rotationTheta, false)
   // rotateAroundPoint(line, rotationPoint, rotationAxis, rotationTheta, false)
+
+  // ---------------------------------------------------------
+
   controls.update()
   renderer.render(scene, camera)
   window.requestAnimationFrame(animate)
