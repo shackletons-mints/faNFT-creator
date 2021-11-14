@@ -31,6 +31,7 @@
           },
         ],
       }
+    * [enjin metadata-github 'deeds'](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md)
     * enjin format
       {
         "title": "Asset Metadata",
