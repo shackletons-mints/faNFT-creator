@@ -4,6 +4,7 @@ import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
 import * as dat from 'dat.gui'
 import { Group, Vector2, WebGLCubeRenderTarget } from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 import {
   leaf1,
@@ -81,6 +82,38 @@ line.side = THREE.DoubleSide
 
 // ----------------------------------------------------------------------|
 
+// this is for the tassel object I loaded in
+// looks like shit right now but it has some potential
+// const modelLoader = new GLTFLoader();
+
+// modelLoader.load( './properties/3D_Models/chinese_tassel/a_simple_chinese_tassel/scene.gltf', function ( gltf ) {
+
+//   var mroot = gltf.scene;
+//   var bbox = new THREE.Box3().setFromObject(mroot);
+//   var cent = bbox.getCenter(new THREE.Vector3());
+//   var size = bbox.getSize(new THREE.Vector3());
+
+//   //Rescale the object to normalized space
+//   var maxAxis = Math.max(size.x, size.y, size.z);
+//   mroot.scale.multiplyScalar(1.0 / maxAxis);
+//   bbox.setFromObject(mroot);
+//   bbox.getCenter(cent);
+//   bbox.getSize(size);
+//   //Reposition to 0,halfY,0
+//   mroot.position.copy(cent).multiplyScalar(-1);
+//   mroot.position.y-= (size.y * 0.5);
+//   mroot.position.set(-0.6, -9.25, 2.1)
+
+// 	scene.add( gltf.scene );
+//   console.log(gltf.scene)
+
+// }, undefined, function ( error ) {
+
+// 	console.error( error );
+
+// } );
+
+
 // fan leaf
 const circle = new THREE.Mesh(fanGeometry, leaf3)
 const circleCompare = new THREE.Mesh(fanGeometry, leafDesignCompare)
@@ -127,9 +160,17 @@ const color = 0xFFFFFF;
 const intensity = 0.8;
 const directLightIntensity = 0.1;
 const light = new THREE.AmbientLight(color, intensity);
+
 const spotLightStraightOn = new THREE.DirectionalLight('white', directLightIntensity);
 spotLightStraightOn.position.set(0, -1.3, 5);
 const spotLightStraightOnHelper = new THREE.DirectionalLightHelper( spotLightStraightOn )
+
+// for the tassel
+// const pointLight = new THREE.PointLight( 0xff0000, 1, 100 );
+// pointLight.position.set( 0, -1.5, 1 );
+// const pointLightHelper = new THREE.PointLightHelper( pointLight )
+// scene.add( pointLight, pointLightHelper );
+
 
 scene.add(light, spotLightStraightOn, spotLightStraightOnHelper)
 

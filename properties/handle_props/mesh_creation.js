@@ -40,8 +40,6 @@ export const handle2 = new THREE.MeshPhysicalMaterial({
 export const handle3 = new THREE.MeshStandardMaterial({
   roughness: 0.4,
   metalness: 0.4,
-  sheen: 1,
-  clearcoatRoughness: 0.5,
   emissiveIntensity: 0.1
 })
 
@@ -59,12 +57,9 @@ export const handle5 = new THREE.MeshStandardMaterial({
   bumpMap: ornateBrassHeight,
   bumpScale: 1,
   flatShading: true,
-  clearcoat: 0.5,
   roughness: 0.2,
   // metalness: 0.2,
-  sheen: 1,
   normalScale: new THREE.Vector2(1, 1),
-  clearcoatRoughness: 0.1,
   emissiveIntensity: 0.1
 })
 
@@ -74,15 +69,12 @@ export const handle6 = new THREE.MeshStandardMaterial({
   normalMap: ornateBrassTexture,
   bumpMap: ornateBrassHeight,
   aoMap: ornateBrassAO,
-  aoIntensity: 1,
+  aoMapIntensity: 1,
   bumpScale: 1,
   flatShading: true,
-  clearcoat: 0.2,
   roughness: 0.2,
   metalness: 0.2,
-  sheen: 0.2,
   normalScale: new THREE.Vector2(0.55, 0.55),
-  clearcoatRoughness: 1,
   emissiveIntensity: 1
 })
 
@@ -92,11 +84,8 @@ export const handle7 = new THREE.MeshStandardMaterial({
   bumpMap: ornateBrassHeight,
   bumpScale: 1,
   flatShading: true,
-  clearcoat: 1,
   roughness: 0.3,
   metalness: 0.5,
-  sheen: 0.5,
   normalScale: new THREE.Vector2(0.5, 0.5),
-  clearcoatRoughness: 0.1,
   emissiveIntensity: 0.1
 })
