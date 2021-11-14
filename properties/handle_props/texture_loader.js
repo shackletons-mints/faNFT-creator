@@ -15,3 +15,5 @@ export const marbleRoughness = textureLoader.load('./properties/textures/stringy
 export const cherryWoodRoughness = textureLoader.load('./properties/textures/cherryWoodRoughness.png')
 
 export const ornateBrassHeight = textureLoader.load('./properties/textures/ornateBrassHeight.png')
+
+export const ornateBrassAO = textureLoader.load('./properties/textures/ornateBrassAO.png')

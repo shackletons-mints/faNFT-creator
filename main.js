@@ -19,7 +19,8 @@ import {
   handle3,
   handle4,
   handle5,
-  handle6 } from './properties/handle_props'
+  handle6,
+  handle7 } from './properties/handle_props'
 import { background1 } from './properties/backgrounds'
 
 // controls in top right corner of page
@@ -81,7 +82,7 @@ line.side = THREE.DoubleSide
 // ----------------------------------------------------------------------|
 
 // fan leaf
-const circle = new THREE.Mesh(fanGeometry, leaf1)
+const circle = new THREE.Mesh(fanGeometry, leaf3)
 const circleCompare = new THREE.Mesh(fanGeometry, leafDesignCompare)
 
 // setup handle realistic texture
@@ -94,7 +95,7 @@ handleTexture.repeat.y = 6
 
 // fan handle
 const handleGeometry = new THREE.BoxGeometry( .1, 0.06, 1.05 )
-const handleMesh = new THREE.Mesh( handleGeometry, handle4 )
+const handleMesh = new THREE.Mesh( handleGeometry, handle7 )
 
 // create fan group
 // this DOES NOT attached them together 'physically'
