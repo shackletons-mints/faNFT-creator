@@ -6,7 +6,7 @@ import * as dat from 'dat.gui'
 import { Group, Vector2, WebGLCubeRenderTarget } from 'three'
 
 import { leafDesign, leafDesignCompare } from './properties/leaf_props'
-import { handle1 } from './properties/handle_props'
+import { handle1, handle2, handle3, handle4, handle5, handle6 } from './properties/handle_props'
 import { background1 } from './properties/backgrounds'
 
 // controls in top right corner of page
@@ -80,8 +80,8 @@ handleTexture.repeat.x = 10
 handleTexture.repeat.y = 6
 
 // fan handle
-const handleGeometry = new THREE.BoxGeometry( .1, 0.1, 1.05 )
-const handleMesh = new THREE.Mesh( handleGeometry, handle1 )
+const handleGeometry = new THREE.BoxGeometry( .1, 0.06, 1.05 )
+const handleMesh = new THREE.Mesh( handleGeometry, handle6 )
 
 // create fan group
 // this DOES NOT attached them together 'physically'
@@ -97,7 +97,7 @@ scene.add( fanGroup )
 // gives the illusion they are one object
 circle.position.set(-0.8, -0.5, 1)
 line.position.set(-0.8, -0.5, 1)
-handleMesh.position.set(-0.29, -0.55, 1.03)
+handleMesh.position.set(-0.29, -0.5, 1.03)
 circleCompare.position.set(0.8, -0.5, 1)
 
 handleMesh.rotation.y += 1.59
@@ -110,15 +110,15 @@ const sizes = {
 
 // light config
 const color = 0xFFFFFF;
-const intensity = 1;
+const intensity = 0.8;
 const directLightIntensity = 0.1;
 const light = new THREE.AmbientLight(color, intensity);
-const spotLight = new THREE.DirectionalLight('white', directLightIntensity);
-spotLight.position.set(0, -1.5, 5);
+const spotLightStraightOn = new THREE.DirectionalLight('white', directLightIntensity);
+spotLightStraightOn.position.set(0, -1.3, 5);
+const spotLightStraightOnHelper = new THREE.DirectionalLightHelper( spotLightStraightOn )
 
-const lightHelper = new THREE.DirectionalLightHelper( spotLight )
+scene.add(light, spotLightStraightOn, spotLightStraightOnHelper)
 
-scene.add(light, spotLight, lightHelper);
 console.log('fan group: ', fanGroup)
 
 // camera config
