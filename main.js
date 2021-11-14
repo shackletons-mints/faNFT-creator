@@ -5,8 +5,21 @@ import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
 import * as dat from 'dat.gui'
 import { Group, Vector2, WebGLCubeRenderTarget } from 'three'
 
-import { leafDesign, leafDesignCompare } from './properties/leaf_props'
-import { handle1, handle2, handle3, handle4, handle5, handle6 } from './properties/handle_props'
+import {
+  leaf1,
+  leaf2,
+  leaf3,
+  leaf4,
+  leaf5,
+  leaf6,
+  leafDesignCompare } from './properties/leaf_props'
+import {
+  handle1,
+  handle2,
+  handle3,
+  handle4,
+  handle5,
+  handle6 } from './properties/handle_props'
 import { background1 } from './properties/backgrounds'
 
 // controls in top right corner of page
@@ -45,7 +58,7 @@ for (let i = 0; i < positionAttribute.count; i++) {
 // need to play with line properties to achieve a more realistic look
 const wireframe = new THREE.WireframeGeometry( fanGeometry )
 const wireMaterial = new THREE.LineBasicMaterial({
-  color: '#664229'
+  color: '#c5b391'
 })
 const line = new THREE.LineSegments( wireframe, wireMaterial )
 line.side = THREE.DoubleSide
@@ -68,7 +81,7 @@ line.side = THREE.DoubleSide
 // ----------------------------------------------------------------------|
 
 // fan leaf
-const circle = new THREE.Mesh(fanGeometry, leafDesign)
+const circle = new THREE.Mesh(fanGeometry, leaf1)
 const circleCompare = new THREE.Mesh(fanGeometry, leafDesignCompare)
 
 // setup handle realistic texture
@@ -81,7 +94,7 @@ handleTexture.repeat.y = 6
 
 // fan handle
 const handleGeometry = new THREE.BoxGeometry( .1, 0.06, 1.05 )
-const handleMesh = new THREE.Mesh( handleGeometry, handle6 )
+const handleMesh = new THREE.Mesh( handleGeometry, handle4 )
 
 // create fan group
 // this DOES NOT attached them together 'physically'
