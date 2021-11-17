@@ -13,6 +13,14 @@ import {
   leaf4,
   leaf5,
   leaf6,
+  leaf7,
+  leaf8,
+  leaf9,
+  leaf10,
+  leaf11,
+  leaf12,
+  leaf13,
+  leaf14,
   leafDesignCompare } from './properties/leaf_props'
 import {
   handle1,
@@ -115,7 +123,7 @@ line.side = THREE.DoubleSide
 
 
 // fan leaf
-const circle = new THREE.Mesh(fanGeometry, leaf3)
+const circle = new THREE.Mesh(fanGeometry, leaf14)
 const circleCompare = new THREE.Mesh(fanGeometry, leafDesignCompare)
 
 // setup handle realistic texture
@@ -142,10 +150,10 @@ scene.add( fanGroup )
 
 // trying to center the image... and
 // gives the illusion they are one object
-circle.position.set(-0.8, -0.5, 1)
-line.position.set(-0.8, -0.5, 1)
-handleMesh.position.set(-0.29, -0.5, 1.03)
-circleCompare.position.set(0.8, -0.5, 1)
+circle.position.set(-0.3, -0.5, 2)
+line.position.set(-0.3, -0.5, 2)
+handleMesh.position.set(0.19, -0.5, 2.03)
+circleCompare.position.set(0.8, -0.5, 2)
 
 handleMesh.rotation.y += 1.59
 
@@ -158,11 +166,11 @@ const sizes = {
 // light config
 const color = 0xFFFFFF;
 const intensity = 0.8;
-const directLightIntensity = 0.1;
+const directLightIntensity = .1;
 const light = new THREE.AmbientLight(color, intensity);
 
 const spotLightStraightOn = new THREE.DirectionalLight('white', directLightIntensity);
-spotLightStraightOn.position.set(0, -1.3, 5);
+spotLightStraightOn.position.set(0.5, -1.5, 2.5);
 const spotLightStraightOnHelper = new THREE.DirectionalLightHelper( spotLightStraightOn )
 
 // for the tassel
@@ -222,35 +230,46 @@ const rotateAroundPoint = (obj, point, axis, theta, pointIsWorld) => {
   obj.position.add(point)
 
   if (pointIsWorld) {
-    obj.parent.worldToLocal(obj.position); // undo world coordinates compensation
+    obj.parent.worldToLocal(obj.position) // undo world coordinates compensation
   }
 
   obj.rotateOnAxis(axis, theta)
 }
 
-// recursively calls itself to allow for animation
-const animate = () => {
+let isExecuted = false;
 
-  // comment these in to view rotation
-  // it's fucked up at the moment...
-
-  // fanGroup.rotation.z += 0.01
-  // circle.rotation.y += 0.01
-  // line.rotation.y += 0.01
-
-  // these still need some testing -------------------------
-
-  // at the moment this rotation looks better than above
-  // kinda makes it look like a tiny sailboat though...
-
-  // const rotationPoint = new THREE.Vector3(0, .1, 0)
-  // const rotationAxis = new THREE.Vector3(0, .1, 0)
-  // const rotationTheta = .01;
-  // rotateAroundPoint(handleMesh, rotationPoint, rotationAxis, rotationTheta, false)
+const rotateLeft = () => {
+  let rotationTheta = -0.025
+  const rotationPoint = new THREE.Vector3(0, 0.02, 0)
+  const rotationAxis = new THREE.Vector3(0, 0.02, 0)
+  rotateAroundPoint(fanGroup, rotationPoint, rotationAxis, rotationTheta, false)
   // rotateAroundPoint(circle, rotationPoint, rotationAxis, rotationTheta, false)
   // rotateAroundPoint(line, rotationPoint, rotationAxis, rotationTheta, false)
 
-  // ---------------------------------------------------------
+  setTimeout(() => {
+    isExecuted = true
+  }, 4500)
+}
+
+const rotateRight = () => {
+  const rotationTheta = 0.025
+  const rotationPoint = new THREE.Vector3(0, .02, 0)
+  const rotationAxis = new THREE.Vector3(0, .02, 0)
+  rotateAroundPoint(fanGroup, rotationPoint, rotationAxis, rotationTheta, false)
+
+  setTimeout(() => {
+    isExecuted = false
+  }, 4500)
+}
+
+// recursively calls itself to allow for animation
+const animate = () => {
+
+  if (isExecuted) {
+    rotateRight()
+  } else {
+    rotateLeft()
+  }
 
   controls.update()
   renderer.render(scene, camera)
