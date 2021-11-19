@@ -5,4 +5,12 @@ export {
   leaf4,
   leaf5,
   leaf6,
+  leaf7,
+  leaf8,
+  leaf9,
+  leaf10,
+  leaf11,
+  leaf12,
+  leaf13,
+  leaf14,
   leafDesignCompare } from './mesh_creation.js'
