@@ -40,6 +40,21 @@ export const leafDesign15 = textureLoader.load('./properties/leaf_props/designs/
 leafDesign15.wrapS = THREE.RepeatWrapping;
 leafDesign15.wrapT = THREE.RepeatWrapping;
 leafDesign15.offset.set( 0, 0.5 );
+export const leafDesign16 = textureLoader.load('./properties/leaf_props/designs/geisha.jpeg')
+leafDesign16.wrapS = THREE.RepeatWrapping;
+leafDesign16.wrapT = THREE.RepeatWrapping;
+leafDesign16.offset.set( -0.1, 0 );
+export const leafDesign17 = textureLoader.load('./properties/leaf_props/designs/frog.jpg')
+leafDesign17.wrapS = THREE.RepeatWrapping;
+leafDesign17.wrapT = THREE.RepeatWrapping;
+leafDesign17.offset.set( -0.1, -0.2 );
+export const leafDesign18 = textureLoader.load('./properties/leaf_props/designs/tiger.jpeg')
+leafDesign18.wrapS = THREE.RepeatWrapping;
+leafDesign18.wrapT = THREE.RepeatWrapping;
+leafDesign18.offset.set( -0.3, -0.3 );
+export const leafDesign19 = textureLoader.load('./properties/leaf_props/designs/silverDesign.jpeg')
+export const leafDesign20 = textureLoader.load('./properties/leaf_props/designs/purpleDesign.jpeg')
+export const leafDesign21 = textureLoader.load('./properties/leaf_props/designs/orangeDesign.jpeg')
 export const grainyTexture = textureLoader.load('./properties/textures/grainy.jpeg')
 // this one sucks
 // export const fanTexture = textureLoader.load('./properties/textures/fanTexture.jpeg')

@@ -16,6 +16,12 @@ import {
   leafDesign13,
   leafDesign14,
   leafDesign15,
+  leafDesign16,
+  leafDesign17,
+  leafDesign18,
+  leafDesign19,
+  leafDesign20,
+  leafDesign21,
   grainyTexture
 } from './texture_loader.js'
 
@@ -219,6 +225,83 @@ export const leaf15 = {
   design: leafDesignFifteen,
   rarity: 1
 }
+
+const leafDesignSixteen = new THREE.MeshStandardMaterial({
+  map: leafDesign16,
+  normalMap: grainyTexture,
+  normalScale: new THREE.Vector2(0.15, 0.15),
+  side: THREE.DoubleSide
+  // wireframe: true // cool effect with this on
+})
+
+export const leaf16 = {
+  design: leafDesignSixteen,
+  rarity: 1
+}
+
+const leafDesignSeventeen = new THREE.MeshStandardMaterial({
+  map: leafDesign17,
+  normalMap: grainyTexture,
+  normalScale: new THREE.Vector2(0.15, 0.15),
+  side: THREE.DoubleSide
+  // wireframe: true // cool effect with this on
+})
+
+export const leaf17 = {
+  design: leafDesignSeventeen,
+  rarity: 1
+}
+
+const leafDesignEighteen = new THREE.MeshStandardMaterial({
+  map: leafDesign18,
+  normalMap: grainyTexture,
+  normalScale: new THREE.Vector2(0.15, 0.15),
+  side: THREE.DoubleSide
+  // wireframe: true // cool effect with this on
+})
+
+export const leaf18 = {
+  design: leafDesignEighteen,
+  rarity: 1
+}
+const leafDesignNineteen = new THREE.MeshStandardMaterial({
+  map: leafDesign19,
+  normalMap: grainyTexture,
+  normalScale: new THREE.Vector2(0.15, 0.15),
+  side: THREE.DoubleSide
+  // wireframe: true // cool effect with this on
+})
+
+export const leaf19 = {
+  design: leafDesignNineteen,
+  rarity: 1
+}
+const leafDesignTwenty = new THREE.MeshStandardMaterial({
+  map: leafDesign20,
+  normalMap: grainyTexture,
+  normalScale: new THREE.Vector2(0.15, 0.15),
+  side: THREE.DoubleSide
+  // wireframe: true // cool effect with this on
+})
+
+export const leaf20 = {
+  design: leafDesignTwenty,
+  rarity: 1
+}
+const leafDesignTwentyOne = new THREE.MeshStandardMaterial({
+  map: leafDesign21,
+  normalMap: grainyTexture,
+  normalScale: new THREE.Vector2(0.15, 0.15),
+  side: THREE.DoubleSide
+  // wireframe: true // cool effect with this on
+})
+
+export const leaf21 = {
+  design: leafDesignTwentyOne,
+  rarity: 1
+}
+
+
 
 export const leafDesignCompare = new THREE.MeshStandardMaterial({
   map: leafDesign1,

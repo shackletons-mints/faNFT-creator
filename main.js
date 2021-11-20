@@ -22,6 +22,12 @@ import {
   leaf13,
   leaf14,
   leaf15,
+  leaf16,
+  leaf17,
+  leaf18,
+  leaf19,
+  leaf20,
+  leaf21,
   leafDesignCompare } from './properties/leaf_props'
 import {
   handle1,
@@ -31,7 +37,12 @@ import {
   handle5,
   handle6,
   handle7 } from './properties/handle_props'
-import { background1 } from './properties/backgrounds'
+import {
+  commonBG,
+  uncommonBG,
+  rareBG,
+  epicBG,
+  legendaryBG } from './properties/backgrounds'
 
 // controls in top right corner of page
 // could be cool to implement later to change effects on the fan
@@ -42,7 +53,7 @@ const canvas = document.querySelector('canvas')
 const scene = new THREE.Scene()
 
 // I kinda like the blackground
-// scene.background = background1;
+scene.background = commonBG;
 
 // fan config
 const fanGeometry = new THREE.CircleGeometry( 1, 30, 0, 2 )
@@ -77,7 +88,7 @@ const line = new THREE.LineSegments( wireframe, wireMaterial )
 line.side = THREE.DoubleSide
 
 // fan leaf
-const circle = new THREE.Mesh(fanGeometry, leaf2.design)
+const circle = new THREE.Mesh(fanGeometry, leaf19.design)
 const circleCompare = new THREE.Mesh(fanGeometry, leafDesignCompare)
 
 // setup handle realistic texture
@@ -113,8 +124,8 @@ handleMesh.rotation.y += 1.59
 
 // view size config
 const sizes = {
-  width: 1200,
-  height: 800
+  width: window.innerWidth,
+  height: window.innerHeight
 }
 
 // light config
