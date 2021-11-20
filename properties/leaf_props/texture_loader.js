@@ -3,7 +3,7 @@ import * as THREE from 'three'
 // use to load assets
 const textureLoader = new THREE.TextureLoader()
 
-export const leafDesign1 = textureLoader.load('./properties/leaf_props/designs/wave.jpeg')
+export const leafDesign1 = textureLoader.load('./properties/leaf_props/designs/wave.jpg')
 export const leafDesign2 = textureLoader.load('./properties/leaf_props/designs/mountain_and_boat.jpeg')
 export const leafDesign3 = textureLoader.load('./properties/leaf_props/designs/wave2.jpg')
 export const leafDesign4 = textureLoader.load('./properties/leaf_props/designs/watercolor.jpeg')
@@ -20,14 +20,26 @@ leafDesign7.wrapT = THREE.RepeatWrapping;
 leafDesign7.offset.set( -0.15, -0.145 );
 leafDesign7.center.set(0.7, 0.7)
 leafDesign7.rotation = 0.6
-export const leafDesign8 = textureLoader.load('./properties/leaf_props/designs/texasFlag.png')
-export const leafDesign9 = textureLoader.load('./properties/leaf_props/designs/amoungUsRed.png')
+export const leafDesign8 = textureLoader.load('./properties/leaf_props/designs/stabInTheBack.jpeg')
+leafDesign8.wrapS = THREE.RepeatWrapping;
+leafDesign8.wrapT = THREE.RepeatWrapping;
+leafDesign8.offset.set( -0.15, -0.1 );
+export const leafDesign9 = textureLoader.load('./properties/leaf_props/designs/demonFight.jpeg')
 export const leafDesign10 = textureLoader.load('./properties/leaf_props/designs/blueDesign.jpeg')
 export const leafDesign11 = textureLoader.load('./properties/leaf_props/designs/mountain.jpeg')
-export const leafDesign12 = textureLoader.load('./properties/leaf_props/designs/mountain2.jpeg')
+leafDesign11.wrapS = THREE.RepeatWrapping;
+leafDesign11.wrapT = THREE.RepeatWrapping;
+leafDesign11.offset.set( -0.15, -0.19 );
+export const leafDesign12 = textureLoader.load('./properties/leaf_props/designs/umbrella.jpeg')
 export const leafDesign13 = textureLoader.load('./properties/leaf_props/designs/pagoda.jpeg')
+leafDesign13.wrapS = THREE.RepeatWrapping;
+leafDesign13.wrapT = THREE.RepeatWrapping;
+leafDesign13.offset.set( -0.15, -0.1 );
 export const leafDesign14 = textureLoader.load('./properties/leaf_props/designs/redDesign.jpeg')
-
+export const leafDesign15 = textureLoader.load('./properties/leaf_props/designs/pagoda.jpeg')
+leafDesign15.wrapS = THREE.RepeatWrapping;
+leafDesign15.wrapT = THREE.RepeatWrapping;
+leafDesign15.offset.set( 0, 0.5 );
 export const grainyTexture = textureLoader.load('./properties/textures/grainy.jpeg')
 // this one sucks
 // export const fanTexture = textureLoader.load('./properties/textures/fanTexture.jpeg')
