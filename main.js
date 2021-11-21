@@ -5,6 +5,7 @@ import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
 import * as dat from 'dat.gui'
 import { Group, Vector2, WebGLCubeRenderTarget } from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import * as CanvasCapture from 'canvas-capture';
 
 import {
   leaf1,
@@ -262,8 +263,26 @@ const rotateRight = () => {
   }, 4500)
 }
 
+const generateFanGif = () => {
+  CanvasCapture.init(document.getElementById('app'), {
+    verbose: false,
+    showAlerts: true,
+    showDialogs: true,
+    showRecDot: false,
+  });
+
+  CanvasCapture.beginGIFRecord({ fps: 10 });
+
+  setTimeout(() => {
+    CanvasCapture.stopRecord();
+  }, 4500)
+}
+
 // recursively calls itself to allow for animation
-const animate = () => {
+const animate = (initialRender = false) => {
+  if (initialRender) {
+    generateFanGif();
+  }
 
   if (isExecuted) {
     rotateRight()
@@ -273,7 +292,8 @@ const animate = () => {
 
   controls.update()
   renderer.render(scene, camera)
-  window.requestAnimationFrame(animate)
+  if (CanvasCapture.isRecording()) CanvasCapture.recordFrame();
+  window.requestAnimationFrame(() => animate(false))
 }
 
-animate();
+animate(true);
