@@ -11,10 +11,8 @@
     "vite": "^2.6.4"
   },
   "dependencies": {
-    "aws-sdk": "^2.1031.0",
     "canvas-capture": "github:amandaghassaei/canvas-capture",
     "dat.gui": "^0.7.7",
-    "dotenv": "^10.0.0",
     "three": "^0.134.0"
   }
 }
