@@ -4,8 +4,8 @@ import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
 import * as dat from 'dat.gui'
 import { Group, Vector2, WebGLCubeRenderTarget } from 'three'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import * as CanvasCapture from 'canvas-capture';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import * as CanvasCapture from 'canvas-capture'
 
 import {
   leaf1,
@@ -29,7 +29,8 @@ import {
   leaf19,
   leaf20,
   leaf21,
-  leafDesignCompare } from './properties/leaf_props'
+  leafDesignCompare,
+} from './properties/leaf_props'
 import {
   handle1,
   handle2,
@@ -37,13 +38,15 @@ import {
   handle4,
   handle5,
   handle6,
-  handle7 } from './properties/handle_props'
+  handle7,
+} from './properties/handle_props'
 import {
   commonBG,
   uncommonBG,
   rareBG,
   epicBG,
-  legendaryBG } from './properties/backgrounds'
+  legendaryBG,
+} from './properties/backgrounds'
 
 // controls in top right corner of page
 // could be cool to implement later to change effects on the fan
@@ -54,11 +57,11 @@ const canvas = document.querySelector('canvas')
 const scene = new THREE.Scene()
 
 // I kinda like the blackground
-scene.background = commonBG;
+scene.background = commonBG
 
 // fan config
-const fanGeometry = new THREE.CircleGeometry( 1, 30, 0, 2 )
-const positionAttribute = fanGeometry.attributes.position;
+const fanGeometry = new THREE.CircleGeometry(1, 30, 0, 2)
+const positionAttribute = fanGeometry.attributes.position
 
 // this loops over all verticies in the CircleGeometry
 // we target just the z axis, it's the only position we want to change... for now
@@ -69,23 +72,23 @@ for (let i = 0; i < positionAttribute.count; i++) {
   let z = positionAttribute.getZ(i)
 
   // we only want to manipulate the z axis to give the fan wrinkles
-  if(i % 2 === 0) {
-    z += 0.05;
+  if (i % 2 === 0) {
+    z += 0.05
   }
 
   // we set the verticies here
   // positionAttribute.setXYZ(i, x, y, z)
 
-  positionAttribute.setZ(i, z);
+  positionAttribute.setZ(i, z)
 }
 
 // this wireframe can give a stronger definition to the wrinkles of the fan
 // need to play with line properties to achieve a more realistic look
-const wireframe = new THREE.WireframeGeometry( fanGeometry )
+const wireframe = new THREE.WireframeGeometry(fanGeometry)
 const wireMaterial = new THREE.LineBasicMaterial({
-  color: '#c5b391'
+  color: '#c5b391',
 })
-const line = new THREE.LineSegments( wireframe, wireMaterial )
+const line = new THREE.LineSegments(wireframe, wireMaterial)
 line.side = THREE.DoubleSide
 
 // fan leaf
@@ -101,18 +104,18 @@ handleTexture.repeat.x = 10
 handleTexture.repeat.y = 6
 
 // fan handle
-const handleGeometry = new THREE.BoxGeometry( .1, 0.06, 1.05 )
-const handleMesh = new THREE.Mesh( handleGeometry, handle7 )
+const handleGeometry = new THREE.BoxGeometry(0.1, 0.06, 1.05)
+const handleMesh = new THREE.Mesh(handleGeometry, handle7)
 
 // create fan group
 // this DOES NOT attached them together 'physically'
 // this happens below
-const fanGroup = new THREE.Group();
-fanGroup.add( circle, line, handleMesh )
+const fanGroup = new THREE.Group()
+fanGroup.add(circle, line, handleMesh)
 
 // add the fan to the scene
 // add circleCompare to test textures/designs against the fanGroup
-scene.add( fanGroup )
+scene.add(fanGroup)
 
 // trying to center the image... and
 // gives the illusion they are one object
@@ -126,18 +129,23 @@ handleMesh.rotation.y += 1.59
 // view size config
 const sizes = {
   width: window.innerWidth,
-  height: window.innerHeight
+  height: window.innerHeight,
 }
 
 // light config
-const color = 0xFFFFFF;
-const intensity = 0.8;
-const directLightIntensity = .1;
-const light = new THREE.AmbientLight(color, intensity);
+const color = 0xffffff
+const intensity = 0.8
+const directLightIntensity = 0.1
+const light = new THREE.AmbientLight(color, intensity)
 
-const spotLightStraightOn = new THREE.DirectionalLight('white', directLightIntensity);
-spotLightStraightOn.position.set(0.5, -1.5, 2.5);
-const spotLightStraightOnHelper = new THREE.DirectionalLightHelper( spotLightStraightOn )
+const spotLightStraightOn = new THREE.DirectionalLight(
+  'white',
+  directLightIntensity
+)
+spotLightStraightOn.position.set(0.5, -1.5, 2.5)
+const spotLightStraightOnHelper = new THREE.DirectionalLightHelper(
+  spotLightStraightOn
+)
 
 // for the tassel
 // const pointLight = new THREE.PointLight( 0xff0000, 1, 100 );
@@ -145,13 +153,12 @@ const spotLightStraightOnHelper = new THREE.DirectionalLightHelper( spotLightStr
 // const pointLightHelper = new THREE.PointLightHelper( pointLight )
 // scene.add( pointLight, pointLightHelper );
 
-
 scene.add(light, spotLightStraightOn, spotLightStraightOnHelper)
 
 console.log('fan group: ', fanGroup)
 
 // camera config
-const camera = new THREE.PerspectiveCamera( 75, sizes.width / sizes.height )
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
 camera.position.z = 3
 scene.add(camera)
 
@@ -161,7 +168,7 @@ controls.enableDamping = true
 
 // render the canvas
 const renderer = new THREE.WebGLRenderer({
-  canvas: canvas
+  canvas: canvas,
 })
 
 // potentially useful in enhancing reflections/colors
@@ -171,7 +178,6 @@ const renderer = new THREE.WebGLRenderer({
 // renderer.outputEncoding = THREE.sRGBEncoding;
 // renderer.toneMapping = THREE.ACESFilmicToneMapping;
 // renderer.toneMappingExposure = 1;
-
 
 renderer.setSize(sizes.width, sizes.height)
 
@@ -185,10 +191,10 @@ renderer.setSize(sizes.width, sizes.height)
 // need to play with this more to get more consistent results
 
 const rotateAroundPoint = (obj, point, axis, theta, pointIsWorld) => {
-  pointIsWorld = (pointIsWorld === undefined)? false : pointIsWorld;
+  pointIsWorld = pointIsWorld === undefined ? false : pointIsWorld
 
-  if(pointIsWorld){
-      obj.parent.localToWorld(obj.position); // compensate for world coordinate
+  if (pointIsWorld) {
+    obj.parent.localToWorld(obj.position) // compensate for world coordinate
   }
 
   obj.position.sub(point)
@@ -202,7 +208,7 @@ const rotateAroundPoint = (obj, point, axis, theta, pointIsWorld) => {
   obj.rotateOnAxis(axis, theta)
 }
 
-let isExecuted = false;
+let isExecuted = false
 
 const rotateLeft = () => {
   let rotationTheta = -0.025
@@ -219,8 +225,8 @@ const rotateLeft = () => {
 
 const rotateRight = () => {
   const rotationTheta = 0.025
-  const rotationPoint = new THREE.Vector3(0, .02, 0)
-  const rotationAxis = new THREE.Vector3(0, .02, 0)
+  const rotationPoint = new THREE.Vector3(0, 0.02, 0)
+  const rotationAxis = new THREE.Vector3(0, 0.02, 0)
   rotateAroundPoint(fanGroup, rotationPoint, rotationAxis, rotationTheta, false)
 
   setTimeout(() => {
@@ -234,19 +240,19 @@ const generateFanGif = () => {
     showAlerts: true,
     showDialogs: true,
     showRecDot: false,
-  });
+  })
 
-  CanvasCapture.beginGIFRecord({ fps: 10 });
+  CanvasCapture.beginGIFRecord({ fps: 10, name: 'fan_rarity_goes_here' })
 
   setTimeout(() => {
-    CanvasCapture.stopRecord();
+    CanvasCapture.stopRecord()
   }, 4500)
 }
 
 // recursively calls itself to allow for animation
 const animate = (initialRender = false) => {
   if (initialRender) {
-    generateFanGif();
+    generateFanGif()
   }
 
   if (isExecuted) {
@@ -257,8 +263,12 @@ const animate = (initialRender = false) => {
 
   controls.update()
   renderer.render(scene, camera)
-  if (CanvasCapture.isRecording()) CanvasCapture.recordFrame();
+  if (CanvasCapture.isRecording()) {
+    // start recording when we know for a fact the fan has fully rendered
+    // can we check for a scene property?  scene.isRendered? something like that
+    CanvasCapture.recordFrame()
+  }
   window.requestAnimationFrame(() => animate(false))
 }
 
-animate(true);
+animate(true)
