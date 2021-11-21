@@ -13,4 +13,11 @@ export {
   leaf12,
   leaf13,
   leaf14,
+  leaf15,
+  leaf16,
+  leaf17,
+  leaf18,
+  leaf19,
+  leaf20,
+  leaf21,
   leafDesignCompare } from './mesh_creation.js'
