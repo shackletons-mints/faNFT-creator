@@ -1,10 +1,6 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
-import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader'
-import * as dat from 'dat.gui'
-import { Group, Vector2, WebGLCubeRenderTarget } from 'three'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import * as CanvasCapture from 'canvas-capture'
 
 import {
@@ -47,10 +43,6 @@ import {
   epicBG,
   legendaryBG,
 } from './properties/backgrounds'
-
-// controls in top right corner of page
-// could be cool to implement later to change effects on the fan
-const gui = new dat.GUI()
 
 // canvas and scene config
 const canvas = document.querySelector('canvas')

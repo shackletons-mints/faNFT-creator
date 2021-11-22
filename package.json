@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "canvas-capture": "github:amandaghassaei/canvas-capture",
-    "dat.gui": "^0.7.7",
     "three": "^0.134.0"
   }
 }
