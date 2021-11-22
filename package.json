@@ -4,12 +4,14 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "generateFans": "./generateFans.sh"
   },
   "devDependencies": {
     "vite": "^2.6.4"
   },
   "dependencies": {
+    "canvas-capture": "github:amandaghassaei/canvas-capture",
     "dat.gui": "^0.7.7",
     "three": "^0.134.0"
   }
