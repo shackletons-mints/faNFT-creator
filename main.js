@@ -182,10 +182,10 @@ const clock = new THREE.Clock()
 // function to rotate the object on a given point
 // need to play with this more to get more consistent results
 
-// This code is stolen from the THREE.js Course ------------------------------------|
+// This code is stolen&modified from Bruno Simon's THREE.js Course -------------------------|
 
 // TODO
-  // make particles drift
+  // make particles randomly drift
   // bring particles forward in the Z axis
 
 
