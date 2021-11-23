@@ -1,6 +1,9 @@
 // stolen from this codepen
 // https://codepen.io/tksiiii/pen/MRjWzv
 
+// not crazy about this code
+// it uses depreciated THREE.js methods
+
 let scene,
     camera,
     renderer,
@@ -49,38 +52,39 @@ const getTexture = () => {
     return texture;
 }
 
-const makeRoughGround = (mesh) => {
-    const time = Date.now();
-    mesh.geometry.vertices.forEach(function(vertex, i) {
-        const noise1 = noise.noise2D(
-            vertex.x * 0.01 + time * 0.0003,
-            vertex.y * 0.01 + time * 0.0003,
-            vertex.z * 0.01 + time * 0.0003,
-        ) * 5;
-        const noise2 = noise.noise2D(
-            vertex.x * 0.02 + time * 0.00012,
-            vertex.y * 0.02 + time * 0.00015,
-            vertex.z * 0.02 + time * 0.00015,
-        ) * 4;
-        const noise3 = noise.noise2D(
-            vertex.x * 0.009 + time * 0.00015,
-            vertex.y * 0.012 + time * 0.00009,
-            vertex.z * 0.015 + time * 0.00015,
-        ) * 4;
-        const distance = (noise1 + noise2 + noise3);
-        vertex.z = distance;
-    })
-    mesh.geometry.verticesNeedUpdate = true;
-    mesh.geometry.normalsNeedUpdate = true;
-    mesh.geometry.computeVertexNormals();
-    mesh.geometry.computeFaceNormals();
-}
+// THIS ISN'T NEEDED
+// const makeRoughGround = (mesh) => {
+//     const time = Date.now();
+//     mesh.geometry.vertices.forEach(function(vertex, i) {
+//         const noise1 = noise.noise2D(
+//             vertex.x * 0.01 + time * 0.0003,
+//             vertex.y * 0.01 + time * 0.0003,
+//             vertex.z * 0.01 + time * 0.0003,
+//         ) * 5;
+//         const noise2 = noise.noise2D(
+//             vertex.x * 0.02 + time * 0.00012,
+//             vertex.y * 0.02 + time * 0.00015,
+//             vertex.z * 0.02 + time * 0.00015,
+//         ) * 4;
+//         const noise3 = noise.noise2D(
+//             vertex.x * 0.009 + time * 0.00015,
+//             vertex.y * 0.012 + time * 0.00009,
+//             vertex.z * 0.015 + time * 0.00015,
+//         ) * 4;
+//         const distance = (noise1 + noise2 + noise3);
+//         vertex.z = distance;
+//     })
+//     mesh.geometry.verticesNeedUpdate = true;
+//     mesh.geometry.normalsNeedUpdate = true;
+//     mesh.geometry.computeVertexNormals();
+//     mesh.geometry.computeFaceNormals();
+// }
 
 const render = (timeStamp) => {
 
     orbitControls.update();
 
-    makeRoughGround(planeMesh);
+    // makeRoughGround(planeMesh);
 
     const posArr = particles.geometry.vertices;
     const velArr = particles.geometry.velocities;
@@ -124,18 +128,18 @@ const onResize = () => {
 
 const init = () => {
 
-    /* scene
+    /* scene might experiment with the fog effect...
     -------------------------------------------------------------*/
     scene = new THREE.Scene();
     scene.fog = new THREE.Fog(0x000036, 0, minRange * 3);
 
-    /* camera
+    /* camera THIS ISN'T NEEDED
     -------------------------------------------------------------*/
     camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 2000);
     camera.position.set(0, -100, 400);
     camera.lookAt(scene.position);
 
-    /* renderer
+    /* renderer interesting... might be worth it to play with some of these settings in main.js
     -------------------------------------------------------------*/
     renderer = new THREE.WebGLRenderer({
         antialias: true,
@@ -147,19 +151,19 @@ const init = () => {
     renderer.shadowMap.enabled = true;
     //renderer.setClearAlpha(0);
 
-    /* OrbitControls
+    /* OrbitControls THIS ISN'T NEEDED
     -------------------------------------------------------------*/
     orbitControls = new THREE.OrbitControls(camera, renderer.domElement);
     orbitControls.autoRotate = false;
     orbitControls.enableDamping = true;
     orbitControls.dampingFactor = 0.2;
 
-    /* AmbientLight
+    /* AmbientLight THIS ISN'T NEEDED
     -------------------------------------------------------------*/
     const ambientLight = new THREE.AmbientLight(0x666666);
     scene.add(ambientLight);
 
-    /* SpotLight
+    /* SpotLight THIS ISN'T NEEDED
     -------------------------------------------------------------*/
     const spotLight = new THREE.SpotLight(0xffffff);
     spotLight.distance = 2000;
@@ -167,7 +171,7 @@ const init = () => {
     spotLight.castShadow = true;
     scene.add(spotLight);
 
-    /* Plane
+    /* Plane THIS ISN'T NEEDED
     --------------------------------------*/
     const planeGeometry = new THREE.PlaneGeometry(500, 500, 100, 100);
     const planeMaterial = new THREE.MeshLambertMaterial({

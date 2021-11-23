@@ -170,21 +170,74 @@ const renderer = new THREE.WebGLRenderer({
 // need to play with these properties to flush it out
 // maybe not worth the effort
 
-// renderer.outputEncoding = THREE.sRGBEncoding;
-// renderer.toneMapping = THREE.ACESFilmicToneMapping;
-// renderer.toneMappingExposure = 1;
-
 renderer.setSize(sizes.width, sizes.height)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 // this is useful in calculating animations
 // I doubt I'll use this here
 
-// let time = Date.now()
-// const clock = new THREE.Clock()
+let time = Date.now()
+const clock = new THREE.Clock()
 
 // function to rotate the object on a given point
 // need to play with this more to get more consistent results
 
+// This code is stolen from the THREE.js Course ------------------------------------|
+
+// TODO
+  // make particles drift
+  // bring particles forward in the Z axis
+
+
+// const particlesGeometry = new THREE.SphereBufferGeometry(1, 32, 32);
+const particlesGeometry = new THREE.BufferGeometry()
+
+// amount of particles
+const count = 1000
+
+const positions = new Float32Array(count * 3)
+const colors = new Float32Array(count * 3)
+
+// this loop randomly sets the positions of the particles
+for (let i = 0; i < count * 3; i++) {
+  positions[i] = (Math.random() - 0.5) * 10
+  // this is helpful so we see the effect
+  colors[i] = Math.random()
+}
+
+particlesGeometry.setAttribute(
+  'position',
+  new THREE.BufferAttribute(positions, 3),
+)
+
+particlesGeometry.setAttribute(
+  'color',
+  new THREE.BufferAttribute(colors, 3),
+)
+
+// accessing the array
+console.log(particlesGeometry.attributes.position.array)
+
+const particlesMaterial = new THREE.PointsMaterial({
+  color: '#ff88cc',
+  size: 1,
+  sizeAttenuation: true,
+})
+
+particlesMaterial.alphaMap = particleImage1
+particlesMaterial.transparent = true
+
+// this prevents particles from being drawing into another geometry buffer
+// plain english: these methods remove extra black/white space from the loaded texture
+particlesMaterial.depthWrite = false
+particlesMaterial.blending = THREE.AdditiveBlending
+particlesMaterial.vertexColors = true
+
+// Points
+const particles = new THREE.Points(particlesGeometry, particlesMaterial)
+scene.add(particles)
+
+// --------------------------------------------------------------------------------------|
 const rotateAroundPoint = (obj, point, axis, theta, pointIsWorld) => {
   pointIsWorld = pointIsWorld === undefined ? false : pointIsWorld
 
@@ -253,6 +306,23 @@ const animate = (initialRender = false) => {
   } else {
     rotateLeft()
   }
+
+  const elapsedTime = clock.getElapsedTime()
+  particles.rotation.y = elapsedTime * 0.2
+
+  // on the right track here, but need to figure out how to target particles
+  // randomly and make them fall
+  for(let i = 0; i < count; i++) {
+    const i3 = i * 3
+
+    const x = particlesGeometry.attributes.position.array[i3]
+
+    for (let i = 0; i < 2; i++) {
+        particlesGeometry.attributes.position.array[i3 + 1] = -(i * .1)
+
+    }
+  }
+  particlesGeometry.attributes.position.needsUpdate = true;
 
   controls.update()
   renderer.render(scene, camera)
