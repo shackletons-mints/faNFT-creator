@@ -4,10 +4,10 @@
 
 ## TODO
 * Export Function
-  * --Get all fan props--
-  * --Assemble props into a fan--
-  * --Package so it can be shipped--
-  * --Should we package props as objects and assign a rarity?--
+  * ~~Get all fan props~~
+  * ~~Assemble props into a fan~~
+  * ~~Package so it can be shipped~~
+  * ~~Should we package props as objects and assign a rarity?~~
     {
       design: handle1,
       rarity: an int from 1-100?
@@ -61,8 +61,8 @@
 * Create more designs for handle/leaf
 
 * Handle Adjustments
-  * --It's too think--
-  * --Add a Tastle?-- NO, looks dumb
+  * ~~It's too think~~
+  * ~~Add a Tastle?~~ NO, looks dumb
   * Add an inner section?
   * Add a section on top, thinner than the base
 
