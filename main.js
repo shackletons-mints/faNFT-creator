@@ -43,6 +43,9 @@ import {
   epicBG,
   legendaryBG,
 } from './properties/backgrounds'
+import {
+  particleImage1
+} from './properties/particle_props'
 
 // canvas and scene config
 const canvas = document.querySelector('canvas')
@@ -84,7 +87,7 @@ const line = new THREE.LineSegments(wireframe, wireMaterial)
 line.side = THREE.DoubleSide
 
 // fan leaf
-const circle = new THREE.Mesh(fanGeometry, leaf19.design)
+const circle = new THREE.Mesh(fanGeometry, leaf16.design)
 const circleCompare = new THREE.Mesh(fanGeometry, leafDesignCompare)
 
 // setup handle realistic texture
@@ -186,7 +189,7 @@ const rotateAroundPoint = (obj, point, axis, theta, pointIsWorld) => {
   pointIsWorld = pointIsWorld === undefined ? false : pointIsWorld
 
   if (pointIsWorld) {
-    obj.parent.localToWorld(obj.position) // compensate for world coordinate
+    obj.parent.localToWorld(obj.position)
   }
 
   obj.position.sub(point)
@@ -194,7 +197,7 @@ const rotateAroundPoint = (obj, point, axis, theta, pointIsWorld) => {
   obj.position.add(point)
 
   if (pointIsWorld) {
-    obj.parent.worldToLocal(obj.position) // undo world coordinates compensation
+    obj.parent.worldToLocal(obj.position)
   }
 
   obj.rotateOnAxis(axis, theta)
@@ -207,8 +210,6 @@ const rotateLeft = () => {
   const rotationPoint = new THREE.Vector3(0, 0.02, 0)
   const rotationAxis = new THREE.Vector3(0, 0.02, 0)
   rotateAroundPoint(fanGroup, rotationPoint, rotationAxis, rotationTheta, false)
-  // rotateAroundPoint(circle, rotationPoint, rotationAxis, rotationTheta, false)
-  // rotateAroundPoint(line, rotationPoint, rotationAxis, rotationTheta, false)
 
   setTimeout(() => {
     isExecuted = true
@@ -226,26 +227,26 @@ const rotateRight = () => {
   }, 4500)
 }
 
-const generateFanGif = () => {
-  CanvasCapture.init(document.getElementById('app'), {
-    verbose: false,
-    showAlerts: true,
-    showDialogs: true,
-    showRecDot: false,
-  })
+// const generateFanGif = () => {
+//   CanvasCapture.init(document.getElementById('app'), {
+//     verbose: false,
+//     showAlerts: true,
+//     showDialogs: true,
+//     showRecDot: false,
+//   })
 
-  CanvasCapture.beginGIFRecord({ fps: 10, name: 'fan_rarity_goes_here' })
+//   CanvasCapture.beginGIFRecord({ fps: 10, name: 'fan_rarity_goes_here' })
 
-  setTimeout(() => {
-    CanvasCapture.stopRecord()
-  }, 4500)
-}
+//   setTimeout(() => {
+//     CanvasCapture.stopRecord()
+//   }, 4500)
+// }
 
 // recursively calls itself to allow for animation
 const animate = (initialRender = false) => {
-  if (initialRender) {
-    generateFanGif()
-  }
+  // if (initialRender) {
+  //   generateFanGif()
+  // }
 
   if (isExecuted) {
     rotateRight()
@@ -255,11 +256,11 @@ const animate = (initialRender = false) => {
 
   controls.update()
   renderer.render(scene, camera)
-  if (CanvasCapture.isRecording()) {
-    // start recording when we know for a fact the fan has fully rendered
-    // can we check for a scene property?  scene.isRendered? something like that
-    CanvasCapture.recordFrame()
-  }
+  // if (CanvasCapture.isRecording()) {
+  //   // start recording when we know for a fact the fan has fully rendered
+  //   // can we check for a scene property?  scene.isRendered? something like that
+  //   CanvasCapture.recordFrame()
+  // }
   window.requestAnimationFrame(() => animate(false))
 }
 
