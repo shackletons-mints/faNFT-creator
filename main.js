@@ -142,12 +142,6 @@ const spotLightStraightOnHelper = new THREE.DirectionalLightHelper(
   spotLightStraightOn
 )
 
-// for the tassel
-// const pointLight = new THREE.PointLight( 0xff0000, 1, 100 );
-// pointLight.position.set( 0, -1.5, 1 );
-// const pointLightHelper = new THREE.PointLightHelper( pointLight )
-// scene.add( pointLight, pointLightHelper );
-
 scene.add(light, spotLightStraightOn, spotLightStraightOnHelper)
 
 console.log('fan group: ', fanGroup)
@@ -166,10 +160,6 @@ const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
 })
 
-// potentially useful in enhancing reflections/colors
-// need to play with these properties to flush it out
-// maybe not worth the effort
-
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
@@ -179,65 +169,37 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 let time = Date.now()
 const clock = new THREE.Clock()
 
-// function to rotate the object on a given point
-// need to play with this more to get more consistent results
-
-// This code is stolen&modified from Bruno Simon's THREE.js Course -------------------------|
+const flakeCount = 9000
+const flakeGeometry = new THREE.TetrahedronGeometry(0.035); // radius
+const flakeMaterial = new THREE.PointsMaterial({
+    color: '#ff88cc',
+    size: 1,
+    sizeAttenuation: true,
+  })
 
 // TODO
-  // make particles randomly drift
-  // bring particles forward in the Z axis
+  // figure out how to hook this up with the flakeMaterial
+    // flakeMaterial.alphaMap = particleImage1
+    // flakeMaterial.transparent = true
+    // flakeMaterial.depthWrite = false
+    // flakeMaterial.blending = THREE.AdditiveBlending
+    // flakeMaterial.vertexColors = true
 
+const snow = new THREE.Group()
 
-// const particlesGeometry = new THREE.SphereBufferGeometry(1, 32, 32);
-const particlesGeometry = new THREE.BufferGeometry()
-
-// amount of particles
-const count = 1000
-
-const positions = new Float32Array(count * 3)
-const colors = new Float32Array(count * 3)
-
-// this loop randomly sets the positions of the particles
-for (let i = 0; i < count * 3; i++) {
-  positions[i] = (Math.random() - 0.5) * 10
-  // this is helpful so we see the effect
-  colors[i] = Math.random()
+for (let i = 0; i < flakeCount; i++) {
+  const flakeMesh = new THREE.Mesh(flakeGeometry, flakeMaterial);
+  flakeMesh.position.set(
+    (Math.random() - 0.5) * 40,
+    (Math.random() - 0.5) * 20,
+    (Math.random() - 0.5) * 40
+  );
+  snow.add(flakeMesh);
 }
+scene.add(snow);
 
-particlesGeometry.setAttribute(
-  'position',
-  new THREE.BufferAttribute(positions, 3),
-)
+const flakeArray = snow.children;
 
-particlesGeometry.setAttribute(
-  'color',
-  new THREE.BufferAttribute(colors, 3),
-)
-
-// accessing the array
-console.log(particlesGeometry.attributes.position.array)
-
-const particlesMaterial = new THREE.PointsMaterial({
-  color: '#ff88cc',
-  size: 1,
-  sizeAttenuation: true,
-})
-
-particlesMaterial.alphaMap = particleImage1
-particlesMaterial.transparent = true
-
-// this prevents particles from being drawing into another geometry buffer
-// plain english: these methods remove extra black/white space from the loaded texture
-particlesMaterial.depthWrite = false
-particlesMaterial.blending = THREE.AdditiveBlending
-particlesMaterial.vertexColors = true
-
-// Points
-const particles = new THREE.Points(particlesGeometry, particlesMaterial)
-scene.add(particles)
-
-// --------------------------------------------------------------------------------------|
 const rotateAroundPoint = (obj, point, axis, theta, pointIsWorld) => {
   pointIsWorld = pointIsWorld === undefined ? false : pointIsWorld
 
@@ -307,22 +269,32 @@ const animate = (initialRender = false) => {
     rotateLeft()
   }
 
-  const elapsedTime = clock.getElapsedTime()
-  particles.rotation.y = elapsedTime * 0.2
-
-  // on the right track here, but need to figure out how to target particles
-  // randomly and make them fall
-  for(let i = 0; i < count; i++) {
-    const i3 = i * 3
-
-    const x = particlesGeometry.attributes.position.array[i3]
-
-    for (let i = 0; i < 2; i++) {
-        particlesGeometry.attributes.position.array[i3 + 1] = -(i * .1)
-
+  // TODO
+  // play with this and see if I can acheive different effects
+    // updraft
+    // diagonal drift
+  for (let i = 0; i < flakeArray.length / 2; i++) {
+    flakeArray[i].rotation.y += 0.01;
+    flakeArray[i].rotation.x += 0.02;
+    flakeArray[i].rotation.z += 0.03;
+    flakeArray[i].position.y -= 0.018;
+    if (flakeArray[i].position.y < -4) {
+      flakeArray[i].position.y += 10;
     }
   }
-  particlesGeometry.attributes.position.needsUpdate = true;
+  for (let i = flakeArray.length / 2; i < flakeArray.length; i++) {
+    flakeArray[i].rotation.y -= 0.03;
+    flakeArray[i].rotation.x -= 0.03;
+    flakeArray[i].rotation.z -= 0.02;
+    flakeArray[i].position.y -= 0.016;
+    if (flakeArray[i].position.y < -4) {
+      flakeArray[i].position.y += 9.5;
+    }
+
+    snow.rotation.y -= 0.0000002;
+  }
+
+  const elapsedTime = clock.getElapsedTime()
 
   controls.update()
   renderer.render(scene, camera)
