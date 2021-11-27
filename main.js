@@ -1,7 +1,8 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
-import * as CanvasCapture from 'canvas-capture'
+
+// import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
 
 import {
   leaf1,
@@ -242,21 +243,6 @@ const rotateRight = () => {
   }, 4500)
 }
 
-// const generateFanGif = () => {
-//   CanvasCapture.init(document.getElementById('app'), {
-//     verbose: false,
-//     showAlerts: true,
-//     showDialogs: true,
-//     showRecDot: false,
-//   })
-
-//   CanvasCapture.beginGIFRecord({ fps: 10, name: 'fan_rarity_goes_here' })
-
-//   setTimeout(() => {
-//     CanvasCapture.stopRecord()
-//   }, 4500)
-// }
-
 // recursively calls itself to allow for animation
 const animate = (initialRender = false) => {
   // if (initialRender) {
@@ -298,11 +284,7 @@ const animate = (initialRender = false) => {
 
   controls.update()
   renderer.render(scene, camera)
-  // if (CanvasCapture.isRecording()) {
-  //   // start recording when we know for a fact the fan has fully rendered
-  //   // can we check for a scene property?  scene.isRendered? something like that
-  //   CanvasCapture.recordFrame()
-  // }
+  // recordFramesForGif()
   window.requestAnimationFrame(() => animate(false))
 }
 
