@@ -35,6 +35,7 @@ import {
   handle5,
   handle6,
   handle7,
+  handle8,
 } from './properties/handle_props'
 import {
   commonBG,
@@ -87,17 +88,9 @@ line.side = THREE.DoubleSide
 const circle = new THREE.Mesh(fanGeometry, leaf19.design)
 const circleCompare = new THREE.Mesh(fanGeometry, leafDesignCompare)
 
-// setup handle realistic texture
-let handleTexture = new THREE.CanvasTexture(new FlakesTexture())
-handleTexture.wrapS = THREE.RepeatWrapping
-handleTexture.wrapT = THREE.RepeatWrapping
-
-handleTexture.repeat.x = 10
-handleTexture.repeat.y = 6
-
 // fan handle
 const handleGeometry = new THREE.BoxGeometry(0.1, 0.06, 1.05)
-const handleMesh = new THREE.Mesh(handleGeometry, handle7)
+const handleMesh = new THREE.Mesh(handleGeometry, handle8)
 
 // create fan group
 // this DOES NOT attached them together 'physically'

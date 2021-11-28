@@ -5,4 +5,6 @@ export {
   handle4,
   handle5,
   handle6,
-  handle7 } from './mesh_creation.js'
+  handle7,
+  handle8,
+} from './mesh_creation.js'

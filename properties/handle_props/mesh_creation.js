@@ -8,6 +8,7 @@ import {
   brassTexture,
   marbleTexture,
   ornateBrassTexture,
+  futureTexture,
   marbleRoughness,
   cherryWoodRoughness,
   ornateBrassHeight,
@@ -82,6 +83,16 @@ export const handle7 = new THREE.MeshStandardMaterial({
   map: handleDesign3,
   normalMap: ornateBrassTexture,
   bumpMap: ornateBrassHeight,
+  bumpScale: 1,
+  flatShading: true,
+  roughness: 0.3,
+  metalness: 0.5,
+  normalScale: new THREE.Vector2(0.5, 0.5),
+  emissiveIntensity: 0.1
+})
+
+export const handle8 = new THREE.MeshStandardMaterial({
+  map: futureTexture,
   bumpScale: 1,
   flatShading: true,
   roughness: 0.3,
