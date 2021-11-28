@@ -5,6 +5,8 @@ import {
   handleDesign2,
   handleDesign3,
   handleDesign4,
+  handleDesign5,
+  handleDesign6,
   brassTexture,
   marbleTexture,
   ornateBrassTexture,
@@ -93,6 +95,23 @@ export const handle7 = new THREE.MeshStandardMaterial({
 
 export const handle8 = new THREE.MeshStandardMaterial({
   map: futureTexture,
+  bumpScale: 1,
+  flatShading: true,
+  roughness: 0.3,
+  metalness: 0.5,
+  normalScale: new THREE.Vector2(0.5, 0.5),
+  emissiveIntensity: 0.1
+})
+
+export const handle9 = new THREE.MeshStandardMaterial({
+  map: handleDesign5,
+  roughnessMap: cherryWoodRoughness,
+  emissive: 'green',
+  emissiveIntensity: 0.25
+})
+
+export const handle10 = new THREE.MeshPhysicalMaterial({
+  map: handleDesign6,
   bumpScale: 1,
   flatShading: true,
   roughness: 0.3,

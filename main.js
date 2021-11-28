@@ -36,6 +36,8 @@ import {
   handle6,
   handle7,
   handle8,
+  handle9,
+  handle10,
 } from './properties/handle_props'
 import {
   commonBG,
@@ -90,7 +92,7 @@ const circleCompare = new THREE.Mesh(fanGeometry, leafDesignCompare)
 
 // fan handle
 const handleGeometry = new THREE.BoxGeometry(0.1, 0.06, 1.05)
-const handleMesh = new THREE.Mesh(handleGeometry, handle8)
+const handleMesh = new THREE.Mesh(handleGeometry, handle10)
 
 // create fan group
 // this DOES NOT attached them together 'physically'

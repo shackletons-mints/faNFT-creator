@@ -56,7 +56,5 @@ export const leafDesign19 = textureLoader.load('./properties/leaf_props/designs/
 export const leafDesign20 = textureLoader.load('./properties/leaf_props/designs/purpleDesign.jpeg')
 export const leafDesign21 = textureLoader.load('./properties/leaf_props/designs/orangeDesign.jpeg')
 export const grainyTexture = textureLoader.load('./properties/textures/grainy.jpeg')
-// this one sucks
-// export const fanTexture = textureLoader.load('./properties/textures/fanTexture.jpeg')
 
 
