@@ -59,27 +59,17 @@ scene.background = commonBG
 const fanGeometry = new THREE.CircleGeometry(1, 30, 0, 2)
 const positionAttribute = fanGeometry.attributes.position
 
-// this loops over all verticies in the CircleGeometry
-// we target just the z axis, it's the only position we want to change... for now
+// creates fan ripples
 for (let i = 0; i < positionAttribute.count; i++) {
-  // getting each of the coordinates for the verticies
-  // let x = positionAttribute.getX(i)
-  // let y = positionAttribute.getY(i)
   let z = positionAttribute.getZ(i)
 
-  // we only want to manipulate the z axis to give the fan wrinkles
   if (i % 2 === 0) {
     z += 0.05
   }
 
-  // we set the verticies here
-  // positionAttribute.setXYZ(i, x, y, z)
-
   positionAttribute.setZ(i, z)
 }
 
-// this wireframe can give a stronger definition to the wrinkles of the fan
-// need to play with line properties to achieve a more realistic look
 const wireframe = new THREE.WireframeGeometry(fanGeometry)
 const wireMaterial = new THREE.LineBasicMaterial({
   color: '#c5b391',
@@ -91,30 +81,16 @@ line.side = THREE.DoubleSide
 const circle = new THREE.Mesh(fanGeometry, leaf16.design)
 const circleCompare = new THREE.Mesh(fanGeometry, leafDesignCompare)
 
-// setup handle realistic texture
-let handleTexture = new THREE.CanvasTexture(new FlakesTexture())
-handleTexture.wrapS = THREE.RepeatWrapping
-handleTexture.wrapT = THREE.RepeatWrapping
-
-handleTexture.repeat.x = 10
-handleTexture.repeat.y = 6
-
 // fan handle
 const handleGeometry = new THREE.BoxGeometry(0.1, 0.06, 1.05)
 const handleMesh = new THREE.Mesh(handleGeometry, handle7)
 
-// create fan group
-// this DOES NOT attached them together 'physically'
-// this happens below
 const fanGroup = new THREE.Group()
 fanGroup.add(circle, line, handleMesh)
 
-// add the fan to the scene
-// add circleCompare to test textures/designs against the fanGroup
 scene.add(fanGroup)
 
-// trying to center the image... and
-// gives the illusion they are one object
+// center image and package them as one
 circle.position.set(-0.3, -0.5, 2)
 line.position.set(-0.3, -0.5, 2)
 handleMesh.position.set(0.19, -0.5, 2.03)
@@ -164,11 +140,9 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
-// this is useful in calculating animations
-// I doubt I'll use this here
-
 let time = Date.now()
 const clock = new THREE.Clock()
+let oldElapsedTime = 0;
 
 const flakeCount = 9000
 const flakeGeometry = new THREE.TetrahedronGeometry(0.035); // radius
@@ -280,7 +254,13 @@ const animate = (initialRender = false) => {
     snow.rotation.y -= 0.0000002;
   }
 
-  const elapsedTime = clock.getElapsedTime()
+  // we can use deltaTime to calculate the time between each animation frame
+  // don't know if this is useful or not
+  const elapsedTime = clock.getElapsedTime();
+  const deltaTime = elapsedTime - oldElapsedTime;
+  oldElapsedTime = elapsedTime;
+
+  console.log(elapsedTime)
 
   controls.update()
   renderer.render(scene, camera)
