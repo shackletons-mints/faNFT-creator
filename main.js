@@ -45,7 +45,11 @@ import {
   legendaryBG,
 } from './properties/backgrounds'
 import {
-  particleImage1
+  particleImage1,
+  particleImage2,
+  particleImage3,
+  particleImage4,
+  particleImage5,
 } from './properties/particle_props'
 
 // canvas and scene config
@@ -53,7 +57,7 @@ const canvas = document.querySelector('canvas')
 const scene = new THREE.Scene()
 
 // I kinda like the blackground
-scene.background = commonBG
+scene.background = rareBG
 
 // fan config
 const fanGeometry = new THREE.CircleGeometry(1, 30, 0, 2)
@@ -91,10 +95,10 @@ fanGroup.add(circle, line, handleMesh)
 scene.add(fanGroup)
 
 // center image and package them as one
-circle.position.set(-0.3, -0.5, 2)
-line.position.set(-0.3, -0.5, 2)
-handleMesh.position.set(0.19, -0.5, 2.03)
-circleCompare.position.set(0.8, -0.5, 2)
+circle.position.set(-0.3, -0.5, 0.5)
+line.position.set(-0.3, -0.5, 0.5)
+handleMesh.position.set(0.19, -0.5, 0.53)
+circleCompare.position.set(0.8, -0.5, 0.5)
 
 handleMesh.rotation.y += 1.59
 
@@ -114,7 +118,7 @@ const spotLightStraightOn = new THREE.DirectionalLight(
   'white',
   directLightIntensity
 )
-spotLightStraightOn.position.set(0.5, -1.5, 2.5)
+spotLightStraightOn.position.set(0.3, -0.5, 2.5)
 const spotLightStraightOnHelper = new THREE.DirectionalLightHelper(
   spotLightStraightOn
 )
@@ -125,7 +129,7 @@ console.log('fan group: ', fanGroup)
 
 // camera config
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
-camera.position.z = 3
+camera.position.z = 2
 scene.add(camera)
 
 // enable user controls
@@ -142,14 +146,19 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 let time = Date.now()
 const clock = new THREE.Clock()
-let oldElapsedTime = 0;
+let oldElapsedTime = 0
 
-const flakeCount = 9000
-const flakeGeometry = new THREE.TetrahedronGeometry(0.035); // radius
+const flakeCount = 1000
+const flakeGeometry = new THREE.TetrahedronGeometry(0.035) // radius
+// const flakeGeometry = new THREE.BufferGeometry()
 const flakeMaterial = new THREE.PointsMaterial({
-    color: '#ff88cc',
-    size: 1,
+    color: 'white',
+    size: 0.3,
     sizeAttenuation: true,
+    transparent: true,
+    alphaMap: particleImage5,
+    blending: THREE.AdditiveBlending,
+    alphaTest: 0.001
   })
 
 // TODO
@@ -163,17 +172,17 @@ const flakeMaterial = new THREE.PointsMaterial({
 const snow = new THREE.Group()
 
 for (let i = 0; i < flakeCount; i++) {
-  const flakeMesh = new THREE.Mesh(flakeGeometry, flakeMaterial);
+  const flakeMesh = new THREE.Points(flakeGeometry, flakeMaterial)
   flakeMesh.position.set(
-    (Math.random() - 0.5) * 40,
-    (Math.random() - 0.5) * 20,
-    (Math.random() - 0.5) * 40
-  );
-  snow.add(flakeMesh);
+    (Math.random() - 0.5) * 15,
+    (Math.random() - 0.5) * 25,
+    (Math.random() - 0.5) * 3
+  )
+  snow.add(flakeMesh)
 }
-scene.add(snow);
+scene.add(snow)
 
-const flakeArray = snow.children;
+const flakeArray = snow.children
 
 const rotateAroundPoint = (obj, point, axis, theta, pointIsWorld) => {
   pointIsWorld = pointIsWorld === undefined ? false : pointIsWorld
@@ -234,33 +243,33 @@ const animate = (initialRender = false) => {
     // updraft
     // diagonal drift
   for (let i = 0; i < flakeArray.length / 2; i++) {
-    flakeArray[i].rotation.y += 0.01;
-    flakeArray[i].rotation.x += 0.02;
-    flakeArray[i].rotation.z += 0.03;
-    flakeArray[i].position.y -= 0.018;
+    flakeArray[i].rotation.y += 0.01
+    flakeArray[i].rotation.x += 0.02
+    flakeArray[i].rotation.z += 0.03
+    flakeArray[i].position.y -= 0.018
     if (flakeArray[i].position.y < -4) {
-      flakeArray[i].position.y += 10;
+      flakeArray[i].position.y += 10
     }
   }
   for (let i = flakeArray.length / 2; i < flakeArray.length; i++) {
-    flakeArray[i].rotation.y -= 0.03;
-    flakeArray[i].rotation.x -= 0.03;
-    flakeArray[i].rotation.z -= 0.02;
-    flakeArray[i].position.y -= 0.016;
+    flakeArray[i].rotation.y -= 0.03
+    flakeArray[i].rotation.x -= 0.03
+    flakeArray[i].rotation.z -= 0.02
+    flakeArray[i].position.y -= 0.016
     if (flakeArray[i].position.y < -4) {
-      flakeArray[i].position.y += 9.5;
+      flakeArray[i].position.y += 9.5
     }
 
-    snow.rotation.y -= 0.0000002;
+    snow.rotation.y -= 0.0000002
   }
 
   // we can use deltaTime to calculate the time between each animation frame
   // don't know if this is useful or not
-  const elapsedTime = clock.getElapsedTime();
-  const deltaTime = elapsedTime - oldElapsedTime;
-  oldElapsedTime = elapsedTime;
+  const elapsedTime = clock.getElapsedTime()
+  const deltaTime = elapsedTime - oldElapsedTime
+  oldElapsedTime = elapsedTime
 
-  console.log(elapsedTime)
+  // console.log(elapsedTime)
 
   controls.update()
   renderer.render(scene, camera)
