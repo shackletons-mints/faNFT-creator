@@ -13,11 +13,12 @@ const flakeCount = 1000
 const flakeGeometry = new THREE.TetrahedronGeometry(0.035) // radius
 // const flakeGeometry = new THREE.BufferGeometry()
 const flakeMaterial = new THREE.PointsMaterial({
-    color: '#C4CACE',
+    // color: '#C4CACE',
+    color: '#FFC0CB',
     size: 0.3,
     sizeAttenuation: true,
     transparent: true,
-    alphaMap: particleImage3,
+    alphaMap: particleImage1,
     blending: THREE.AdditiveBlending,
     alphaTest: 0.001
   })
