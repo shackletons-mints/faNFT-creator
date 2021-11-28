@@ -46,7 +46,7 @@ export const snowFlakes = () => {
     flakeArray[i].rotation.y += 0.01
     flakeArray[i].rotation.x += 0.02
     flakeArray[i].rotation.z += 0.03
-    flakeArray[i].position.y -= 0.018
+    flakeArray[i].position.y -= 0.0045
     if (flakeArray[i].position.y < -4) {
       flakeArray[i].position.y += 10
     }
@@ -60,6 +60,6 @@ export const snowFlakes = () => {
       flakeArray[i].position.y += 9.5
     }
 
-    snow.rotation.y -= 0.0000002
+    snow.rotation.y -= 0.0000001
   }
 }
