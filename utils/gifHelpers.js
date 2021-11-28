@@ -6,7 +6,7 @@ import * as CanvasCapture from 'canvas-capture'
 // 3 - await generate and save gif
 // 4 - clear scene
 // timeouts are fragile
-export const generateFanGif = () => {
+export const generateFanGif = ({ title }) => {
   setTimeout(() => {
     CanvasCapture.init(document.getElementById('app'), {
       verbose: false,
@@ -16,7 +16,7 @@ export const generateFanGif = () => {
     })
 
     // verify quality params, pass in specific title
-    CanvasCapture.beginGIFRecord({ fps: 30, name: 'fan_rarity_goes_here' })    
+    CanvasCapture.beginGIFRecord({ fps: 30, name: title })    
   }, 1500)
 
   setTimeout(() => {

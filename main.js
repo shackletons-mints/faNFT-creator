@@ -2,32 +2,9 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
 
-// import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
+import { getRandomLeafWithRarityLabel } from './utils/generateRarityAttribute'
+import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
 
-import {
-  leaf1,
-  leaf2,
-  leaf3,
-  leaf4,
-  leaf5,
-  leaf6,
-  leaf7,
-  leaf8,
-  leaf9,
-  leaf10,
-  leaf11,
-  leaf12,
-  leaf13,
-  leaf14,
-  leaf15,
-  leaf16,
-  leaf17,
-  leaf18,
-  leaf19,
-  leaf20,
-  leaf21,
-  leafDesignCompare,
-} from './properties/leaf_props'
 import {
   handle1,
   handle2,
@@ -78,8 +55,8 @@ const line = new THREE.LineSegments(wireframe, wireMaterial)
 line.side = THREE.DoubleSide
 
 // fan leaf
-const circle = new THREE.Mesh(fanGeometry, leaf16.design)
-const circleCompare = new THREE.Mesh(fanGeometry, leafDesignCompare)
+const leaf = getRandomLeafWithRarityLabel()
+const circle = new THREE.Mesh(fanGeometry, leaf.design)
 
 // fan handle
 const handleGeometry = new THREE.BoxGeometry(0.1, 0.06, 1.05)
@@ -94,7 +71,6 @@ scene.add(fanGroup)
 circle.position.set(-0.3, -0.5, 2)
 line.position.set(-0.3, -0.5, 2)
 handleMesh.position.set(0.19, -0.5, 2.03)
-circleCompare.position.set(0.8, -0.5, 2)
 
 handleMesh.rotation.y += 1.59
 
@@ -219,9 +195,9 @@ const rotateRight = () => {
 
 // recursively calls itself to allow for animation
 const animate = (initialRender = false) => {
-  // if (initialRender) {
-  //   generateFanGif()
-  // }
+  if (initialRender) {
+    generateFanGif({ title: `fan_${leaf.rarity}_leaf` })
+  }
 
   if (isExecuted) {
     rotateRight()
@@ -256,15 +232,15 @@ const animate = (initialRender = false) => {
 
   // we can use deltaTime to calculate the time between each animation frame
   // don't know if this is useful or not
-  const elapsedTime = clock.getElapsedTime();
-  const deltaTime = elapsedTime - oldElapsedTime;
-  oldElapsedTime = elapsedTime;
+  // const elapsedTime = clock.getElapsedTime();
+  // const deltaTime = elapsedTime - oldElapsedTime;
+  // oldElapsedTime = elapsedTime;
 
-  console.log(elapsedTime)
+  // console.log(elapsedTime)
 
   controls.update()
   renderer.render(scene, camera)
-  // recordFramesForGif()
+  recordFramesForGif()
   window.requestAnimationFrame(() => animate(false))
 }
 
