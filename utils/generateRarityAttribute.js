@@ -22,6 +22,8 @@ import {
   leaf21,
 } from '../properties/leaf_props'
 
+// This turns into a binary search tree.  Im still trying to figure out how.
+// reference: https://stackoverflow.com/questions/43566019/how-to-choose-a-weighted-random-array-element-in-javascript/68792377#comment121581367_68792377
 let rarityLabelKeys = {
   Common: '60',
   Uncommon: '25',
@@ -39,7 +41,7 @@ for (let key in rarityLabelKeys) {
 sums.push(1)
 keys.push('NONE')
 
-// Step 2:
+// This will theortically return 1 legendary in 10,000 etc...
 function lowerBound(target, low = 0, high = sums.length - 1) {
   if (low == high) {
     return low
