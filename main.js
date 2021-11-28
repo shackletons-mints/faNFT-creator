@@ -5,6 +5,8 @@ import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
 // import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
 
 import { snowFlakes, snow } from './utils/particleHelpers'
+import { light, spotLightStraightOn, spotLightStraightOnHelper } from './utils/lightHelpers'
+import { rotateRight, rotateLeft, isExecuted } from './utils/rotationHelpers'
 import {
   leaf1,
   leaf2,
@@ -102,22 +104,7 @@ const sizes = {
   height: window.innerHeight,
 }
 
-// light config
-const color = 0xffffff
-const intensity = 0.8
-const directLightIntensity = 0.1
-const light = new THREE.AmbientLight(color, intensity)
-
-const spotLightStraightOn = new THREE.DirectionalLight(
-  'white',
-  directLightIntensity
-)
-spotLightStraightOn.position.set(0.3, -0.5, 2.5)
-const spotLightStraightOnHelper = new THREE.DirectionalLightHelper(
-  spotLightStraightOn
-)
-
-scene.add(light, spotLightStraightOn, spotLightStraightOnHelper)
+scene.add(light, spotLightStraightOn)
 
 console.log('fan group: ', fanGroup)
 
@@ -142,48 +129,6 @@ let time = Date.now()
 const clock = new THREE.Clock()
 let oldElapsedTime = 0
 
-const rotateAroundPoint = (obj, point, axis, theta, pointIsWorld) => {
-  pointIsWorld = pointIsWorld === undefined ? false : pointIsWorld
-
-  if (pointIsWorld) {
-    obj.parent.localToWorld(obj.position)
-  }
-
-  obj.position.sub(point)
-  obj.position.applyAxisAngle(axis, theta)
-  obj.position.add(point)
-
-  if (pointIsWorld) {
-    obj.parent.worldToLocal(obj.position)
-  }
-
-  obj.rotateOnAxis(axis, theta)
-}
-
-let isExecuted = false
-
-const rotateLeft = () => {
-  let rotationTheta = -0.025
-  const rotationPoint = new THREE.Vector3(0, 0.02, 0)
-  const rotationAxis = new THREE.Vector3(0, 0.02, 0)
-  rotateAroundPoint(fanGroup, rotationPoint, rotationAxis, rotationTheta, false)
-
-  setTimeout(() => {
-    isExecuted = true
-  }, 4500)
-}
-
-const rotateRight = () => {
-  const rotationTheta = 0.025
-  const rotationPoint = new THREE.Vector3(0, 0.02, 0)
-  const rotationAxis = new THREE.Vector3(0, 0.02, 0)
-  rotateAroundPoint(fanGroup, rotationPoint, rotationAxis, rotationTheta, false)
-
-  setTimeout(() => {
-    isExecuted = false
-  }, 4500)
-}
-
 scene.add(snow)
 // recursively calls itself to allow for animation
 const animate = (initialRender = false) => {
@@ -192,9 +137,9 @@ const animate = (initialRender = false) => {
   // }
 
   if (isExecuted) {
-    rotateRight()
+    rotateRight(fanGroup)
   } else {
-    rotateLeft()
+    rotateLeft(fanGroup)
   }
 
   // we can use deltaTime to calculate the time between each animation frame
