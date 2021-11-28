@@ -5,6 +5,7 @@ import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
 import { getRandomLeafWithRarityLabel } from './utils/generateRarityAttribute'
 import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
 
+import { snowFlakes, snow } from './utils/particleHelpers'
 import {
   handle1,
   handle2,
@@ -21,16 +22,13 @@ import {
   epicBG,
   legendaryBG,
 } from './properties/backgrounds'
-import {
-  particleImage1
-} from './properties/particle_props'
 
 // canvas and scene config
 const canvas = document.querySelector('canvas')
 const scene = new THREE.Scene()
 
 // I kinda like the blackground
-scene.background = commonBG
+scene.background = rareBG
 
 // fan config
 const fanGeometry = new THREE.CircleGeometry(1, 30, 0, 2)
@@ -68,9 +66,10 @@ fanGroup.add(circle, line, handleMesh)
 scene.add(fanGroup)
 
 // center image and package them as one
-circle.position.set(-0.3, -0.5, 2)
-line.position.set(-0.3, -0.5, 2)
-handleMesh.position.set(0.19, -0.5, 2.03)
+circle.position.set(-0.3, -0.5, 0.5)
+line.position.set(-0.3, -0.5, 0.5)
+handleMesh.position.set(0.19, -0.5, 0.53)
+// circleCompare.position.set(0.8, -0.5, 0.5)
 
 handleMesh.rotation.y += 1.59
 
@@ -90,7 +89,7 @@ const spotLightStraightOn = new THREE.DirectionalLight(
   'white',
   directLightIntensity
 )
-spotLightStraightOn.position.set(0.5, -1.5, 2.5)
+spotLightStraightOn.position.set(0.3, -0.5, 2.5)
 const spotLightStraightOnHelper = new THREE.DirectionalLightHelper(
   spotLightStraightOn
 )
@@ -101,7 +100,7 @@ console.log('fan group: ', fanGroup)
 
 // camera config
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
-camera.position.z = 3
+camera.position.z = 2
 scene.add(camera)
 
 // enable user controls
@@ -118,38 +117,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 let time = Date.now()
 const clock = new THREE.Clock()
-let oldElapsedTime = 0;
-
-const flakeCount = 9000
-const flakeGeometry = new THREE.TetrahedronGeometry(0.035); // radius
-const flakeMaterial = new THREE.PointsMaterial({
-    color: '#ff88cc',
-    size: 1,
-    sizeAttenuation: true,
-  })
-
-// TODO
-  // figure out how to hook this up with the flakeMaterial
-    // flakeMaterial.alphaMap = particleImage1
-    // flakeMaterial.transparent = true
-    // flakeMaterial.depthWrite = false
-    // flakeMaterial.blending = THREE.AdditiveBlending
-    // flakeMaterial.vertexColors = true
-
-const snow = new THREE.Group()
-
-for (let i = 0; i < flakeCount; i++) {
-  const flakeMesh = new THREE.Mesh(flakeGeometry, flakeMaterial);
-  flakeMesh.position.set(
-    (Math.random() - 0.5) * 40,
-    (Math.random() - 0.5) * 20,
-    (Math.random() - 0.5) * 40
-  );
-  snow.add(flakeMesh);
-}
-scene.add(snow);
-
-const flakeArray = snow.children;
+let oldElapsedTime = 0
 
 const rotateAroundPoint = (obj, point, axis, theta, pointIsWorld) => {
   pointIsWorld = pointIsWorld === undefined ? false : pointIsWorld
@@ -193,6 +161,7 @@ const rotateRight = () => {
   }, 4500)
 }
 
+scene.add(snow)
 // recursively calls itself to allow for animation
 const animate = (initialRender = false) => {
   if (initialRender) {
@@ -205,39 +174,15 @@ const animate = (initialRender = false) => {
     rotateLeft()
   }
 
-  // TODO
-  // play with this and see if I can acheive different effects
-    // updraft
-    // diagonal drift
-  for (let i = 0; i < flakeArray.length / 2; i++) {
-    flakeArray[i].rotation.y += 0.01;
-    flakeArray[i].rotation.x += 0.02;
-    flakeArray[i].rotation.z += 0.03;
-    flakeArray[i].position.y -= 0.018;
-    if (flakeArray[i].position.y < -4) {
-      flakeArray[i].position.y += 10;
-    }
-  }
-  for (let i = flakeArray.length / 2; i < flakeArray.length; i++) {
-    flakeArray[i].rotation.y -= 0.03;
-    flakeArray[i].rotation.x -= 0.03;
-    flakeArray[i].rotation.z -= 0.02;
-    flakeArray[i].position.y -= 0.016;
-    if (flakeArray[i].position.y < -4) {
-      flakeArray[i].position.y += 9.5;
-    }
-
-    snow.rotation.y -= 0.0000002;
-  }
-
   // we can use deltaTime to calculate the time between each animation frame
   // don't know if this is useful or not
-  // const elapsedTime = clock.getElapsedTime();
-  // const deltaTime = elapsedTime - oldElapsedTime;
-  // oldElapsedTime = elapsedTime;
+  const elapsedTime = clock.getElapsedTime()
+  const deltaTime = elapsedTime - oldElapsedTime
+  oldElapsedTime = elapsedTime
 
   // console.log(elapsedTime)
 
+  snowFlakes()
   controls.update()
   renderer.render(scene, camera)
   recordFramesForGif()
