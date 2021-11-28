@@ -92,7 +92,7 @@ const circleCompare = new THREE.Mesh(fanGeometry, leafDesignCompare)
 
 // fan handle
 const handleGeometry = new THREE.BoxGeometry(0.1, 0.06, 1.05)
-const handleMesh = new THREE.Mesh(handleGeometry, handle10)
+const handleMesh = new THREE.Mesh(handleGeometry, handle10.design)
 
 // create fan group
 // this DOES NOT attached them together 'physically'
