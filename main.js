@@ -4,6 +4,7 @@ import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
 
 // import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
 
+import { snowFlakes, snow } from './utils/particleHelpers'
 import {
   leaf1,
   leaf2,
@@ -44,13 +45,6 @@ import {
   epicBG,
   legendaryBG,
 } from './properties/backgrounds'
-import {
-  particleImage1,
-  particleImage2,
-  particleImage3,
-  particleImage4,
-  particleImage5,
-} from './properties/particle_props'
 
 // canvas and scene config
 const canvas = document.querySelector('canvas')
@@ -148,42 +142,6 @@ let time = Date.now()
 const clock = new THREE.Clock()
 let oldElapsedTime = 0
 
-const flakeCount = 1000
-const flakeGeometry = new THREE.TetrahedronGeometry(0.035) // radius
-// const flakeGeometry = new THREE.BufferGeometry()
-const flakeMaterial = new THREE.PointsMaterial({
-    color: 'white',
-    size: 0.3,
-    sizeAttenuation: true,
-    transparent: true,
-    alphaMap: particleImage5,
-    blending: THREE.AdditiveBlending,
-    alphaTest: 0.001
-  })
-
-// TODO
-  // figure out how to hook this up with the flakeMaterial
-    // flakeMaterial.alphaMap = particleImage1
-    // flakeMaterial.transparent = true
-    // flakeMaterial.depthWrite = false
-    // flakeMaterial.blending = THREE.AdditiveBlending
-    // flakeMaterial.vertexColors = true
-
-const snow = new THREE.Group()
-
-for (let i = 0; i < flakeCount; i++) {
-  const flakeMesh = new THREE.Points(flakeGeometry, flakeMaterial)
-  flakeMesh.position.set(
-    (Math.random() - 0.5) * 15,
-    (Math.random() - 0.5) * 25,
-    (Math.random() - 0.5) * 3
-  )
-  snow.add(flakeMesh)
-}
-scene.add(snow)
-
-const flakeArray = snow.children
-
 const rotateAroundPoint = (obj, point, axis, theta, pointIsWorld) => {
   pointIsWorld = pointIsWorld === undefined ? false : pointIsWorld
 
@@ -226,6 +184,7 @@ const rotateRight = () => {
   }, 4500)
 }
 
+scene.add(snow)
 // recursively calls itself to allow for animation
 const animate = (initialRender = false) => {
   // if (initialRender) {
@@ -238,31 +197,6 @@ const animate = (initialRender = false) => {
     rotateLeft()
   }
 
-  // TODO
-  // play with this and see if I can acheive different effects
-    // updraft
-    // diagonal drift
-  for (let i = 0; i < flakeArray.length / 2; i++) {
-    flakeArray[i].rotation.y += 0.01
-    flakeArray[i].rotation.x += 0.02
-    flakeArray[i].rotation.z += 0.03
-    flakeArray[i].position.y -= 0.018
-    if (flakeArray[i].position.y < -4) {
-      flakeArray[i].position.y += 10
-    }
-  }
-  for (let i = flakeArray.length / 2; i < flakeArray.length; i++) {
-    flakeArray[i].rotation.y -= 0.03
-    flakeArray[i].rotation.x -= 0.03
-    flakeArray[i].rotation.z -= 0.02
-    flakeArray[i].position.y -= 0.016
-    if (flakeArray[i].position.y < -4) {
-      flakeArray[i].position.y += 9.5
-    }
-
-    snow.rotation.y -= 0.0000002
-  }
-
   // we can use deltaTime to calculate the time between each animation frame
   // don't know if this is useful or not
   const elapsedTime = clock.getElapsedTime()
@@ -271,6 +205,7 @@ const animate = (initialRender = false) => {
 
   // console.log(elapsedTime)
 
+  snowFlakes()
   controls.update()
   renderer.render(scene, camera)
   // recordFramesForGif()
