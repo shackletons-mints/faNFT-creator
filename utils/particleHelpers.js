@@ -20,7 +20,7 @@ const tasteTheRainbow = [
 ]
 
 const colorPicker = () => {
-  const amountOfColors = tasteTheRainbow.length - 1
+  const amountOfColors = tasteTheRainbow.length
   const rando = Math.floor(Math.random() * amountOfColors)
   return tasteTheRainbow[rando]
 }
