@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
 
 import { getRandomLeafWithRarityLabel } from './utils/generateRarityAttribute'
-import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
+// import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
 
 import { snowFlakes, snow } from './utils/particleHelpers'
 import {
@@ -69,7 +69,6 @@ scene.add(fanGroup)
 circle.position.set(-0.3, -0.5, 0.5)
 line.position.set(-0.3, -0.5, 0.5)
 handleMesh.position.set(0.19, -0.5, 0.53)
-// circleCompare.position.set(0.8, -0.5, 0.5)
 
 handleMesh.rotation.y += 1.59
 
@@ -164,9 +163,9 @@ const rotateRight = () => {
 scene.add(snow)
 // recursively calls itself to allow for animation
 const animate = (initialRender = false) => {
-  if (initialRender) {
-    generateFanGif({ title: `fan_${leaf.rarity}_leaf` })
-  }
+  // if (initialRender) {
+  //   generateFanGif({ title: `fan_${leaf.rarity}_leaf` })
+  // }
 
   if (isExecuted) {
     rotateRight()
@@ -185,7 +184,7 @@ const animate = (initialRender = false) => {
   snowFlakes()
   controls.update()
   renderer.render(scene, camera)
-  recordFramesForGif()
+  // recordFramesForGif()
   window.requestAnimationFrame(() => animate(false))
 }
 
