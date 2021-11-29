@@ -8,17 +8,31 @@ import {
   particleImage5,
 } from '../properties/particle_props'
 
+const tasteTheRainbow = [
+  '#ECF0F1',
+  '#E67E22',
+  '#F1C40F',
+  '#27AE60',
+  '#3498DB',
+  '#8E44AD',
+  '#E74C3C',
+  '#FA03C9'
+]
+
+const colorPicker = () => {
+  const amountOfColors = tasteTheRainbow.length - 1
+  const rando = Math.floor(Math.random() * amountOfColors)
+  return tasteTheRainbow[rando]
+}
 
 const flakeCount = 1000
 const flakeGeometry = new THREE.TetrahedronGeometry(0.035) // radius
-// const flakeGeometry = new THREE.BufferGeometry()
 const flakeMaterial = new THREE.PointsMaterial({
-    // color: '#C4CACE',
     color: '#FFC0CB',
     size: 0.3,
     sizeAttenuation: true,
     transparent: true,
-    alphaMap: particleImage1,
+    alphaMap: particleImage3,
     blending: THREE.AdditiveBlending,
     alphaTest: 0.001
   })
@@ -32,6 +46,7 @@ for (let i = 0; i < flakeCount; i++) {
     (Math.random() - 0.5) * 25,
     (Math.random() - 0.5) * 3
   )
+  flakeMesh.material.color.set(colorPicker())
   snow.add(flakeMesh)
 }
 
