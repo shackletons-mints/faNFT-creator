@@ -2,12 +2,14 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
 
+import { getRandomLeafWithRarityLabel } from './utils/generateRarityAttribute'
 // import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
 
 import { snowFlakes, snow } from './utils/particleHelpers'
 import { fanGroup } from './utils/fanHelpers'
 import { light, spotLightStraightOn, spotLightStraightOnHelper } from './utils/lightHelpers'
 import { rotateRight, rotateLeft, isExecuted } from './utils/rotationHelpers'
+
 import {
   commonBG,
   uncommonBG,
@@ -30,7 +32,6 @@ scene.background = rareBG
 // camera config
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
 camera.position.z = 2
-
 
 // enable user controls
 const controls = new OrbitControls(camera, canvas)
@@ -57,7 +58,7 @@ scene.add(light, spotLightStraightOn)
 // recursively calls itself to allow for animation
 const animate = (initialRender = false) => {
   // if (initialRender) {
-  //   generateFanGif()
+  //   generateFanGif({ title: `fan_${leaf.rarity}_leaf` })
   // }
 
   if (isExecuted) {
