@@ -34,6 +34,8 @@ import {
   handle7,
 } from '../properties/handle_props'
 
+import { getRandomLeafWithRarityLabel } from './generateRarityAttribute'
+
 // fan config
 const fanGeometry = new THREE.CircleGeometry(1, 30, 0, 2)
 const positionAttribute = fanGeometry.attributes.position
@@ -57,12 +59,14 @@ const line = new THREE.LineSegments(wireframe, wireMaterial)
 line.side = THREE.DoubleSide
 
 // fan leaf
-const circle = new THREE.Mesh(fanGeometry, leaf16.design)
+// TODO: how can we take leaf.rarity and pass it to the generateGif function
+const leaf = getRandomLeafWithRarityLabel()
+const circle = new THREE.Mesh(fanGeometry, leaf.design)
 const circleCompare = new THREE.Mesh(fanGeometry, leafDesignCompare)
 
 // fan handle
 const handleGeometry = new THREE.BoxGeometry(0.1, 0.06, 1.05)
-const handleMesh = new THREE.Mesh(handleGeometry, handle7)
+const handleMesh = new THREE.Mesh(handleGeometry, )
 
 export const fanGroup = new THREE.Group()
 fanGroup.add(circle, line, handleMesh)

@@ -28,8 +28,8 @@ let rarityLabelKeys = {
   Common: '60',
   Uncommon: '25',
   Rare: '10',
-  Epic: '0.01',
-  Legendary: '0.001',
+  Epic: '0.1',
+  Legendary: '0.01',
 }
 // turning object into array and creating the prefix sum array:
 let sums = [0] // prefix sums;
