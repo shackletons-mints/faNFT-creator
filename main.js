@@ -3,19 +3,12 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
 
 // import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
+import { getRandomBackgroundWithRarityLabel } from './utils/generateRarityAttribute'
 
 import { snowFlakes, snow } from './utils/particleHelpers'
-import { fanGroup } from './utils/fanHelpers'
+import { fanGroup, fanRarityLabels } from './utils/fanHelpers'
 import { light, spotLightStraightOn, spotLightStraightOnHelper } from './utils/lightHelpers'
 import { rotateRight, rotateLeft, isExecuted } from './utils/rotationHelpers'
-
-import {
-  commonBG,
-  uncommonBG,
-  rareBG,
-  epicBG,
-  legendaryBG,
-} from './properties/backgrounds'
 
 // view size config
 const sizes = {
@@ -26,7 +19,8 @@ const sizes = {
 // canvas and scene config
 const canvas = document.querySelector('canvas')
 const scene = new THREE.Scene()
-scene.background = rareBG
+const backgroundWithRarity = getRandomBackgroundWithRarityLabel()
+scene.background = backgroundWithRarity.background
 
 // camera config
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
@@ -44,9 +38,9 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
-let time = Date.now()
-const clock = new THREE.Clock()
-let oldElapsedTime = 0
+// let time = Date.now()
+// const clock = new THREE.Clock()
+// let oldElapsedTime = 0
 
 // Scene Additions...
 scene.add(snow)
@@ -56,9 +50,10 @@ scene.add(light, spotLightStraightOn)
 
 // recursively calls itself to allow for animation
 const animate = (initialRender = false) => {
-  // if (initialRender) {
-  //   generateFanGif({ title: `fan_${leaf.rarity}_leaf` })
-  // }
+  if (initialRender) {
+    console.log({title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle_${backgroundWithRarity.rarity}_bg` })
+    // generateFanGif({ title: `${fanRarityLabels.leaf.rarity}_leaf_${fanRarityLabels.handle.rarity}_handle_${backgroundWithRarity.rarity}_bg` })
+  }
 
   if (isExecuted) {
     rotateRight(fanGroup)
@@ -68,11 +63,9 @@ const animate = (initialRender = false) => {
 
   // we can use deltaTime to calculate the time between each animation frame
   // don't know if this is useful or not
-  const elapsedTime = clock.getElapsedTime()
-  const deltaTime = elapsedTime - oldElapsedTime
-  oldElapsedTime = elapsedTime
-
-  // console.log(elapsedTime)
+  // const elapsedTime = clock.getElapsedTime()
+  // const deltaTime = elapsedTime - oldElapsedTime
+  // oldElapsedTime = elapsedTime
 
   snowFlakes()
   controls.update()
