@@ -1,37 +1,6 @@
 import * as THREE from 'three'
 
-import {
-  leafDesign1,
-  leafDesign2,
-  leafDesign3,
-  leafDesign4,
-  leafDesign5,
-  leafDesign6,
-  leafDesign7,
-  leafDesign8,
-  leafDesign9,
-  leafDesign10,
-  leafDesign11,
-  leafDesign12,
-  leafDesign13,
-  leafDesign14,
-  leafDesign15,
-  leafDesign16,
-  leafDesign17,
-  leafDesign18,
-  leafDesign19,
-  leafDesign20,
-  leafDesign21,
-  grainyTexture
-} from './texture_loader.js'
-
-/**
- * dirty tldr
- * map => good for pictures
- * normalMap => good for textures
- * normalScale => need it for normalMap, something with how light interacts with it
- * default gives no effect
- */
+import {  } from './texture_loader.js'
 
 const leafDesignOne = new THREE.MeshStandardMaterial({
   map: leafDesign1,
@@ -43,6 +12,7 @@ const leafDesignOne = new THREE.MeshStandardMaterial({
 
 export const leaf1 = {
   design: leafDesignOne,
+  rarity: 1,
 }
 
 const leafDesignTwo = new THREE.MeshStandardMaterial({
@@ -53,7 +23,8 @@ const leafDesignTwo = new THREE.MeshStandardMaterial({
 })
 
 export const leaf2 = {
-  design: leafDesignTwo
+  design: leafDesignTwo,
+  rarity: 1
 }
 
 const leafDesignThree = new THREE.MeshStandardMaterial({
@@ -64,7 +35,8 @@ const leafDesignThree = new THREE.MeshStandardMaterial({
 })
 
 export const leaf3 = {
-  design: leafDesignThree
+  design: leafDesignThree,
+  rarity: 1
 }
 
 const leafDesignFour = new THREE.MeshStandardMaterial({
@@ -76,7 +48,8 @@ const leafDesignFour = new THREE.MeshStandardMaterial({
 })
 
 export const leaf4 = {
-  design: leafDesignFour
+  design: leafDesignFour,
+  rarity: 1
 }
 
 const leafDesignFive = new THREE.MeshStandardMaterial({
@@ -88,7 +61,8 @@ const leafDesignFive = new THREE.MeshStandardMaterial({
 })
 
 export const leaf5 = {
-  design: leafDesignFive
+  design: leafDesignFive,
+  rarity: 1
 }
 
 const leafDesignSix = new THREE.MeshStandardMaterial({
@@ -100,7 +74,8 @@ const leafDesignSix = new THREE.MeshStandardMaterial({
 })
 
 export const leaf6 = {
-  design: leafDesignSix
+  design: leafDesignSix,
+  rarity: 1
 }
 
 const leafDesignSeven = new THREE.MeshStandardMaterial({
@@ -112,7 +87,8 @@ const leafDesignSeven = new THREE.MeshStandardMaterial({
 })
 
 export const leaf7 = {
-  design: leafDesignSeven
+  design: leafDesignSeven,
+  rarity: 1
 }
 
 const leafDesignEight = new THREE.MeshStandardMaterial({
@@ -124,7 +100,8 @@ const leafDesignEight = new THREE.MeshStandardMaterial({
 })
 
 export const leaf8 = {
-  design: leafDesignEight
+  design: leafDesignEight,
+  rarity: 1
 }
 
 const leafDesignNine = new THREE.MeshStandardMaterial({
@@ -136,7 +113,8 @@ const leafDesignNine = new THREE.MeshStandardMaterial({
 })
 
 export const leaf9 = {
-  design: leafDesignNine
+  design: leafDesignNine,
+  rarity: 1
 }
 
 const leafDesignTen = new THREE.MeshStandardMaterial({
@@ -148,7 +126,8 @@ const leafDesignTen = new THREE.MeshStandardMaterial({
 })
 
 export const leaf10 = {
-  design: leafDesignTen
+  design: leafDesignTen,
+  rarity: 1
 }
 
 const leafDesignEleven = new THREE.MeshStandardMaterial({
@@ -160,7 +139,8 @@ const leafDesignEleven = new THREE.MeshStandardMaterial({
 })
 
 export const leaf11 = {
-  design: leafDesignEleven
+  design: leafDesignEleven,
+  rarity: 1
 }
 
 const leafDesignTwelve = new THREE.MeshStandardMaterial({
@@ -172,7 +152,8 @@ const leafDesignTwelve = new THREE.MeshStandardMaterial({
 })
 
 export const leaf12 = {
-  design: leafDesignTwelve
+  design: leafDesignTwelve,
+  rarity: 1
 }
 
 const leafDesignThirteen = new THREE.MeshStandardMaterial({
@@ -184,7 +165,8 @@ const leafDesignThirteen = new THREE.MeshStandardMaterial({
 })
 
 export const leaf13 = {
-  design: leafDesignThirteen
+  design: leafDesignThirteen,
+  rarity: 1
 }
 
 const leafDesignFourteen = new THREE.MeshStandardMaterial({
@@ -196,7 +178,8 @@ const leafDesignFourteen = new THREE.MeshStandardMaterial({
 })
 
 export const leaf14 = {
-  design: leafDesignFourteen
+  design: leafDesignFourteen,
+  rarity: 1
 }
 
 const leafDesignFifteen = new THREE.MeshStandardMaterial({
@@ -208,7 +191,8 @@ const leafDesignFifteen = new THREE.MeshStandardMaterial({
 })
 
 export const leaf15 = {
-  design: leafDesignFifteen
+  design: leafDesignFifteen,
+  rarity: 1
 }
 
 const leafDesignSixteen = new THREE.MeshStandardMaterial({
@@ -220,7 +204,8 @@ const leafDesignSixteen = new THREE.MeshStandardMaterial({
 })
 
 export const leaf16 = {
-  design: leafDesignSixteen
+  design: leafDesignSixteen,
+  rarity: 1
 }
 
 const leafDesignSeventeen = new THREE.MeshStandardMaterial({
@@ -232,7 +217,8 @@ const leafDesignSeventeen = new THREE.MeshStandardMaterial({
 })
 
 export const leaf17 = {
-  design: leafDesignSeventeen
+  design: leafDesignSeventeen,
+  rarity: 1
 }
 
 const leafDesignEighteen = new THREE.MeshStandardMaterial({
@@ -244,7 +230,8 @@ const leafDesignEighteen = new THREE.MeshStandardMaterial({
 })
 
 export const leaf18 = {
-  design: leafDesignEighteen
+  design: leafDesignEighteen,
+  rarity: 1
 }
 const leafDesignNineteen = new THREE.MeshStandardMaterial({
   map: leafDesign19,
@@ -255,7 +242,8 @@ const leafDesignNineteen = new THREE.MeshStandardMaterial({
 })
 
 export const leaf19 = {
-  design: leafDesignNineteen
+  design: leafDesignNineteen,
+  rarity: 1
 }
 const leafDesignTwenty = new THREE.MeshStandardMaterial({
   map: leafDesign20,
@@ -266,7 +254,8 @@ const leafDesignTwenty = new THREE.MeshStandardMaterial({
 })
 
 export const leaf20 = {
-  design: leafDesignTwenty
+  design: leafDesignTwenty,
+  rarity: 1
 }
 const leafDesignTwentyOne = new THREE.MeshStandardMaterial({
   map: leafDesign21,
@@ -277,11 +266,12 @@ const leafDesignTwentyOne = new THREE.MeshStandardMaterial({
 })
 
 export const leaf21 = {
-  design: leafDesignTwentyOne
+  design: leafDesignTwentyOne,
+  rarity: 1
 }
 
 
-// are we still using this one?
+
 export const leafDesignCompare = new THREE.MeshStandardMaterial({
   map: leafDesign1,
   side: THREE.DoubleSide
