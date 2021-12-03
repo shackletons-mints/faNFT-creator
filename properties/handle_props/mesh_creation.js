@@ -115,49 +115,24 @@ const design10 = new THREE.MeshPhysicalMaterial({
   bumpScale: 1,
   flatShading: true,
   roughness: 0.3,
-  metalness: 0.5,
+  metalness: 0.9,
   normalScale: new THREE.Vector2(0.5, 0.5),
-  emissiveIntensity: 0.1
+  emissiveIntensity: 0.5,
+  emissive: 'gold'
 })
 
-export const handle1 = {
-  design: design1,
-  rarity: 1
-}
-
-export const handle2 = {
-  design: design2,
-  rarity: 1
-}
-export const handle3 = {
-  design: design3,
-  rarity: 1
-}
-export const handle4 = {
-  design: design4,
-  rarity: 1
-}
-export const handle5 = {
-  design: design5,
-  rarity: 1
-}
-export const handle6 = {
-  design: design6,
-  rarity: 1
-}
-export const handle7 = {
-  design: design7,
-  rarity: 1
-}
-export const handle8 = {
-  design: design8,
-  rarity: 1
-}
-export const handle9 = {
-  design: design9,
-  rarity: 1
-}
-export const handle10 = {
-  design: design10,
-  rarity: 1
-}
+export const handle1 = design1
+export const handle2 = design1
+export const handle3 = design2
+export const handle4 = design2
+export const handle5 = design9
+export const handle6 = design4
+export const handle7 = design4
+export const handle8 = design5
+export const handle9 = design5
+export const handle10 = design6
+export const handle11 = design6
+export const handle12 = design7
+export const handle13 = design8
+export const handle14 = design3
+export const handle15 = design10

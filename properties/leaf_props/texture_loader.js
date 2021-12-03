@@ -5,12 +5,18 @@ const textureLoader = new THREE.TextureLoader()
 
 export const leafDesign1 = textureLoader.load('./properties/leaf_props/designs/wave.jpg')
 export const leafDesign2 = textureLoader.load('./properties/leaf_props/designs/mountain_and_boat.jpeg')
-export const leafDesign3 = textureLoader.load('./properties/leaf_props/designs/wave2.jpg')
+export const leafDesign3 = textureLoader.load('./properties/leaf_props/designs/koiBoi.jpeg')
+leafDesign3.wrapS = THREE.RepeatWrapping
+leafDesign3.wrapT = THREE.RepeatWrapping
+leafDesign3.offset.set( -0.39, -0.5 )
+leafDesign3.center.set(0.5, 0.5)
+leafDesign3.rotation = 0.1
+
 export const leafDesign4 = textureLoader.load('./properties/leaf_props/designs/watercolor.jpeg')
 export const leafDesign5 = textureLoader.load('./properties/leaf_props/designs/chinaDesign.jpeg')
 leafDesign5.wrapS = THREE.RepeatWrapping
 leafDesign5.wrapT = THREE.RepeatWrapping
-leafDesign5.offset.set( .6, 0 )
+leafDesign5.offset.set( 0.6, 0 )
 leafDesign5.center.set(0.7, 0.7)
 leafDesign5.rotation = 0.6
 
