@@ -1,12 +1,6 @@
 import * as THREE from 'three'
 
-import {
-  particleImage1,
-  particleImage2,
-  particleImage3,
-  particleImage4,
-  particleImage5,
-} from '../properties/particle_props'
+import { getRandomParticleWithRarityLabel } from './generateRarityAttribute'
 
 const tasteTheRainbow = [
   '#ECF0F1',
@@ -25,14 +19,15 @@ const colorPicker = () => {
   return tasteTheRainbow[rando]
 }
 
-const flakeCount = 1000
+const particle = getRandomParticleWithRarityLabel().particle
+const flakeCount = 500
 const flakeGeometry = new THREE.TetrahedronGeometry(0.035) // radius
 const flakeMaterial = new THREE.PointsMaterial({
     color: '#FFC0CB',
-    size: 0.3,
+    size: 0.2,
     sizeAttenuation: true,
     transparent: true,
-    alphaMap: particleImage3,
+    alphaMap: particle,
     blending: THREE.AdditiveBlending,
     alphaTest: 0.001
   })
