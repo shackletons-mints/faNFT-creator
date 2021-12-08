@@ -32,12 +32,7 @@ import {
   handle7,
   handle8,
   handle9,
-  handle10,
-  handle11,
-  handle12,
-  handle13,
-  handle14,
-  handle15
+  handle10
 } from '../properties/handle_props'
 
 import {
@@ -54,16 +49,6 @@ import {
   particleImage3,
   particleImage4,
   particleImage5,
-  particleImage6,
-  particleImage7,
-  particleImage8,
-  particleImage9,
-  particleImage10,
-  particleImage11,
-  particleImage12,
-  particleImage13,
-  particleImage14,
-  particleImage15,
 } from '../properties/particle_props'
 
 // This turns into a binary search tree.  Im still trying to figure out how.
@@ -122,11 +107,11 @@ const leafAttributeCollection = {
 }
 
 const handleAttributeCollection = {
-  Common: [handle1, handle2, handle3, handle4, handle5],
-  Uncommon: [handle6, handle7, handle8, handle9],
-  Rare: [handle10, handle11, handle12],
-  Epic: [handle13, handle14],
-  Legendary: [handle15],
+  Common: [handle1, handle2, handle3],
+  Uncommon: [handle4, handle5, handle6],
+  Rare: [handle7, handle8],
+  Epic: [handle9],
+  Legendary: [handle10],
 }
 
 const bgAttributeCollection = {
@@ -138,11 +123,11 @@ const bgAttributeCollection = {
 }
 
 const particleAttributeCollection = {
-  Common: [particleImage1, particleImage2, particleImage3, particleImage4, particleImage5],
-  Uncommon: [particleImage6, particleImage7, particleImage8, particleImage9],
-  Rare: [particleImage10, particleImage11, particleImage12],
-  Epic: [particleImage13, particleImage14],
-  Legendary: [particleImage15],
+  Common: [particleImage1],
+  Uncommon: [particleImage2],
+  Rare: [particleImage3],
+  Epic: [particleImage4],
+  Legendary: [particleImage5],
 }
 
 export const getRandomLeafWithRarityLabel = () => {

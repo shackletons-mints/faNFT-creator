@@ -9,9 +9,4 @@ export {
   handle8,
   handle9,
   handle10,
-  handle11,
-  handle12,
-  handle13,
-  handle14,
-  handle15
 } from './mesh_creation.js'

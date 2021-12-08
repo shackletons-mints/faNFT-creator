@@ -122,17 +122,12 @@ const design10 = new THREE.MeshPhysicalMaterial({
 })
 
 export const handle1 = design1
-export const handle2 = design1
-export const handle3 = design2
-export const handle4 = design2
-export const handle5 = design9
-export const handle6 = design4
-export const handle7 = design4
-export const handle8 = design5
-export const handle9 = design5
-export const handle10 = design6
-export const handle11 = design6
-export const handle12 = design7
-export const handle13 = design8
-export const handle14 = design3
-export const handle15 = design10
+export const handle2 = design2
+export const handle3 = design9
+export const handle4 = design4
+export const handle5 = design5
+export const handle6 = design6
+export const handle7 = design7
+export const handle8 = design8
+export const handle9 = design3
+export const handle10 = design10
