@@ -1,6 +1,17 @@
 import * as THREE from 'three'
 
-import { getRandomLeafWithRarityLabel, getRandomHandleWithRarityLabel } from './generateRarityAttribute'
+import {
+  commonBG,
+  uncommonBG,
+  rareBG,
+  epicBG,
+  legendaryBG,
+} from '../properties/backgrounds'
+
+import {
+  getRandomLeafWithRarityLabel,
+  getRandomHandleWithRarityLabel,
+} from './generateRarityAttribute'
 
 // fan config
 const fanGeometry = new THREE.CircleGeometry(1, 30, 0, 2)
@@ -36,8 +47,28 @@ const handleMesh = new THREE.Mesh(handleGeometry, handleWithRarity.handle)
 export const fanGroup = new THREE.Group()
 export const fanRarityLabels = {
   leaf: leafWithRarity.rarity,
-  handle: handleWithRarity.rarity
+  handle: handleWithRarity.rarity,
 }
+
+const bgAttributeCollection = {
+  Common: commonBG,
+  Uncommon: uncommonBG,
+  Rare: rareBG,
+  Epic: epicBG,
+  Legendary: legendaryBG,
+}
+
+const rarityLabels = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary']
+
+export const getRandomBackgroundBasedOnFanGroupRarity = () => {
+  const backgroundRarityIndex = Math.max(
+    rarityLabels.indexOf(fanRarityLabels.leaf),
+    rarityLabels.indexOf(fanRarityLabels.handle)
+  )
+
+  return bgAttributeCollection[rarityLabels[backgroundRarityIndex]]
+}
+
 fanGroup.add(circle, line, handleMesh)
 
 // center image and package them as one

@@ -36,14 +36,6 @@ import {
 } from '../properties/handle_props'
 
 import {
-  commonBG,
-  uncommonBG,
-  rareBG,
-  epicBG,
-  legendaryBG,
-} from '../properties/backgrounds'
-
-import {
   particleImage1,
   particleImage2,
   particleImage3,
@@ -114,14 +106,6 @@ const handleAttributeCollection = {
   Legendary: [handle10],
 }
 
-const bgAttributeCollection = {
-  Common: [commonBG],
-  Uncommon: [uncommonBG],
-  Rare: [rareBG],
-  Epic: [epicBG],
-  Legendary: [legendaryBG],
-}
-
 const particleAttributeCollection = {
   Common: [particleImage1],
   Uncommon: [particleImage2],
@@ -142,14 +126,6 @@ export const getRandomHandleWithRarityLabel = () => {
   const rarityLabel = keys[getRandomRarity()]
   return {
     handle: getRandomFromList(handleAttributeCollection[rarityLabel]),
-    rarity: rarityLabel,
-  }
-}
-
-export const getRandomBackgroundWithRarityLabel = () => {
-  const rarityLabel = keys[getRandomRarity()]
-  return {
-    background: bgAttributeCollection[rarityLabel][0],
     rarity: rarityLabel,
   }
 }
