@@ -30,6 +30,14 @@ import {
   handle5,
   handle6,
   handle7,
+  handle8,
+  handle9,
+  handle10,
+  handle11,
+  handle12,
+  handle13,
+  handle14,
+  handle15
 } from '../properties/handle_props'
 
 import {
@@ -106,19 +114,19 @@ function getRandomFromList(list) {
 
 // get Fan attribute from collection based on rarity prop
 const leafAttributeCollection = {
-  Common: [leaf1, leaf2, leaf3, leaf4, leaf5, leaf6, leaf7, leaf8, leaf9],
-  Uncommon: [leaf10, leaf11, leaf12, leaf13, leaf14],
-  Rare: [leaf15, leaf16, leaf17, leaf18],
-  Epic: [leaf18, leaf19, leaf20],
-  Legendary: [leaf21],
+  Common: [leaf4, leaf6, leaf10, leaf14, leaf19, leaf20, leaf21, leaf11, leaf2],
+  Uncommon: [leaf1, leaf3, leaf13, leaf15, leaf14],
+  Rare: [leaf12, leaf16, leaf5, leaf7],
+  Epic: [leaf8, leaf9, leaf17],
+  Legendary: [leaf18],
 }
 
 const handleAttributeCollection = {
-  Common: [handle1, handle2],
-  Uncommon: [handle3, handle4],
-  Rare: [handle5],
-  Epic: [handle6],
-  Legendary: [handle7],
+  Common: [handle1, handle2, handle3, handle4, handle5],
+  Uncommon: [handle6, handle7, handle8, handle9],
+  Rare: [handle10, handle11, handle12],
+  Epic: [handle13, handle14],
+  Legendary: [handle15],
 }
 
 const bgAttributeCollection = {
