@@ -157,7 +157,7 @@ export const getRandomBackgroundWithRarityLabel = () => {
 export const getRandomParticleWithRarityLabel = () => {
   const rarityLabel = keys[getRandomRarity()]
   return {
-    particle: getRandomFromList(particleAttributeCollection[rarityLabel]),
+    particle: particleAttributeCollection[rarityLabel][0],
     rarity: rarityLabel,
   }
 }
