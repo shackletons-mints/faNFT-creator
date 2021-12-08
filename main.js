@@ -3,10 +3,9 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
 
 // import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
-import { getRandomBackgroundWithRarityLabel } from './utils/generateRarityAttribute'
 
 import { snowFlakes, snow } from './utils/particleHelpers'
-import { fanGroup, fanRarityLabels } from './utils/fanHelpers'
+import { fanGroup, fanRarityLabels, getRandomBackgroundBasedOnFanGroupRarity } from './utils/fanHelpers'
 import { light, spotLightStraightOn, spotLightStraightOnHelper } from './utils/lightHelpers'
 import { rotateRight, rotateLeft, isExecuted } from './utils/rotationHelpers'
 
@@ -19,8 +18,7 @@ const sizes = {
 // canvas and scene config
 const canvas = document.querySelector('canvas')
 const scene = new THREE.Scene()
-const backgroundWithRarity = getRandomBackgroundWithRarityLabel()
-scene.background = backgroundWithRarity.background
+scene.background = getRandomBackgroundBasedOnFanGroupRarity()
 
 // camera config
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
@@ -50,9 +48,10 @@ scene.add(light, spotLightStraightOn)
 
 // recursively calls itself to allow for animation
 const animate = (initialRender = false) => {
+  // Problems to solve:
   if (initialRender) {
-    console.log({title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle_${backgroundWithRarity.rarity}_bg` })
-    // generateFanGif({ title: `${fanRarityLabels.leaf.rarity}_leaf_${fanRarityLabels.handle.rarity}_handle_${backgroundWithRarity.rarity}_bg` })
+    console.log({title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle` })
+    // generateFanGif({ title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle` })
   }
 
   if (isExecuted) {
