@@ -32,7 +32,7 @@ import {
   handle7,
   handle8,
   handle9,
-  handle10
+  handle10,
 } from '../properties/handle_props'
 
 import {
@@ -43,46 +43,23 @@ import {
   particleImage5,
 } from '../properties/particle_props'
 
-// This turns into a binary search tree.  Im still trying to figure out how.
-// reference: https://stackoverflow.com/questions/43566019/how-to-choose-a-weighted-random-array-element-in-javascript/68792377#comment121581367_68792377
-let rarityLabelKeys = {
-  Common: '60',
-  Uncommon: '25',
-  Rare: '10',
-  Epic: '1',
-  Legendary: '0.1',
-}
+const rarityLabels = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary']
+const rarityWeights = [.6, .25, .08, .05, .02]
 
-// turning object into array and creating the prefix sum array:
-let sums = [0] // prefix sums;
-let keys = []
-
-for (let key in rarityLabelKeys) {
-  keys.push(key)
-  sums.push(sums[sums.length - 1] + parseFloat(rarityLabelKeys[key]) / 100)
-}
-
-sums.push(1)
-keys.push('NONE')
-
-// This will theortically return 1 legendary in 10,000 etc...
-function lowerBound(target, low = 0, high = sums.length - 1) {
-  if (low == high) {
-    return low
+function weightedRandom(items, weights) {
+  const cumulativeWeights = []
+  for (let i = 0; i < weights.length; i += 1) {
+    cumulativeWeights[i] = weights[i] + (cumulativeWeights[i - 1] || 0)
   }
-  const midPoint = Math.floor((low + high) / 2)
 
-  if (target < sums[midPoint]) {
-    return lowerBound(target, low, midPoint)
-  } else if (target > sums[midPoint]) {
-    return lowerBound(target, midPoint + 1, high)
-  } else {
-    return midPoint + 1
+  const maxCumulativeWeight = cumulativeWeights[cumulativeWeights.length - 1]
+  const randomNumber = maxCumulativeWeight * Math.random()
+
+  for (let itemIndex = 0; itemIndex < items.length; itemIndex += 1) {
+    if (cumulativeWeights[itemIndex] >= randomNumber) {
+      return items[itemIndex]
+    }
   }
-}
-
-function getRandomRarity() {
-  return lowerBound(Math.random())
 }
 
 function getRandomFromList(list) {
@@ -115,7 +92,7 @@ const particleAttributeCollection = {
 }
 
 export const getRandomLeafWithRarityLabel = () => {
-  const rarityLabel = keys[getRandomRarity()]
+  const rarityLabel = weightedRandom(rarityLabels, rarityWeights)
   return {
     leaf: getRandomFromList(leafAttributeCollection[rarityLabel]).design,
     rarity: rarityLabel,
@@ -123,7 +100,7 @@ export const getRandomLeafWithRarityLabel = () => {
 }
 
 export const getRandomHandleWithRarityLabel = () => {
-  const rarityLabel = keys[getRandomRarity()]
+  const rarityLabel = weightedRandom(rarityLabels, rarityWeights)
   return {
     handle: getRandomFromList(handleAttributeCollection[rarityLabel]),
     rarity: rarityLabel,
@@ -131,9 +108,32 @@ export const getRandomHandleWithRarityLabel = () => {
 }
 
 export const getRandomParticleWithRarityLabel = () => {
-  const rarityLabel = keys[getRandomRarity()]
+  const rarityLabel = weightedRandom(rarityLabels, rarityWeights)
   return {
     particle: particleAttributeCollection[rarityLabel][0],
     rarity: rarityLabel,
   }
 }
+
+/** 
+ * 
+ *  Use the below logic to demo the accuracy of the rarity function
+ *  last test returned the following:
+ * { Common: 614, Uncommon: 237, Rare: 85, Epic: 44, Legendary: 20 }
+ * 
+ */
+
+// let oneThousandWeights = {
+//   Common: 0,
+//   Uncommon: 0,
+//   Rare: 0,
+//   Epic: 0,
+//   Legendary: 0,
+// }
+
+// for (let i = 0; i < 1000; i += 1) {
+//   const rarityLabel = weightedRandom(rarityLabels, rarityWeights)
+//   oneThousandWeights[rarityLabel]++
+// }
+
+// console.log(oneThousandWeights)
