@@ -4,13 +4,16 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "gifWatch": "node --experimental-modules gifWatcher.js"
   },
   "devDependencies": {
+    "nodemon": "^2.0.15",
     "vite": "^2.6.4"
   },
   "dependencies": {
     "canvas-capture": "github:amandaghassaei/canvas-capture",
     "three": "^0.134.0"
-  }
+  },
+  "type": "module"
 }

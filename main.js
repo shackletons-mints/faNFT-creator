@@ -2,7 +2,8 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
 
-// import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
+import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
+import { continueMakingGIFS } from './gifWatcher'
 
 import { snowFlakes, snow } from './utils/particleHelpers'
 import { fanGroup, fanRarityLabels, getRandomBackgroundBasedOnFanGroupRarity } from './utils/fanHelpers'
@@ -46,12 +47,14 @@ scene.add(camera)
 scene.add(fanGroup)
 scene.add(light, spotLightStraightOn)
 
+console.log(continueMakingGIFS)
+
 // recursively calls itself to allow for animation
 const animate = (initialRender = false) => {
   // Problems to solve:
   if (initialRender) {
     console.log({title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle` })
-    // generateFanGif({ title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle` })
+    generateFanGif({ title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle` })
   }
 
   if (isExecuted) {
@@ -69,7 +72,7 @@ const animate = (initialRender = false) => {
   snowFlakes()
   controls.update()
   renderer.render(scene, camera)
-  // recordFramesForGif()
+  recordFramesForGif()
   window.requestAnimationFrame(() => animate(false))
 }
 
