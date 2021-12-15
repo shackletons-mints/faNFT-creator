@@ -16,11 +16,11 @@ export const generateFanGif = ({ title }) => {
     })
 
     // verify quality params, pass in specific title
-    CanvasCapture.beginGIFRecord({ fps: 30, name: title })    
+    CanvasCapture.beginGIFRecord({ fps: 45, name: title })    
 
   setTimeout(() => {
     CanvasCapture.stopRecord()
-  }, 7500)
+  }, 7000)
 }
 
 export const recordFramesForGif = () => {

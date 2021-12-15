@@ -1,7 +1,8 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
-// import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
+import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
+import { once } from './utils/helperFunctions'
 
 import { snowFlakes, snow } from './utils/particleHelpers'
 import { fanGroup, fanRarityLabels, getRandomBackgroundBasedOnFanGroupRarity } from './utils/fanHelpers'
@@ -36,9 +37,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
-// let time = Date.now()
-// const clock = new THREE.Clock()
-// let oldElapsedTime = 0
+const clock = new THREE.Clock()
 
 // Scene Additions...
 scene.add(snow)
@@ -46,38 +45,27 @@ scene.add(camera)
 scene.add(fanGroup)
 scene.add(light, spotLightStraightOn)
 
+const generateOnce = once(generateFanGif({ title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle` }))
+const logOnce = once(() => console.log({title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle` }))
+
 // recursively calls itself to allow for animation
-const animate = (initialRender = false) => {
+const animate = () => {
   
-  let isExecuted = false
+  const elapsedTime = clock.getElapsedTime()
+  // comment this in if you want to verify the time
+  // console.log(elapsedTime)
 
-  if (initialRender) {
-    console.log({title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle` })
-    setTimeout(() => {
-      generateFanGif({ title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle` })
-    }, 1000)
+  if (elapsedTime >= 1) {
+    logOnce()
+    generateOnce()
   }
-
-  if (!isExecuted) {
-    setTimeout(() => {
-      spinFun(fanGroup)
-    }, 500)
-    setTimeout(() => {
-      isExecuted = true
-    }, 3500)
-  }
-
-  // we can use deltaTime to calculate the time between each animation frame
-  // don't know if this is useful or not
-  // const elapsedTime = clock.getElapsedTime()
-  // const deltaTime = elapsedTime - oldElapsedTime
-  // oldElapsedTime = elapsedTime
+  
+  spinFun(fanGroup)
 
   snowFlakes()
-  controls.update()
   renderer.render(scene, camera)
-  // recordFramesForGif()
-  window.requestAnimationFrame(() => animate(false))
+  recordFramesForGif()
+  window.requestAnimationFrame(() => animate())
 }
 
 animate(true)
