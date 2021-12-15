@@ -20,7 +20,7 @@ const colorPicker = () => {
 }
 
 const particle = getRandomParticleWithRarityLabel().particle
-const flakeCount = 500
+const flakeCount = 100
 const flakeGeometry = new THREE.TetrahedronGeometry(0.035) // radius
 const flakeMaterial = new THREE.PointsMaterial({
     color: '#FFC0CB',
@@ -37,9 +37,9 @@ export const snow = new THREE.Group()
 for (let i = 0; i < flakeCount; i++) {
   const flakeMesh = new THREE.Points(flakeGeometry, flakeMaterial)
   flakeMesh.position.set(
-    (Math.random() - 0.5) * 15,
-    (Math.random() - 0.5) * 25,
-    (Math.random() - 0.5) * 3
+    (Math.random() - 0.5) * 4,
+    (Math.random() - 0.5) * 4,
+    (Math.random() - 0.5) * 2,
   )
   flakeMesh.material.color.set(colorPicker())
   snow.add(flakeMesh)
