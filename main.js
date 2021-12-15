@@ -2,17 +2,19 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
 
-// import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
+import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
 
 import { snowFlakes, snow } from './utils/particleHelpers'
 import { fanGroup, fanRarityLabels, getRandomBackgroundBasedOnFanGroupRarity } from './utils/fanHelpers'
 import { light, spotLightStraightOn, spotLightStraightOnHelper } from './utils/lightHelpers'
-import { rotateRight, rotateLeft, isExecuted } from './utils/rotationHelpers'
+import { rotateRight, rotateLeft } from './utils/rotationHelpers'
 
 // view size config
+// THIS IS SET TO OPENSEA PREVIEW SIZE ON INDIVIDUAL NFT PAGE
+
 const sizes = {
-  width: window.innerWidth,
-  height: window.innerHeight,
+  width: 508,
+  height: 508,
 }
 
 // canvas and scene config
@@ -47,17 +49,27 @@ scene.add(fanGroup)
 scene.add(light, spotLightStraightOn)
 
 // recursively calls itself to allow for animation
+
+let isExecuted = false
+
 const animate = (initialRender = false) => {
   // Problems to solve:
   if (initialRender) {
     console.log({title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle` })
-    // generateFanGif({ title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle` })
+    setTimeout(() => {
+      generateFanGif({ title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle` })
+    }, 1000)
   }
 
   if (isExecuted) {
     rotateRight(fanGroup)
   } else {
-    rotateLeft(fanGroup)
+    setTimeout(() => {
+      rotateLeft(fanGroup)
+    }, 500)
+    setTimeout(() => {
+      isExecuted = true
+    }, 3500)
   }
 
   // we can use deltaTime to calculate the time between each animation frame
@@ -69,7 +81,7 @@ const animate = (initialRender = false) => {
   snowFlakes()
   controls.update()
   renderer.render(scene, camera)
-  // recordFramesForGif()
+  recordFramesForGif()
   window.requestAnimationFrame(() => animate(false))
 }
 

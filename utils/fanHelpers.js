@@ -1,5 +1,10 @@
 import * as THREE from 'three'
 
+import { handle10, handle9 } from '../properties/handle_props/index.js'
+
+import { leaf18, leaf8, leaf9, leaf17 } from '../properties/leaf_props/index.js'
+
+
 import {
   commonBG,
   uncommonBG,
@@ -37,12 +42,12 @@ line.side = THREE.DoubleSide
 
 // fan leaf
 const leafWithRarity = getRandomLeafWithRarityLabel()
-const circle = new THREE.Mesh(fanGeometry, leafWithRarity.leaf)
+const circle = new THREE.Mesh(fanGeometry, leaf17.design)
 
 // fan handle
 const handleWithRarity = getRandomHandleWithRarityLabel()
 const handleGeometry = new THREE.BoxGeometry(0.1, 0.06, 1.05)
-const handleMesh = new THREE.Mesh(handleGeometry, handleWithRarity.handle)
+const handleMesh = new THREE.Mesh(handleGeometry, handle10)
 
 export const fanGroup = new THREE.Group()
 export const fanRarityLabels = {
@@ -61,12 +66,13 @@ const bgAttributeCollection = {
 const rarityLabels = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary']
 
 export const getRandomBackgroundBasedOnFanGroupRarity = () => {
-  const backgroundRarityIndex = Math.max(
-    rarityLabels.indexOf(fanRarityLabels.leaf),
-    rarityLabels.indexOf(fanRarityLabels.handle)
-  )
+  // const backgroundRarityIndex = Math.max(
+  //   rarityLabels.indexOf(fanRarityLabels.leaf),
+  //   rarityLabels.indexOf(fanRarityLabels.handle)
+  // )
 
-  return bgAttributeCollection[rarityLabels[backgroundRarityIndex]]
+  // return bgAttributeCollection[rarityLabels[backgroundRarityIndex]]
+  return bgAttributeCollection['Legendary']
 }
 
 fanGroup.add(circle, line, handleMesh)
