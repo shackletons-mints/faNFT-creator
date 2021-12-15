@@ -5,8 +5,16 @@ import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
 import { once } from './utils/helperFunctions'
 
 import { snowFlakes, snow } from './utils/particleHelpers'
-import { fanGroup, fanRarityLabels, getRandomBackgroundBasedOnFanGroupRarity } from './utils/fanHelpers'
-import { light, spotLightStraightOn, spotLightStraightOnHelper } from './utils/lightHelpers'
+import {
+  fanGroup,
+  fanRarityLabels,
+  getRandomBackgroundBasedOnFanGroupRarity,
+} from './utils/fanHelpers'
+import {
+  light,
+  spotLightStraightOn,
+  spotLightStraightOnHelper,
+} from './utils/lightHelpers'
 import { spinFun } from './utils/rotationHelpers'
 
 // view size config
@@ -45,12 +53,19 @@ scene.add(camera)
 scene.add(fanGroup)
 scene.add(light, spotLightStraightOn)
 
-const generateOnce = once(generateFanGif({ title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle` }))
-const logOnce = once(() => console.log({title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle` }))
+const generateOnce = once(
+  generateFanGif({
+    title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle`,
+  })
+)
+const logOnce = once(() =>
+  console.log({
+    title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle`,
+  })
+)
 
 // recursively calls itself to allow for animation
 const animate = () => {
-  
   const elapsedTime = clock.getElapsedTime()
   // comment this in if you want to verify the time
   // console.log(elapsedTime)
@@ -59,13 +74,13 @@ const animate = () => {
     logOnce()
     generateOnce()
   }
-  
+
   spinFun(fanGroup)
 
   snowFlakes()
   renderer.render(scene, camera)
   recordFramesForGif()
-  window.requestAnimationFrame(() => animate())
+  window.requestAnimationFrame(animate)
 }
 
-animate(true)
+animate()
