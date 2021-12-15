@@ -7,17 +7,16 @@ import * as CanvasCapture from 'canvas-capture'
 // 4 - clear scene
 // timeouts are fragile
 export const generateFanGif = ({ title }) => {
-  // setTimeout(() => {
-    CanvasCapture.init(document.getElementById('app'), {
-      verbose: false,
-      showAlerts: false,
-      showDialogs: false,
-      showRecDot: false,
-    })
 
-    // verify quality params, pass in specific title
-    CanvasCapture.beginGIFRecord({ fps: 30, name: title })    
-  // }, 1500)
+  CanvasCapture.init(document.getElementById('app'), {
+    verbose: false,
+    showAlerts: false,
+    showDialogs: false,
+    showRecDot: false,
+  })
+
+  // verify quality params, pass in specific title
+  CanvasCapture.beginGIFRecord({ fps: 30, name: title })
 
   setTimeout(() => {
     CanvasCapture.stopRecord()

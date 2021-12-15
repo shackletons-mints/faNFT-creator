@@ -1,6 +1,5 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
 
 import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
 
