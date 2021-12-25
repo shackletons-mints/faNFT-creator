@@ -1,0 +1,57 @@
+{
+  "_args": [
+    [
+      "ccapture.js@git+https://github.com/amandaghassaei/ccapture.js.git#npm-fix",
+      "/Users/bradleycaliva/Desktop/fan_nft/Fan_nft"
+    ]
+  ],
+  "_from": "ccapture.js@git+https://github.com/amandaghassaei/ccapture.js.git#npm-fix",
+  "_id": "ccapture.js@git+ssh://git@github.com/amandaghassaei/ccapture.js.git#7ada41933411c4b1bcde4cdb09eef03758838bc7",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/ccapture.js",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "ccapture.js@git+https://github.com/amandaghassaei/ccapture.js.git#npm-fix",
+    "name": "ccapture.js",
+    "escapedName": "ccapture.js",
+    "rawSpec": "git+https://github.com/amandaghassaei/ccapture.js.git#npm-fix",
+    "saveSpec": "git+https://github.com/amandaghassaei/ccapture.js.git#npm-fix",
+    "fetchSpec": "https://github.com/amandaghassaei/ccapture.js.git",
+    "gitCommittish": "npm-fix"
+  },
+  "_requiredBy": [
+    "/canvas-capture"
+  ],
+  "_resolved": "git+ssh://git@github.com/amandaghassaei/ccapture.js.git#7ada41933411c4b1bcde4cdb09eef03758838bc7",
+  "_spec": "git+https://github.com/amandaghassaei/ccapture.js.git#npm-fix",
+  "_where": "/Users/bradleycaliva/Desktop/fan_nft/Fan_nft",
+  "author": {
+    "name": "Jaume Sanchez",
+    "email": "the.spite@gmail.com",
+    "url": "https://www.clicktorelease.com"
+  },
+  "bugs": {
+    "url": "https://github.com/spite/ccapture.js/issues"
+  },
+  "description": "A library to capture canvas-based animations at a fixed framerate",
+  "homepage": "https://github.com/spite/ccapture.js#readme",
+  "keywords": [
+    "capture",
+    "canvas",
+    "webgl",
+    "animation"
+  ],
+  "license": "MIT",
+  "main": "src/CCapture.js",
+  "name": "ccapture.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spite/ccapture.js.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.8"
+}

@@ -2,13 +2,13 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
 
-import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
-import { continueMakingGIFS } from './gifWatcher'
+import { generateFanGif, recordFramesForGif } from './utils/gifHelpers.js'
+// import { continueMakingGIFS } from '../gifWatcher'
 
-import { snowFlakes, snow } from './utils/particleHelpers'
-import { fanGroup, fanRarityLabels, getRandomBackgroundBasedOnFanGroupRarity } from './utils/fanHelpers'
-import { light, spotLightStraightOn, spotLightStraightOnHelper } from './utils/lightHelpers'
-import { rotateRight, rotateLeft, isExecuted } from './utils/rotationHelpers'
+import { snowFlakes, snow } from './utils/particleHelpers.js'
+import { fanGroup, fanRarityLabels, getRandomBackgroundBasedOnFanGroupRarity } from './utils/fanHelpers.js'
+import { light, spotLightStraightOn, spotLightStraightOnHelper } from './utils/lightHelpers.js'
+import { rotateRight, rotateLeft, isExecuted } from './utils/rotationHelpers.js'
 
 // view size config
 const sizes = {
@@ -46,8 +46,6 @@ scene.add(snow)
 scene.add(camera)
 scene.add(fanGroup)
 scene.add(light, spotLightStraightOn)
-
-console.log(continueMakingGIFS)
 
 // recursively calls itself to allow for animation
 const animate = (initialRender = false) => {
