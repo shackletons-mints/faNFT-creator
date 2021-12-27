@@ -1,19 +1,27 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
 
-import { generateFanGif, recordFramesForGif } from './utils/gifHelpers.js'
-// import { continueMakingGIFS } from '../gifWatcher'
+import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
+import { once } from './utils/helperFunctions'
 
-import { snowFlakes, snow } from './utils/particleHelpers.js'
-import { fanGroup, fanRarityLabels, getRandomBackgroundBasedOnFanGroupRarity } from './utils/fanHelpers.js'
-import { light, spotLightStraightOn, spotLightStraightOnHelper } from './utils/lightHelpers.js'
-import { rotateRight, rotateLeft, isExecuted } from './utils/rotationHelpers.js'
+import { snowFlakes, snow } from './utils/particleHelpers'
+import {
+  fanGroup,
+  fanRarityLabels,
+  getRandomBackgroundBasedOnFanGroupRarity,
+} from './utils/fanHelpers'
+import {
+  light,
+  spotLightStraightOn,
+  spotLightStraightOnHelper,
+} from './utils/lightHelpers'
+import { spinFun } from './utils/rotationHelpers'
 
 // view size config
+// set to opensea sizes
 const sizes = {
-  width: window.innerWidth,
-  height: window.innerHeight,
+  width: 508,
+  height: 508,
 }
 
 // canvas and scene config
@@ -37,9 +45,7 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
-// let time = Date.now()
-// const clock = new THREE.Clock()
-// let oldElapsedTime = 0
+const clock = new THREE.Clock()
 
 // Scene Additions...
 scene.add(snow)
@@ -47,31 +53,34 @@ scene.add(camera)
 scene.add(fanGroup)
 scene.add(light, spotLightStraightOn)
 
+const generateOnce = once(
+  generateFanGif({
+    title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle`,
+  })
+)
+const logOnce = once(() =>
+  console.log({
+    title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle`,
+  })
+)
+
 // recursively calls itself to allow for animation
-const animate = (initialRender = false) => {
-  // Problems to solve:
-  if (initialRender) {
-    console.log({title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle` })
-    generateFanGif({ title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle` })
+const animate = () => {
+  const elapsedTime = clock.getElapsedTime()
+  // comment this in if you want to verify the time
+  // console.log(elapsedTime)
+
+  if (elapsedTime >= 1) {
+    logOnce()
+    generateOnce()
   }
 
-  if (isExecuted) {
-    rotateRight(fanGroup)
-  } else {
-    rotateLeft(fanGroup)
-  }
-
-  // we can use deltaTime to calculate the time between each animation frame
-  // don't know if this is useful or not
-  // const elapsedTime = clock.getElapsedTime()
-  // const deltaTime = elapsedTime - oldElapsedTime
-  // oldElapsedTime = elapsedTime
+  spinFun(fanGroup)
 
   snowFlakes()
-  controls.update()
   renderer.render(scene, camera)
   recordFramesForGif()
-  window.requestAnimationFrame(() => animate(false))
+  window.requestAnimationFrame(animate)
 }
 
-animate(true)
+animate()
