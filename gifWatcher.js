@@ -1,11 +1,12 @@
-import fs from 'fs'
+const fs = require('fs')
 
-export let continueMakingGIFS = true
+const continueMakingGifs = true
+let gifCount = 0
 
 const gifCounter = async () => {
   
   let gifArray = []
-  let gifCount = 0
+  let counter = 0
   gifArray = await fs.promises.readdir('./GIFS')
   
   if (gifArray.length >= 1) {
@@ -13,15 +14,15 @@ const gifCounter = async () => {
     gifArray.forEach(file => {
       
       const tag = file.split('.')[1]
-      if (tag === 'gif') gifCount += 1
+      if (tag === 'gif') counter += 1
     })
   }
 
   if (gifCount === 1000) {
-    continueMakingGIFS = false
+    continueMakingGifs = false
   }
 
-  console.log(gifCount)
+  gifCount = counter
 }
 
 const watcher = async () => {
@@ -30,5 +31,8 @@ const watcher = async () => {
     })
 }
 
-watcher()
-
+module.exports = {
+  watcher,
+  continueMakingGifs,
+  gifCount
+}
