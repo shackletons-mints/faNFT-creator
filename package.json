@@ -10,10 +10,10 @@
   },
   "devDependencies": {
     "browser-sync": "^2.24.5",
-    "gulp": "^4.0.2",
-    "gulp-nodemon": "^2.2.1",
     "express-reload": "^1.2.0",
     "file-loader": "^6.2.0",
+    "gulp": "^4.0.2",
+    "gulp-nodemon": "^2.2.1",
     "html-webpack-plugin": "^5.5.0",
     "nodemon": "^2.0.15",
     "url-loader": "^4.1.1",
