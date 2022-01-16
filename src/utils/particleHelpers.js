@@ -19,7 +19,7 @@ const colorPicker = () => {
   return tasteTheRainbow[rando]
 }
 
-const particle = getRandomParticleWithRarityLabel().particle
+export const particle = getRandomParticleWithRarityLabel()
 const flakeCount = 100
 const flakeGeometry = new THREE.TetrahedronGeometry(0.035) // radius
 const flakeMaterial = new THREE.PointsMaterial({
@@ -27,7 +27,7 @@ const flakeMaterial = new THREE.PointsMaterial({
     size: 0.2,
     sizeAttenuation: true,
     transparent: true,
-    alphaMap: particle,
+    alphaMap: particle.particle,
     blending: THREE.AdditiveBlending,
     alphaTest: 0.001
   })
