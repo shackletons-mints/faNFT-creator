@@ -8,11 +8,11 @@ export const generateFanGif = ({ title }) => {
     showRecDot: false,
   })
 
-  CanvasCapture.beginGIFRecord({ fps: 45, name: title })
+  CanvasCapture.beginGIFRecord({ fps: 60, name: title })
 
   setTimeout(() => {
     CanvasCapture.stopRecord()
-  }, 7000)
+  }, 5500)
 }
 
 export const recordFramesForGif = () => {

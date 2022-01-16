@@ -4,7 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { generateFanGif, recordFramesForGif } from './utils/gifHelpers'
 import { once } from './utils/helperFunctions'
 
-import { snowFlakes, snow } from './utils/particleHelpers'
+import { snowFlakes, snow, particle } from './utils/particleHelpers'
 import {
   fanGroup,
   fanRarityLabels,
@@ -20,8 +20,8 @@ import { spinFun } from './utils/rotationHelpers'
 // view size config
 // set to opensea sizes
 const sizes = {
-  width: 508,
-  height: 508,
+  width: 400,
+  height: 400,
 }
 
 // canvas and scene config
@@ -46,6 +46,7 @@ renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 const clock = new THREE.Clock()
+let nftID = Math.floor(Math.random() * 10000)
 
 // Scene Additions...
 scene.add(snow)
@@ -55,12 +56,12 @@ scene.add(light, spotLightStraightOn)
 
 const generateOnce = once(
   generateFanGif({
-    title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle`,
-  })
+    title: `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.handle}Handle_${particle.rarity}Particle_ID-#${nftID}`,
+  }),
 )
 const logOnce = once(() =>
   console.log({
-    title: `${fanRarityLabels.leaf}_leaf_${fanRarityLabels.handle}_handle`,
+    title: `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.handle}Handle_${particle.rarity}Particle_ID-#${nftID}`,
   })
 )
 

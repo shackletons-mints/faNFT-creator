@@ -11,6 +11,7 @@ import {
 import {
   getRandomLeafWithRarityLabel,
   getRandomHandleWithRarityLabel,
+  getRandomParticleWithRarityLabel
 } from './generateRarityAttribute'
 
 // fan config
@@ -44,10 +45,13 @@ const handleWithRarity = getRandomHandleWithRarityLabel()
 const handleGeometry = new THREE.BoxGeometry(0.1, 0.06, 1.05)
 const handleMesh = new THREE.Mesh(handleGeometry, handleWithRarity.handle)
 
+const particleWithRarity = getRandomParticleWithRarityLabel()
+
 export const fanGroup = new THREE.Group()
 export const fanRarityLabels = {
   leaf: leafWithRarity.rarity,
   handle: handleWithRarity.rarity,
+  particle: particleWithRarity.rarity
 }
 
 const bgAttributeCollection = {
