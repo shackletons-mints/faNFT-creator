@@ -40,10 +40,29 @@ line.side = THREE.DoubleSide
 const leafWithRarity = getRandomLeafWithRarityLabel()
 const circle = new THREE.Mesh(fanGeometry, leafWithRarity.leaf)
 
+/**
+ *    leaf1 - wave
+ *    leaf2 - mountain
+ *    leaf11 - mountain/tree
+ *    leaf13 - pagoda
+ *    leaf16 - geisha
+ *    leaf17 - frogOnFish
+ *    leaf18 - tiger head
+ * 
+ */
+
 // fan handle
 const handleWithRarity = getRandomHandleWithRarityLabel()
 const handleGeometry = new THREE.BoxGeometry(0.1, 0.06, 1.05)
 const handleMesh = new THREE.Mesh(handleGeometry, handleWithRarity.handle)
+
+/**
+ * handle4 = wood
+ * handle7 = brass
+ * handle8 = futuristic
+ * handle9 = marble
+ * handle10 = gold
+ */
 
 const particleWithRarity = getRandomParticleWithRarityLabel()
 

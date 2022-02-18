@@ -10,7 +10,6 @@ const tasteTheRainbow = [
   '#3498DB',
   '#8E44AD',
   '#E74C3C',
-  '#FA03C9'
 ]
 
 const colorPicker = () => {
@@ -20,11 +19,11 @@ const colorPicker = () => {
 }
 
 export const particle = getRandomParticleWithRarityLabel()
-const flakeCount = 100
+const flakeCount = 50
 const flakeGeometry = new THREE.TetrahedronGeometry(0.035) // radius
 const flakeMaterial = new THREE.PointsMaterial({
     color: '#FFC0CB',
-    size: 0.2,
+    size: 0.15,
     sizeAttenuation: true,
     transparent: true,
     alphaMap: particle.particle,
@@ -46,11 +45,6 @@ for (let i = 0; i < flakeCount; i++) {
 }
 
 const flakeArray = snow.children
-
-  // TODO
-  // play with this and see if I can acheive different effects
-    // updraft
-    // diagonal drift
 
 export const snowFlakes = () => {
   for (let i = 0; i < flakeArray.length / 2; i++) {

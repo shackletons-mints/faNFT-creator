@@ -43,6 +43,7 @@ const leafDesignOne = new THREE.MeshStandardMaterial({
 
 export const leaf1 = {
   design: leafDesignOne,
+  name: 'Kanagawa',
 }
 
 const leafDesignTwo = new THREE.MeshStandardMaterial({
@@ -53,7 +54,8 @@ const leafDesignTwo = new THREE.MeshStandardMaterial({
 })
 
 export const leaf2 = {
-  design: leafDesignTwo
+  design: leafDesignTwo,
+  name: 'Mt. Fuji',
 }
 
 const leafDesignThree = new THREE.MeshStandardMaterial({
@@ -160,7 +162,8 @@ const leafDesignEleven = new THREE.MeshStandardMaterial({
 })
 
 export const leaf11 = {
-  design: leafDesignEleven
+  design: leafDesignEleven,
+  name: 'Mountain Side',
 }
 
 const leafDesignTwelve = new THREE.MeshStandardMaterial({
@@ -184,7 +187,8 @@ const leafDesignThirteen = new THREE.MeshStandardMaterial({
 })
 
 export const leaf13 = {
-  design: leafDesignThirteen
+  design: leafDesignThirteen,
+  name: 'Pagoda',
 }
 
 const leafDesignFourteen = new THREE.MeshStandardMaterial({
@@ -220,7 +224,8 @@ const leafDesignSixteen = new THREE.MeshStandardMaterial({
 })
 
 export const leaf16 = {
-  design: leafDesignSixteen
+  design: leafDesignSixteen,
+  name: 'Geisha',
 }
 
 const leafDesignSeventeen = new THREE.MeshStandardMaterial({
@@ -232,7 +237,8 @@ const leafDesignSeventeen = new THREE.MeshStandardMaterial({
 })
 
 export const leaf17 = {
-  design: leafDesignSeventeen
+  design: leafDesignSeventeen,
+  name: 'Frog riding Koi',
 }
 
 const leafDesignEighteen = new THREE.MeshStandardMaterial({
@@ -244,7 +250,8 @@ const leafDesignEighteen = new THREE.MeshStandardMaterial({
 })
 
 export const leaf18 = {
-  design: leafDesignEighteen
+  design: leafDesignEighteen,
+  name: 'Year of the Tiger',
 }
 const leafDesignNineteen = new THREE.MeshStandardMaterial({
   map: leafDesign19,

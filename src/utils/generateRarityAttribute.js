@@ -1,34 +1,15 @@
 import {
   leaf1,
   leaf2,
-  leaf3,
-  leaf4,
-  leaf5,
-  leaf6,
-  leaf7,
-  leaf8,
-  leaf9,
-  leaf10,
   leaf11,
-  leaf12,
   leaf13,
-  leaf14,
-  leaf15,
   leaf16,
   leaf17,
   leaf18,
-  leaf19,
-  leaf20,
-  leaf21,
 } from '../properties/leaf_props'
 
 import {
-  handle1,
-  handle2,
-  handle3,
   handle4,
-  handle5,
-  handle6,
   handle7,
   handle8,
   handle9,
@@ -68,50 +49,68 @@ function getRandomFromList(list) {
 
 // get Fan attribute from collection based on rarity prop
 const leafAttributeCollection = {
-  Common: [leaf4, leaf6, leaf10, leaf14, leaf19, leaf20, leaf21, leaf11, leaf2],
-  Uncommon: [leaf1, leaf3, leaf13, leaf15, leaf14],
-  Rare: [leaf12, leaf16, leaf5, leaf7],
-  Epic: [leaf8, leaf9, leaf17],
+  Common: [leaf1, leaf2],
+  Uncommon: [leaf11, leaf13],
+  Rare: [leaf16],
+  Epic: [leaf17],
   Legendary: [leaf18],
 }
 
+/**
+ *    leaf1 - wave
+ *    leaf2 - mountain
+ *    leaf11 - mountain/tree
+ *    leaf13 - pagoda
+ *    leaf16 - geisha
+ *    leaf17 - frogOnFish
+ *    leaf18 - tiger head
+ * 
+ */
+
+
 const handleAttributeCollection = {
-  Common: [handle1, handle2, handle3],
-  Uncommon: [handle4, handle5, handle6],
-  Rare: [handle7, handle8],
+  Common: [handle4],
+  Uncommon: [handle7],
+  Rare: [handle8],
   Epic: [handle9],
   Legendary: [handle10],
 }
 
 const particleAttributeCollection = {
-  Common: [particleImage1],
-  Uncommon: [particleImage2],
-  Rare: [particleImage3],
-  Epic: [particleImage4],
-  Legendary: [particleImage5],
+  Common: [particleImage1, 'Lazer Beam'],
+  Uncommon: [particleImage2, 'Twinkle'],
+  Rare: [particleImage3, 'Eight Point Star'],
+  Epic: [particleImage4, 'Hearts'],
+  Legendary: [particleImage5, 'Five Point Star'],
 }
 
 export const getRandomLeafWithRarityLabel = () => {
   const rarityLabel = weightedRandom(rarityLabels, rarityWeights)
+  const luckyLeaf = getRandomFromList(leafAttributeCollection[rarityLabel])
   return {
-    leaf: getRandomFromList(leafAttributeCollection[rarityLabel]).design,
+    leaf: luckyLeaf.design,
     rarity: rarityLabel,
+    name: luckyLeaf.name,
   }
 }
 
 export const getRandomHandleWithRarityLabel = () => {
   const rarityLabel = weightedRandom(rarityLabels, rarityWeights)
+  const happyHandle = getRandomFromList(handleAttributeCollection[rarityLabel])
   return {
-    handle: getRandomFromList(handleAttributeCollection[rarityLabel]),
+    handle: happyHandle.design,
     rarity: rarityLabel,
+    material: happyHandle.material,
   }
 }
 
 export const getRandomParticleWithRarityLabel = () => {
   const rarityLabel = weightedRandom(rarityLabels, rarityWeights)
+  const prettyParticle = particleAttributeCollection[rarityLabel]
   return {
-    particle: particleAttributeCollection[rarityLabel][0],
+    particle: prettyParticle[0],
     rarity: rarityLabel,
+    effect: prettyParticle[1],
   }
 }
 

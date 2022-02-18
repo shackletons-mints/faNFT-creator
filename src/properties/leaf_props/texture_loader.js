@@ -1,5 +1,27 @@
 import * as THREE from 'three'
-
+/**
+ * leaf1 - wave
+ * leaf2 - mountain
+ * leaf3 - fish
+ * leaf4 - white
+ * leaf5 - china
+ * leaf6 - green
+ * leaf7 - USA
+ * leaf8 - TWO samurai
+ * leaf9 - ONE samurai
+ * leaf10 - blue
+ * leaf11 - mountain/tree
+ * leaf12 - umbrellas
+ * leaf13 - pagoda
+ * leaf14 - red
+ * leaf15 - temple
+ * leaf16 - geisha
+ * leaf17 - frogOnFish
+ * leaf18 - tiger head
+ * leaf19 - grey
+ * leaf20 - purple
+ * leaf21 - red
+ */
 // use to load assets
 const textureLoader = new THREE.TextureLoader()
 

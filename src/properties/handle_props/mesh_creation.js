@@ -124,10 +124,25 @@ const design10 = new THREE.MeshPhysicalMaterial({
 export const handle1 = design1
 export const handle2 = design2
 export const handle3 = design9
-export const handle4 = design4
+export const handle4 = {
+  design: design4,
+  material: 'Wood',
+}
 export const handle5 = design5
 export const handle6 = design6
-export const handle7 = design7
-export const handle8 = design8
-export const handle9 = design3
-export const handle10 = design10
+export const handle7 = {
+  design: design7,
+  material: 'Brass' 
+}
+export const handle8 = {
+  design: design3,
+  material: 'Platinum',
+}
+export const handle9 = {
+  design: design8,
+  material: 'Gundanium alloy',
+}
+export const handle10 = {
+  design: design10,
+  material: 'Gold',
+}
