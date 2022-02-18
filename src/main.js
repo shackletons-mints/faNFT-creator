@@ -25,9 +25,10 @@ const sizes = {
 }
 
 // canvas and scene config
+const background = getRandomBackgroundBasedOnFanGroupRarity()
 const canvas = document.querySelector('canvas')
 const scene = new THREE.Scene()
-scene.background = getRandomBackgroundBasedOnFanGroupRarity()
+scene.background = background
 
 // camera config
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
@@ -56,22 +57,22 @@ scene.add(light, spotLightStraightOn)
 
 const generateOnce = once(
   generateFanGif({
-    title: `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.handle}Handle_${particle.rarity}Particle_ID-#${nftID}`,
+    title: `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${fanRarityLabels.particleEffect}particleEffect_ID-#${nftID}`,
   }),
 )
 const logOnce = once(() =>
   console.log({
-    title: `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.handle}Handle_${particle.rarity}Particle_ID-#${nftID}`,
+    title: `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${fanRarityLabels.particleEffect}particleEffect_ID-#${nftID}`,
   })
 )
 
 // recursively calls itself to allow for animation
+const elapsedTime = clock.getElapsedTime()
 const animate = () => {
-  const elapsedTime = clock.getElapsedTime()
   // comment this in if you want to verify the time
   // console.log(elapsedTime)
 
-  if (elapsedTime >= 1) {
+  if (elapsedTime >= 2) {
     logOnce()
     generateOnce()
   }
@@ -85,3 +86,4 @@ const animate = () => {
 }
 
 animate()
+

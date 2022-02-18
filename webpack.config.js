@@ -1,5 +1,6 @@
 const path = require('path')
 
+
 const SRC_DIR = path.join(__dirname, '/src')
 const DIST_DIR = path.join(__dirname, '/dist')
 
@@ -8,33 +9,28 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: DIST_DIR,
+    pathinfo: false,
+  },
+  cache: {
+    type: 'filesystem',
+    allowCollectingMemory: true,
+  },
+  optimization: {
+    runtimeChunk: true,
   },
   mode: 'development',
   module: {
     rules: [
       {
         test: /\.jsx?/,
-        loader: [
-          'style-loader',
-          'css-loader'
-        ],
         include: SRC_DIR,
-        loader: 'babel-loader',
+        loader: [
+          'babel-loader',
+        ],
         exclude: path.resolve(__dirname, 'node_modules'),
         options: {
           presets: ['@babel/preset-env'],
         },
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ],
-      },
-      {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
       },
     ],
   },
