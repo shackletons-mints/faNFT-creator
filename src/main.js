@@ -57,12 +57,12 @@ scene.add(light, spotLightStraightOn)
 
 const generateOnce = once(
   generateFanGif({
-    title: `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${fanRarityLabels.particleEffect}particleEffect_ID-#${nftID}`,
+    title: `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${particle.effect}particleEffect_ID-#${nftID}`,
   }),
 )
 const logOnce = once(() =>
   console.log({
-    title: `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${fanRarityLabels.particleEffect}particleEffect_ID-#${nftID}`,
+    title: `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${particle.effect}particleEffect_ID-#${nftID}`,
   })
 )
 
