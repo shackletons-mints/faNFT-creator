@@ -55,16 +55,16 @@ scene.add(camera)
 scene.add(fanGroup)
 scene.add(light, spotLightStraightOn)
 
-const generateOnce = once(
-  generateFanGif({
-    title: `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${particle.effect}particleEffect_ID-#${nftID}`,
-  }),
-)
-const logOnce = once(() =>
-  console.log({
-    title: `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${particle.effect}particleEffect_ID-#${nftID}`,
-  })
-)
+// const generateOnce = once(
+//   generateFanGif({
+//     title: `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${particle.effect}particleEffect_ID-#${nftID}`,
+//   }),
+// )
+// const logOnce = once(() =>
+//   console.log({
+//     title: `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${particle.effect}particleEffect_ID-#${nftID}`,
+//   })
+// )
 
 // recursively calls itself to allow for animation
 const elapsedTime = clock.getElapsedTime()
@@ -72,16 +72,16 @@ const animate = () => {
   // comment this in if you want to verify the time
   // console.log(elapsedTime)
 
-  if (elapsedTime >= 2) {
-    logOnce()
-    generateOnce()
-  }
+  // if (elapsedTime >= 2) {
+  //   logOnce()
+  //   generateOnce()
+  // }
 
   spinFun(fanGroup)
 
   snowFlakes()
   renderer.render(scene, camera)
-  recordFramesForGif()
+  // recordFramesForGif()
   window.requestAnimationFrame(animate)
 }
 

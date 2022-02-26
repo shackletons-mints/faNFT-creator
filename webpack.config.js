@@ -15,18 +15,13 @@ module.exports = {
     type: 'filesystem',
     allowCollectingMemory: true,
   },
-  optimization: {
-    runtimeChunk: true,
-  },
   mode: 'development',
   module: {
     rules: [
       {
         test: /\.jsx?/,
         include: SRC_DIR,
-        loader: [
-          'babel-loader',
-        ],
+        loader:'babel-loader',
         exclude: path.resolve(__dirname, 'node_modules'),
         options: {
           presets: ['@babel/preset-env'],
