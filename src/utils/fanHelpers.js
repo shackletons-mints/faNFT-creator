@@ -15,11 +15,42 @@ import {
 } from './generateRarityAttribute'
 import { particle } from './particleHelpers'
 
+const leafWithRarity = getRandomLeafWithRarityLabel()
+
 // fan config
-const fanGeometry = new THREE.CircleGeometry(1, 30, 0, 2)
-const testGeometry = new THREE.CircleGeometry(1, 30, 10, 10)
-const positionAttribute = fanGeometry.attributes.position
-const testAttributes = testGeometry.attributes.position
+const fanPieGeometry = new THREE.CircleGeometry(1, 30, 0, 2)
+// const fanCircleGeometry = new THREE.CircleGeometry(1, 30, Math.PI, Math.PI * 2)
+// const fanCircleCenter = new THREE.CircleGeometry(0.5, 30, Math.PI, Math.PI * 2)
+const positionAttribute = fanPieGeometry.attributes.position
+// const fanCircleAttributes = fanCircleGeometry.attributes.position
+// const fanCircleCenterAttributes = fanCircleCenter.attributes.position
+
+const x = 0, y = 0;
+
+const heartShape = new THREE.Shape();
+
+heartShape.moveTo( x + 2.5 / 6, y + 0.1 / 6 );
+heartShape.bezierCurveTo( x + 0.5 / 10, y / 6, x + 2 / 10, y / 10, 0.1, y / 10 );
+heartShape.bezierCurveTo( x - 3 / 6, y / 6, x - 3 / 6, y + 3.5 / 6,x - 3 / 6, y + 3.5 / 6 );
+heartShape.bezierCurveTo( x - 3 / 6, y + 5.5 / 6, x - 1.5 / 6, y + 7.7 / 6, x + 2.5 / 6, y + 9.5 / 6 );
+heartShape.bezierCurveTo( x + 6 / 6, y + 7.7 / 6, x + 8 / 6, y + 5.5 / 6, x + 8 / 6, y + 3.5 / 6 );
+heartShape.bezierCurveTo( x + 8 / 6, y + 3.5 / 6, x + 8 / 6, y / 6, x + 5 / 6, y / 6 );
+heartShape.bezierCurveTo( x + 3.5 / 10, y / 6, x + 0.5 / 10, y + 0.5 / 6, x + 2.5 / 6, y + 2.5 / 6 );
+
+const heartGeometry = new THREE.ShapeGeometry( heartShape );
+const fanHeartMesh = new THREE.Mesh( heartGeometry, leafWithRarity.leaf ) ;
+
+const heartAttribute = heartGeometry.attributes.position
+
+for (let i = 0; i < heartAttribute.count; i++) {
+  let z = heartAttribute.getZ(i)
+
+  if (i % 2 === 0) {
+    z += 0.05
+  }
+
+  heartAttribute.setZ(i, z)
+}
 
 // creates fan ripples
 for (let i = 0; i < positionAttribute.count; i++) {
@@ -33,29 +64,34 @@ for (let i = 0; i < positionAttribute.count; i++) {
 }
 
 // creates fan ripples
-for (let i = 0; i < testAttributes.count; i++) {
-  if (i > 15) break
-  let z = testAttributes.getZ(i)
+// for (let i = 0; i < fanCircleAttributes.count; i++) {
+//   let z = fanCircleAttributes.getZ(i)
+//   let zCenter = fanCircleCenterAttributes.getZ(i)
 
-  if (i % 2 === 0) {
-    z -= 0.1
-  }
+//   if (i % 2 === 0) {
+//     z -= 0.1
+//     zCenter -= 0.1
+//   }
 
-  testAttributes.setZ(i, z)
-}
+//   fanCircleAttributes.setZ(i, z)
+//   fanCircleCenterAttributes.setZ(i, z)
+// }
 
-const wireframe = new THREE.WireframeGeometry(fanGeometry)
-const testWireframe = new THREE.WireframeGeometry(testGeometry)
+const pieWireframe = new THREE.WireframeGeometry(fanPieGeometry)
+const heartWireframe = new THREE.WireframeGeometry(heartGeometry)
+// const circleWireframe = new THREE.WireframeGeometry(fanCircleGeometry)
 const wireMaterial = new THREE.LineBasicMaterial({
   color: '#c5b391',
 })
-const line = new THREE.LineSegments(testWireframe, wireMaterial)
+const line = new THREE.LineSegments(heartWireframe, wireMaterial)
 line.side = THREE.DoubleSide
 
 // fan leaf
-const leafWithRarity = getRandomLeafWithRarityLabel()
-const circle = new THREE.Mesh(fanGeometry, leafWithRarity.leaf)
-const testCircle = new THREE.Mesh(testGeometry, leafWithRarity.leaf)
+const fanPieMesh = new THREE.Mesh(fanPieGeometry, leafWithRarity.leaf)
+// const fanCircleMesh = new THREE.Mesh(fanCircleGeometry, leafWithRarity.leaf)
+// fanCircleMesh.material.transparent = true
+// fanCircleMesh.material.opacity = 0.9
+// const fanCircleCenterMesh = new THREE.Mesh(fanCircleCenter)
 
 /**
  *    leaf1 - wave
@@ -105,7 +141,7 @@ const bgAttributeCollection = {
 
 const rarityLabels = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary']
 
-export const getRandomBackgroundBasedOnFanGroupRarity = () => {
+const getRandomBackgroundBasedOnFanGroupRarity = () => {
   const backgroundRarityIndex = Math.max(
     rarityLabels.indexOf(fanRarityLabels.leaf),
     rarityLabels.indexOf(fanRarityLabels.handle)
@@ -114,11 +150,17 @@ export const getRandomBackgroundBasedOnFanGroupRarity = () => {
   return bgAttributeCollection[rarityLabels[backgroundRarityIndex]]
 }
 
-fanGroup.add(testCircle, line, handleMesh, topHandleMesh)
+export const background = getRandomBackgroundBasedOnFanGroupRarity()
+
+fanGroup.add(fanHeartMesh)
 
 // center image and package them as one
-circle.position.set(-0.3, -0.5, 0.5)
-line.position.set(-0.3, -0.5, 0.5)
+fanPieMesh.position.set(-0.3, -0.5, 0.5)
+fanHeartMesh.position.set(-0.3, -0.5, 0)
+// fanCircleMesh.position.set(0, 0.2, 0)
+// fanCircleCenterMesh.position.set(0, 0.2, 0)
+// line.position.set(0, 0.2, 0) // circle line
+// line.position.set(-0.3, -0.5, 0.5) // pie line
 handleMesh.position.set(0.19, -0.5, 0.53)
 topHandleMesh.position.set(-0.5, -0.05, 0.52)
 // topHandleMesh.position.set(-0.5, -0.05, 0.52)

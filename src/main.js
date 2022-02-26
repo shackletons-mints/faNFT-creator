@@ -8,7 +8,7 @@ import { snowFlakes, snow, particle } from './utils/particleHelpers'
 import {
   fanGroup,
   fanRarityLabels,
-  getRandomBackgroundBasedOnFanGroupRarity,
+  background,
 } from './utils/fanHelpers'
 import {
   light,
@@ -25,7 +25,6 @@ const sizes = {
 }
 
 // canvas and scene config
-const background = getRandomBackgroundBasedOnFanGroupRarity()
 const canvas = document.querySelector('canvas')
 const scene = new THREE.Scene()
 scene.background = background
@@ -86,4 +85,3 @@ const animate = () => {
 }
 
 animate()
-
