@@ -14,8 +14,29 @@ import {
   marbleRoughness,
   cherryWoodRoughness,
   ornateBrassHeight,
-  ornateBrassAO
+  ornateBrassAO,
+  jadeAO,
+  jadeCOLOR,
+  jadeHEIGHT,
+  jadeNORMAL,
+  jadeROUGHNESS
 } from './texture_loader.js'
+
+const jade = new THREE.MeshPhysicalMaterial({
+  aoMap: jadeAO,
+  map: jadeCOLOR,
+  bumpMap: jadeHEIGHT,
+  normalMap: jadeNORMAL,
+  roughnessMap: jadeROUGHNESS,
+  clearcoatRoughness: 0.1,
+  emissive: 'green',
+  bumpScale: 1,
+  emissiveIntensity: 0.2,
+  clearcoat: 0.5,
+  metalness: 0.5,
+  roughness: 0.5,
+  normalScale: new THREE.Vector2(0.15, 0.15),
+})
 
 const design1 = new THREE.MeshPhysicalMaterial({
   map: handleDesign1,
@@ -129,7 +150,7 @@ const design10 = new THREE.MeshPhysicalMaterial({
 export const handle1 = design1
 export const handle2 = design2
 export const handle3 = {
-  design: design9,
+  design: jade,
   material: 'Jade',
 }
 

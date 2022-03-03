@@ -20,3 +20,14 @@ export const cherryWoodRoughness = textureLoader.load('./properties/textures/che
 export const ornateBrassHeight = textureLoader.load('./properties/textures/ornateBrassHeight.png')
 
 export const ornateBrassAO = textureLoader.load('./properties/textures/ornateBrassAO.png')
+
+export const jadeAO = textureLoader.load('./properties/handle_props/designs/jadeAO.jpg')
+export const jadeCOLOR = textureLoader.load('./properties/handle_props/designs/jadeCOLOR.jpg')
+export const jadeHEIGHT = textureLoader.load('./properties/handle_props/designs/jadeHEIGHT.png')
+export const jadeNORMAL = textureLoader.load('./properties/handle_props/designs/jadeNORMAL.png')
+export const jadeROUGHNESS = textureLoader.load('./properties/handle_props/designs/jadeROUGHNESS.jpg')
+
+
+
+
+

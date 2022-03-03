@@ -9,11 +9,13 @@ import {
   fanGroup,
   fanRarityLabels,
   background,
+  fanCenterMesh
 } from './utils/fanHelpers'
 import {
   light,
   spotLightStraightOn,
   spotLightStraightOnHelper,
+  lightHolder,
 } from './utils/lightHelpers'
 import { spinFun } from './utils/rotationHelpers'
 
@@ -52,7 +54,12 @@ let nftID = Math.floor(Math.random() * 10000)
 scene.add(snow)
 scene.add(camera)
 scene.add(fanGroup)
-scene.add(light, spotLightStraightOn)
+
+scene.add(lightHolder);
+
+// console.log(spotLightStraightOn.target)
+
+// spotLightStraightOn.target.rotation.y -= 4
 
 // const generateOnce = once(
 //   generateFanGif({
@@ -75,7 +82,7 @@ const animate = () => {
   //   logOnce()
   //   generateOnce()
   // }
-
+  spotLightStraightOn.target.updateMatrixWorld()
   spinFun(fanGroup)
 
   snowFlakes()

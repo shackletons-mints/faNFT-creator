@@ -62,7 +62,7 @@ const topHandleMesh = new THREE.Mesh(topHandleGeometry, handleWithRarity.handle)
 
 const handleMesh = new THREE.Mesh(handleGeometry, handle3.design)
 const material = new THREE.MeshBasicMaterial( { color: '#222222' } )
-const fanCenterMesh = new THREE.Mesh(fanCircleCenterGeometry, material)
+export const fanCenterMesh = new THREE.Mesh(fanCircleCenterGeometry, handle3.design)
 console.log(fanCenterMesh)
 
 const rightHandleHalfMesh = new THREE.Mesh(rightHandleHalfGeometry, handle10.design)
@@ -109,15 +109,22 @@ const getRandomBackgroundBasedOnFanGroupRarity = () => {
 
 export const background = getRandomBackgroundBasedOnFanGroupRarity()
 
-fanGroup.add(fanMesh, line, rightHandleHalfMesh, fanCenterMesh)
+fanGroup.add(fanMesh, line, fanCenterMesh)
 
 // center image and package them as one
-fanMesh.position.set(0.1, -0.5, -0.5) // halfFanMesh
-fanCenterMesh.position.set(0.1, -0.5, -0.55) // halfFanMesh
+fanMesh.position.set(0, -0.5, -0.1) // halfFanMesh
+fanMesh.rotation.z = Math.PI / 13 // only for halfFan
+
+fanCenterMesh.position.set(0.03, -0.5, -0.175) // halfFanMesh black thing in center
+fanCenterMesh.rotation.x = Math.PI / 2
+fanCenterMesh.rotation.y = Math.PI / 2
+// fanCenterMesh.position.set(0.1, 0.5, 0.55) // halfFanMesh black thing in center
+
 // fanHeartMesh.position.set(-0.3, -0.5, 0)
 // fanCircleMesh.position.set(0, 0.2, 0)
 // fanCircleCenterMesh.position.set(0, 0.2, 0)
-line.position.set(0.1, -0.5, -0.5) //
+line.position.set(0, -0.5, -0.1) //
+line.rotation.z = Math.PI / 13 //  only for halfFan
 // line.position.set(-0.3, -0.5, 0.5) // pie line
 handleMesh.position.set(0.19, -0.5, 0.53)
 rightHandleHalfMesh.position.set(.1, -0.5, -0.5)
@@ -132,3 +139,4 @@ leftHandleHalfMesh.rotation.y += 1.6
 
 // cool effect
 // fanGroup.rotation.x += 10
+// fanGroup.position.x += 10
