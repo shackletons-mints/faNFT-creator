@@ -17,6 +17,15 @@ import {
 } from '../properties/handle_props'
 
 import {
+  fanPieGeometry,
+  fanCircleGeometry,
+  fanCircleCenterGeometry,
+  pieWireframe,
+  circleWireframe,
+  line
+} from '../properties/style_props'
+
+import {
   particleImage1,
   particleImage2,
   particleImage3,
@@ -25,7 +34,7 @@ import {
 } from '../properties/particle_props'
 
 const rarityLabels = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary']
-const rarityWeights = [.6, .25, .08, .05, .02]
+const rarityWeights = [50, 25, 13, 8, 4]
 
 function weightedRandom(items, weights) {
   const cumulativeWeights = []
@@ -56,17 +65,10 @@ const leafAttributeCollection = {
   Legendary: [leaf18],
 }
 
-/**
- *    leaf1 - wave
- *    leaf2 - mountain
- *    leaf11 - mountain/tree
- *    leaf13 - pagoda
- *    leaf16 - geisha
- *    leaf17 - frogOnFish
- *    leaf18 - tiger head
- * 
- */
-
+const styleAttributeCollection = {
+  QuarterStyle: [],
+  HalfStyle: []
+}
 
 const handleAttributeCollection = {
   Common: [handle4],
@@ -114,12 +116,14 @@ export const getRandomParticleWithRarityLabel = () => {
   }
 }
 
-/** 
- * 
+/**
+ *
  *  Use the below logic to demo the accuracy of the rarity function
  *  last test returned the following:
- * { Common: 614, Uncommon: 237, Rare: 85, Epic: 44, Legendary: 20 }
- * 
+ * NEW: { Common: 492, Uncommon: 262, Rare: 127, Epic: 84, Legendary: 35 }
+ *
+ * OLD: { Common: 614, Uncommon: 237, Rare: 85, Epic: 44, Legendary: 20 }
+ *
  */
 
 // let oneThousandWeights = {

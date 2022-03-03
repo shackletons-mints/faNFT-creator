@@ -9,6 +9,20 @@ import {
 } from '../properties/backgrounds'
 
 import {
+  handle3,
+  handle10
+} from '../properties/handle_props'
+
+import {
+  fanQuarterGeometry,
+  fanHalfGeometry,
+  fanCircleCenterGeometry,
+  pieWireframe,
+  circleWireframe,
+  line
+} from '../properties/style_props'
+
+import {
   getRandomLeafWithRarityLabel,
   getRandomHandleWithRarityLabel,
   getRandomParticleWithRarityLabel
@@ -17,77 +31,9 @@ import { particle } from './particleHelpers'
 
 const leafWithRarity = getRandomLeafWithRarityLabel()
 
-// fan config
-const fanPieGeometry = new THREE.CircleGeometry(1, 30, 0, 2)
-// const fanCircleGeometry = new THREE.CircleGeometry(1, 30, Math.PI, Math.PI * 2)
-// const fanCircleCenter = new THREE.CircleGeometry(0.5, 30, Math.PI, Math.PI * 2)
-const positionAttribute = fanPieGeometry.attributes.position
-// const fanCircleAttributes = fanCircleGeometry.attributes.position
-// const fanCircleCenterAttributes = fanCircleCenter.attributes.position
-
-const x = 0, y = 0;
-
-const heartShape = new THREE.Shape();
-
-heartShape.moveTo( x + 2.5 / 6, y + 0.1 / 6 );
-heartShape.bezierCurveTo( x + 0.5 / 10, y / 6, x + 2 / 10, y / 10, 0.1, y / 10 );
-heartShape.bezierCurveTo( x - 3 / 6, y / 6, x - 3 / 6, y + 3.5 / 6,x - 3 / 6, y + 3.5 / 6 );
-heartShape.bezierCurveTo( x - 3 / 6, y + 5.5 / 6, x - 1.5 / 6, y + 7.7 / 6, x + 2.5 / 6, y + 9.5 / 6 );
-heartShape.bezierCurveTo( x + 6 / 6, y + 7.7 / 6, x + 8 / 6, y + 5.5 / 6, x + 8 / 6, y + 3.5 / 6 );
-heartShape.bezierCurveTo( x + 8 / 6, y + 3.5 / 6, x + 8 / 6, y / 6, x + 5 / 6, y / 6 );
-heartShape.bezierCurveTo( x + 3.5 / 10, y / 6, x + 0.5 / 10, y + 0.5 / 6, x + 2.5 / 6, y + 2.5 / 6 );
-
-const heartGeometry = new THREE.ShapeGeometry( heartShape );
-const fanHeartMesh = new THREE.Mesh( heartGeometry, leafWithRarity.leaf ) ;
-
-const heartAttribute = heartGeometry.attributes.position
-
-for (let i = 0; i < heartAttribute.count; i++) {
-  let z = heartAttribute.getZ(i)
-
-  if (i % 2 === 0) {
-    z += 0.05
-  }
-
-  heartAttribute.setZ(i, z)
-}
-
-// creates fan ripples
-for (let i = 0; i < positionAttribute.count; i++) {
-  let z = positionAttribute.getZ(i)
-
-  if (i % 2 === 0) {
-    z += 0.05
-  }
-
-  positionAttribute.setZ(i, z)
-}
-
-// creates fan ripples
-// for (let i = 0; i < fanCircleAttributes.count; i++) {
-//   let z = fanCircleAttributes.getZ(i)
-//   let zCenter = fanCircleCenterAttributes.getZ(i)
-
-//   if (i % 2 === 0) {
-//     z -= 0.1
-//     zCenter -= 0.1
-//   }
-
-//   fanCircleAttributes.setZ(i, z)
-//   fanCircleCenterAttributes.setZ(i, z)
-// }
-
-const pieWireframe = new THREE.WireframeGeometry(fanPieGeometry)
-const heartWireframe = new THREE.WireframeGeometry(heartGeometry)
-// const circleWireframe = new THREE.WireframeGeometry(fanCircleGeometry)
-const wireMaterial = new THREE.LineBasicMaterial({
-  color: '#c5b391',
-})
-const line = new THREE.LineSegments(heartWireframe, wireMaterial)
-line.side = THREE.DoubleSide
-
 // fan leaf
-const fanPieMesh = new THREE.Mesh(fanPieGeometry, leafWithRarity.leaf)
+// WE NEED TO CHANGE THIS TO GET A FAN STYLE
+const fanMesh = new THREE.Mesh(fanHalfGeometry, leafWithRarity.leaf)
 // const fanCircleMesh = new THREE.Mesh(fanCircleGeometry, leafWithRarity.leaf)
 // fanCircleMesh.material.transparent = true
 // fanCircleMesh.material.opacity = 0.9
@@ -107,9 +53,20 @@ const fanPieMesh = new THREE.Mesh(fanPieGeometry, leafWithRarity.leaf)
 // fan handle
 const handleWithRarity = getRandomHandleWithRarityLabel()
 const handleGeometry = new THREE.BoxGeometry(0.1, 0.06, 1.05)
+
+const rightHandleHalfGeometry = new THREE.CircleGeometry(1.53, 28, Math.PI * 2, Math.PI / 14)
+const leftHandleHalfGeometry = new THREE.BoxGeometry(0.1, 0.03, 1.45)
+
 const topHandleGeometry = new THREE.BoxGeometry(0.05, 0.06, 1)
 const topHandleMesh = new THREE.Mesh(topHandleGeometry, handleWithRarity.handle)
-const handleMesh = new THREE.Mesh(handleGeometry, handleWithRarity.handle)
+
+const handleMesh = new THREE.Mesh(handleGeometry, handle3.design)
+const material = new THREE.MeshBasicMaterial( { color: '#222222' } )
+const fanCenterMesh = new THREE.Mesh(fanCircleCenterGeometry, material)
+console.log(fanCenterMesh)
+
+const rightHandleHalfMesh = new THREE.Mesh(rightHandleHalfGeometry, handle10.design)
+const leftHandleHalfMesh = new THREE.Mesh(leftHandleHalfGeometry, handle10.design)
 
 /**
  * handle4 = wood
@@ -152,22 +109,26 @@ const getRandomBackgroundBasedOnFanGroupRarity = () => {
 
 export const background = getRandomBackgroundBasedOnFanGroupRarity()
 
-fanGroup.add(fanHeartMesh)
+fanGroup.add(fanMesh, line, rightHandleHalfMesh, fanCenterMesh)
 
 // center image and package them as one
-fanPieMesh.position.set(-0.3, -0.5, 0.5)
-fanHeartMesh.position.set(-0.3, -0.5, 0)
+fanMesh.position.set(0.1, -0.5, -0.5) // halfFanMesh
+fanCenterMesh.position.set(0.1, -0.5, -0.55) // halfFanMesh
+// fanHeartMesh.position.set(-0.3, -0.5, 0)
 // fanCircleMesh.position.set(0, 0.2, 0)
 // fanCircleCenterMesh.position.set(0, 0.2, 0)
-// line.position.set(0, 0.2, 0) // circle line
+line.position.set(0.1, -0.5, -0.5) //
 // line.position.set(-0.3, -0.5, 0.5) // pie line
 handleMesh.position.set(0.19, -0.5, 0.53)
+rightHandleHalfMesh.position.set(.1, -0.5, -0.5)
+leftHandleHalfMesh.position.set(0.9, -0.5, -0.55)
 topHandleMesh.position.set(-0.5, -0.05, 0.52)
 // topHandleMesh.position.set(-0.5, -0.05, 0.52)
 topHandleMesh.rotation.set(1.5, 0.45, 0)
 // topHandleMesh.rotation.set(1.5, 0.5, -0.9)
 
-handleMesh.rotation.y += 1.59
+handleMesh.rotation.y += 1.55
+leftHandleHalfMesh.rotation.y += 1.6
 
 // cool effect
 // fanGroup.rotation.x += 10

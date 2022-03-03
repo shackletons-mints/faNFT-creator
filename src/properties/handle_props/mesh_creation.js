@@ -105,13 +105,18 @@ const design8 = new THREE.MeshStandardMaterial({
 
 const design9 = new THREE.MeshStandardMaterial({
   map: handleDesign5,
-  roughnessMap: cherryWoodRoughness,
-  emissive: 'green',
-  emissiveIntensity: 0.25
+  bumpMap: marbleRoughness,
+  emissive: '#00a86b',
+  flatShading: true,
+  roughness: 0.1,
+  metalness: 0.9,
+  bumpScale: 1,
+  normalScale: new THREE.Vector2(0.5, 0.5),
+  emissiveIntensity: 0.5
 })
 
 const design10 = new THREE.MeshPhysicalMaterial({
-  map: handleDesign6,
+  map: handleDesign5,
   bumpScale: 1,
   flatShading: true,
   roughness: 0.3,
@@ -123,7 +128,12 @@ const design10 = new THREE.MeshPhysicalMaterial({
 
 export const handle1 = design1
 export const handle2 = design2
-export const handle3 = design9
+export const handle3 = {
+  design: design9,
+  material: 'Jade',
+}
+
+design9
 export const handle4 = {
   design: design4,
   material: 'Wood',
@@ -132,7 +142,7 @@ export const handle5 = design5
 export const handle6 = design6
 export const handle7 = {
   design: design7,
-  material: 'Brass' 
+  material: 'Brass'
 }
 export const handle8 = {
   design: design3,
@@ -140,7 +150,7 @@ export const handle8 = {
 }
 export const handle9 = {
   design: design8,
-  material: 'Gundanium alloy',
+  material: 'Meteorite',
 }
 export const handle10 = {
   design: design10,
