@@ -55,4 +55,9 @@ leafDesign18.offset.set( -0.3, -0.3 )
 
 export const grainyTexture = textureLoader.load('./properties/textures/grainy.jpeg')
 
+export const leafAO = textureLoader.load('./properties/leaf_props/designs/leafAO.jpg')
+export const leafCOLOR = textureLoader.load('./properties/leaf_props/designs/leafCOLOR.jpg')
+export const leafHEIGHT = textureLoader.load('./properties/leaf_props/designs/leafHEIGHT.png')
+export const leafNORMAL = textureLoader.load('./properties/leaf_props/designs/leafNORMAL.png')
+export const leafROUGHNESS = textureLoader.load('./properties/leaf_props/designs/leafROUGHNESS.jpg')
 

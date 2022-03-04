@@ -19,8 +19,80 @@ import {
   jadeCOLOR,
   jadeHEIGHT,
   jadeNORMAL,
-  jadeROUGHNESS
+  jadeROUGHNESS,
+  volcanicAO,
+  volcanicCOLOR,
+  volcanicHEIGHT,
+  volcanicNORMAL,
+  volcanicROUGHNESS,
+  cooperAO,
+  cooperCOLOR,
+  cooperDISPLACEMENT,
+  cooperMETALIC,
+  cooperNORMAL,
+  cooperROUGHNESS,
+  speckledMarbleAO,
+  speckledMarbleROUGHNESS,
+  speckledMarbleNORMAL,
+  speckledMarbleMAP,
+  shinyMetalAO,
+  shinyMetalCOLOR,
+  shinyMetalMETALLIC,
+  shinyMetalNORMAL,
+  shinyMetalROUGHNESS,
+  shinyMetalHEIGHT,
 } from './texture_loader.js'
+
+const volcanic = new THREE.MeshPhysicalMaterial({
+  aoMap: volcanicAO,
+  map: volcanicCOLOR,
+  bumpMap: volcanicHEIGHT,
+  normalMap: volcanicNORMAL,
+  roughnessMap: volcanicROUGHNESS,
+  clearcoatRoughness: 0.1,
+  emissive: 'green',
+  bumpScale: 1,
+  emissiveIntensity: 0.2,
+  clearcoat: 0.5,
+  roughness: 0.5,
+  normalScale: new THREE.Vector2(0.15, 0.15),
+})
+
+const speckledMarble = new THREE.MeshPhysicalMaterial({
+  // alphaMap: speckledMarbleMAP,
+  map: speckledMarbleMAP,
+  aoMap: speckledMarbleAO,
+  aoMapIntensity: 0.52,
+  // bumpMap: brassDISPLACEMENT,
+  // bumpScale: 1,
+  emissive: 'white',
+  emissiveIntensity: 0.5,
+  normalMap: speckledMarbleNORMAL,
+  normalScale: new THREE.Vector2(15, 15),
+  roughnessMap: speckledMarbleROUGHNESS,
+  roughness: 1,
+  // clearcoatMap: brassMETALIC,
+  clearcoatRoughness: 0.75,
+  clearcoat: 0.5,
+  // metalness: 0.1,
+})
+
+const cooper = new THREE.MeshPhysicalMaterial({
+  alphaMap: cooperCOLOR,
+  map: cooperCOLOR,
+  aoMap: cooperAO,
+  aoMapIntensity: 1,
+  bumpMap: cooperDISPLACEMENT,
+  bumpScale: 1,
+  normalMap: cooperNORMAL,
+  normalScale: new THREE.Vector2(.5, .5),
+  roughnessMap: cooperROUGHNESS,
+  clearcoatMap: cooperMETALIC,
+  clearcoatRoughness: 0.5,
+  clearcoat: 0.5,
+  metalness: 0.1,
+  roughness: 0.5,
+})
 
 const jade = new THREE.MeshPhysicalMaterial({
   aoMap: jadeAO,
@@ -33,7 +105,6 @@ const jade = new THREE.MeshPhysicalMaterial({
   bumpScale: 1,
   emissiveIntensity: 0.2,
   clearcoat: 0.5,
-  metalness: 0.5,
   roughness: 0.5,
   normalScale: new THREE.Vector2(0.15, 0.15),
 })
@@ -147,8 +218,15 @@ const design10 = new THREE.MeshPhysicalMaterial({
   emissive: 'gold'
 })
 
-export const handle1 = design1
-export const handle2 = design2
+export const handle1 = {
+  design: speckledMarble,
+  material: 'Speckled_Marble',
+}
+// export const handle2 = design2
+export const handle2 = {
+  design: cooper,
+  material: 'Brass',
+}
 export const handle3 = {
   design: jade,
   material: 'Jade',
@@ -159,7 +237,10 @@ export const handle4 = {
   design: design4,
   material: 'Wood',
 }
-export const handle5 = design5
+export const handle5 = {
+  design: volcanic,
+  material: 'Volcanic_Rock'
+}
 export const handle6 = design6
 export const handle7 = {
   design: design7,

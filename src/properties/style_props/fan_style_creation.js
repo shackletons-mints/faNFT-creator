@@ -5,7 +5,7 @@ import * as THREE from 'three'
 export const fanQuarterGeometry = new THREE.CircleGeometry(1, 30, 0, 2)
 export const fanHalfGeometry = new THREE.CircleGeometry(1.53, 28, Math.PI * 2, Math.PI / 1.2)
 // export const fanCircleCenterGeometry = new THREE.CylinderGeometry(0.35, 28, Math.PI * 2, Math.PI)
-export const fanCircleCenterGeometry = new THREE.CylinderGeometry(.175, .175, .175, 28, 1, false, Math.PI * 2, Math.PI)
+export const fanCircleCenterGeometry = new THREE.CylinderGeometry(.2, .2, .175, 28, 1, false, Math.PI * 2, Math.PI)
 // export const fanCircleCenterGeometry = new THREE.CircleGeometry(0.5, 30, Math.PI, Math.PI)
 
 // HEART SHIT

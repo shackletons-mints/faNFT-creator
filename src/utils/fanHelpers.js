@@ -9,9 +9,16 @@ import {
 } from '../properties/backgrounds'
 
 import {
+  handle1,
+  handle2,
   handle3,
+  handle5,
   handle10
 } from '../properties/handle_props'
+
+import {
+  leafDesign1
+} from '../properties/leaf_props'
 
 import {
   fanQuarterGeometry,
@@ -60,9 +67,9 @@ const leftHandleHalfGeometry = new THREE.BoxGeometry(0.1, 0.03, 1.45)
 const topHandleGeometry = new THREE.BoxGeometry(0.05, 0.06, 1)
 const topHandleMesh = new THREE.Mesh(topHandleGeometry, handleWithRarity.handle)
 
-const handleMesh = new THREE.Mesh(handleGeometry, handle3.design)
+const handleMesh = new THREE.Mesh(handleGeometry, handle5.design)
 const material = new THREE.MeshBasicMaterial( { color: '#222222' } )
-export const fanCenterMesh = new THREE.Mesh(fanCircleCenterGeometry, handle3.design)
+export const fanCenterMesh = new THREE.Mesh(fanCircleCenterGeometry, handle5.design)
 console.log(fanCenterMesh)
 
 const rightHandleHalfMesh = new THREE.Mesh(rightHandleHalfGeometry, handle10.design)
@@ -115,6 +122,7 @@ fanGroup.add(fanMesh, line, fanCenterMesh)
 fanMesh.position.set(0, -0.5, -0.1) // halfFanMesh
 fanMesh.rotation.z = Math.PI / 13 // only for halfFan
 
+// fanCenterMesh.position.set(0, 0, 0) // halfFanMesh black thing in center
 fanCenterMesh.position.set(0.03, -0.5, -0.175) // halfFanMesh black thing in center
 fanCenterMesh.rotation.x = Math.PI / 2
 fanCenterMesh.rotation.y = Math.PI / 2
