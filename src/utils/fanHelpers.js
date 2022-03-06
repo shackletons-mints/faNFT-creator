@@ -17,7 +17,8 @@ import {
 } from '../properties/handle_props'
 
 import {
-  leafDesign1
+  leaf1,
+  leaf8
 } from '../properties/leaf_props'
 
 import {
@@ -40,7 +41,7 @@ const leafWithRarity = getRandomLeafWithRarityLabel()
 
 // fan leaf
 // WE NEED TO CHANGE THIS TO GET A FAN STYLE
-const fanMesh = new THREE.Mesh(fanHalfGeometry, leafWithRarity.leaf)
+const fanMesh = new THREE.Mesh(fanHalfGeometry, leaf1.design)
 // const fanCircleMesh = new THREE.Mesh(fanCircleGeometry, leafWithRarity.leaf)
 // fanCircleMesh.material.transparent = true
 // fanCircleMesh.material.opacity = 0.9

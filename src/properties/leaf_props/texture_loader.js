@@ -25,39 +25,47 @@ import * as THREE from 'three'
 // use to load assets
 const textureLoader = new THREE.TextureLoader()
 
-export const leafDesign1 = textureLoader.load('./properties/leaf_props/designs/wave.jpg')
-export const leafDesign2 = textureLoader.load('./properties/leaf_props/designs/mountain_and_boat.jpeg')
+export const wave = textureLoader.load('./properties/leaf_props/designs/wave.jpg')
+export const mountainBoat = textureLoader.load('./properties/leaf_props/designs/mountain_and_boat.jpeg')
 
-export const leafDesign11 = textureLoader.load('./properties/leaf_props/designs/mountain.jpeg')
-leafDesign11.wrapS = THREE.RepeatWrapping
-leafDesign11.wrapT = THREE.RepeatWrapping
-leafDesign11.offset.set( -0.15, -0.19 )
+export const mountain = textureLoader.load('./properties/leaf_props/designs/mountain.jpeg')
+mountain.wrapS = THREE.RepeatWrapping
+mountain.wrapT = THREE.RepeatWrapping
+mountain.offset.set( -0.15, -0.19 )
 
-export const leafDesign13 = textureLoader.load('./properties/leaf_props/designs/pagoda.jpeg')
-leafDesign13.wrapS = THREE.RepeatWrapping
-leafDesign13.wrapT = THREE.RepeatWrapping
-leafDesign13.offset.set( -0.15, -0.1 )
+export const pagoda = textureLoader.load('./properties/leaf_props/designs/pagoda.jpeg')
+pagoda.wrapS = THREE.RepeatWrapping
+pagoda.wrapT = THREE.RepeatWrapping
+pagoda.offset.set( -0.15, -0.1 )
 
-export const leafDesign16 = textureLoader.load('./properties/leaf_props/designs/geisha.jpeg')
-leafDesign16.wrapS = THREE.RepeatWrapping
-leafDesign16.wrapT = THREE.RepeatWrapping
-leafDesign16.offset.set( -0.1, 0 )
+export const geisha = textureLoader.load('./properties/leaf_props/designs/geisha.jpeg')
+geisha.wrapS = THREE.RepeatWrapping
+geisha.wrapT = THREE.RepeatWrapping
+geisha.offset.set( -0.1, 0 )
 
-export const leafDesign17 = textureLoader.load('./properties/leaf_props/designs/frog.jpg')
-leafDesign17.wrapS = THREE.RepeatWrapping
-leafDesign17.wrapT = THREE.RepeatWrapping
-leafDesign17.offset.set( -0.1, -0.2 )
+export const frog = textureLoader.load('./properties/leaf_props/designs/frog.jpg')
+frog.wrapS = THREE.RepeatWrapping
+frog.wrapT = THREE.RepeatWrapping
+frog.offset.set( -0.1, -0.2 )
 
-export const leafDesign18 = textureLoader.load('./properties/leaf_props/designs/tiger.jpeg')
-leafDesign18.wrapS = THREE.RepeatWrapping
-leafDesign18.wrapT = THREE.RepeatWrapping
-leafDesign18.offset.set( -0.3, -0.3 )
+export const tiger = textureLoader.load('./properties/leaf_props/designs/tiger.jpeg')
+tiger.wrapS = THREE.RepeatWrapping
+tiger.wrapT = THREE.RepeatWrapping
+tiger.offset.set( -0.3, -0.3 )
 
-export const grainyTexture = textureLoader.load('./properties/textures/grainy.jpeg')
+export const villageFar = textureLoader.load('./properties/leaf_props/designs/village_far.jpg')
+villageFar.offset.set( -0.05, -0.25 )
+
+export const swanPeonies = textureLoader.load('./properties/leaf_props/designs/swan_peony.png')
+
+
+
+
 
 export const leafAO = textureLoader.load('./properties/leaf_props/designs/leafAO.jpg')
 export const leafCOLOR = textureLoader.load('./properties/leaf_props/designs/leafCOLOR.jpg')
 export const leafHEIGHT = textureLoader.load('./properties/leaf_props/designs/leafHEIGHT.png')
 export const leafNORMAL = textureLoader.load('./properties/leaf_props/designs/leafNORMAL.png')
 export const leafROUGHNESS = textureLoader.load('./properties/leaf_props/designs/leafROUGHNESS.jpg')
+export const leafTEST = textureLoader.load('./properties/leaf_props/designs/leafTEST.jpg')
 

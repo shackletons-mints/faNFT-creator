@@ -72,6 +72,8 @@ scene.add(lightHolder);
 //   })
 // )
 
+renderer.shadowMapEnabled = true
+
 // recursively calls itself to allow for animation
 const elapsedTime = clock.getElapsedTime()
 const animate = () => {

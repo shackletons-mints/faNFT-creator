@@ -1,19 +1,21 @@
 import * as THREE from 'three'
 
 import {
-  leafDesign1,
-  leafDesign2,
-  leafDesign11,
-  leafDesign13,
-  leafDesign16,
-  leafDesign17,
-  leafDesign18,
-  grainyTexture,
+  wave,
+  mountainBoat,
+  mountain,
+  pagoda,
+  geisha,
+  frog,
+  tiger,
+  villageFar,
+  swanPeonies,
   leafAO,
   leafCOLOR,
   leafHEIGHT,
   leafNORMAL,
   leafROUGHNESS,
+  leafTEST,
 } from './texture_loader.js'
 
 /**
@@ -26,105 +28,102 @@ import {
 
 const leafSetup = {
   aoMap: leafAO,
-  aoMapIntensity: 5,
+  aoMapIntensity: 0.5,
   color: leafCOLOR,
   bumpMap: leafHEIGHT,
-  bumpScale: 5,
+  bumpScale: 0.25,
   roughnessMap: leafROUGHNESS,
-  roughness: 10,
-  normalMap: leafNORMAL,
-  normalScale: new THREE.Vector2(25, 25),
-  opacity: 0.8,
-  transparent: true,
-  side: THREE.DoubleSides
+  roughness: 0.25,
+  normalMap: leafTEST,
+  normalScale: new THREE.Vector2(-0.5, -0.1),
+  // opacity: 0.95,
+  // transparent: true,
+  side: THREE.DoubleSide,
 }
 
-const leafDesignOne = new THREE.MeshStandardMaterial({
-  map: leafDesign1,
+const leafWave = new THREE.MeshStandardMaterial({
+  map: wave,
   ...leafSetup,
-
   // wireframe: true // cool effect with this on
 })
-// const leafDesignOne = new THREE.MeshStandardMaterial({
-//   map: leafDesign1,
-//   normalMap: grainyTexture,
-//   normalScale: new THREE.Vector2(0.15, 0.15),
-//   side: THREE.DoubleSide
-//   // wireframe: true // cool effect with this on
-// })
 
 export const leaf1 = {
-  design: leafDesignOne,
+  design: leafWave,
   name: 'Kanagawa',
 }
 
-const leafDesignTwo = new THREE.MeshStandardMaterial({
-  map: leafDesign2,
+const leafMountainBoat = new THREE.MeshStandardMaterial({
+  map: mountainBoat,
   ...leafSetup,
 })
 
 export const leaf2 = {
-  design: leafDesignTwo,
+  design: leafMountainBoat,
   name: 'Mt.Fuji',
 }
 
-const leafDesignEleven = new THREE.MeshStandardMaterial({
-  map: leafDesign11,
+const leafMountain = new THREE.MeshStandardMaterial({
+  map: mountain,
   ...leafSetup,
   // wireframe: true // cool effect with this on
 })
 
-export const leaf11 = {
-  design: leafDesignEleven,
+export const leaf3 = {
+  design: leafMountain,
   name: 'Mountain_Side',
 }
 
-const leafDesignThirteen = new THREE.MeshStandardMaterial({
-  map: leafDesign13,
+const leafPagoda = new THREE.MeshStandardMaterial({
+  map: pagoda,
   ...leafSetup,
   // wireframe: true // cool effect with this on
 })
 
-export const leaf13 = {
-  design: leafDesignThirteen,
+export const leaf4 = {
+  design: leafPagoda,
   name: 'Pagoda',
 }
 
-const leafDesignSixteen = new THREE.MeshStandardMaterial({
-  map: leafDesign16,
+const leafGeisha = new THREE.MeshStandardMaterial({
+  map: geisha,
   ...leafSetup,
   // wireframe: true // cool effect with this on
 })
 
-export const leaf16 = {
-  design: leafDesignSixteen,
+export const leaf5 = {
+  design: leafGeisha,
   name: 'Geisha',
 }
 
-const leafDesignSeventeen = new THREE.MeshStandardMaterial({
-  map: leafDesign17,
+const leafFrog = new THREE.MeshStandardMaterial({
+  map: frog,
   ...leafSetup,
   // wireframe: true // cool effect with this on
 })
 
-export const leaf17 = {
-  design: leafDesignSeventeen,
+export const leaf6 = {
+  design: leafFrog,
   name: 'Frog_riding_Koi',
 }
 
-const leafDesignEighteen = new THREE.MeshStandardMaterial({
-  map: leafDesign18,
+const leafTiger = new THREE.MeshStandardMaterial({
+  map: tiger,
   ...leafSetup,
   // wireframe: true // cool effect with this on
 })
 
-export const leaf18 = {
-  design: leafDesignEighteen,
+export const leaf7 = {
+  design: leafTiger,
   name: 'Year_of_the_Tiger',
 }
 
-// are we still using this one?
-export const leafDesignCompare = new THREE.MeshStandardMaterial({
-  map: leafDesign1,
-  side: THREE.DoubleSide
+const leafswanPeonies = new THREE.MeshStandardMaterial({
+  map: swanPeonies,
+  ...leafSetup,
+  // wireframe: true // cool effect with this on
 })
+
+export const leaf8 = {
+  design: leafswanPeonies,
+  name: 'Village_Far',
+}
