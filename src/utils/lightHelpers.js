@@ -5,10 +5,13 @@ const intensity = 0.6
 const directLightIntensity = 0.1
 export const light = new THREE.AmbientLight(color, intensity)
 
+// TODO:
+  // figure out light values for quarter fan
+
+  // set variables so when we switch between half and quarter fan
+  // we get the correct light configuration
 
 light.position.set(1,1,1)
-
-console.log(light)
 
 export const spotLightStraightOn = new THREE.DirectionalLight(
   'white',

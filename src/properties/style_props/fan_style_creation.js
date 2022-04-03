@@ -80,9 +80,13 @@ for (let i = 0; i < fanCircleAttributes.count; i++) {
 // wireframes to add "skeleton" to the fan
 export const pieWireframe = new THREE.WireframeGeometry(fanQuarterGeometry)
 export const heartWireframe = new THREE.WireframeGeometry(heartGeometry)
-export const circleWireframe = new THREE.WireframeGeometry(fanHalfGeometry)
+export const halfWireframe = new THREE.WireframeGeometry(fanHalfGeometry)
 export const wireMaterial = new THREE.LineBasicMaterial({
-  color: 0x000000,
+  color: '#1b1b1b',
+  linewidth: 1,
+  opacity: .65,
+  transparent: true,
 })
-export const line = new THREE.LineSegments(circleWireframe, wireMaterial)
-line.side = THREE.DoubleSide
+export const halfLine = new THREE.LineSegments(halfWireframe, wireMaterial)
+export const quarterLine = new THREE.LineSegments(pieWireframe, wireMaterial)
+// line.side = THREE.DoubleSide

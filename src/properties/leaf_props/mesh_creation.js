@@ -9,7 +9,8 @@ import {
   frog,
   tiger,
   villageFar,
-  swanPeonies,
+  cranePattern,
+  horsePattern,
   leafAO,
   leafCOLOR,
   leafHEIGHT,
@@ -35,10 +36,10 @@ const leafSetup = {
   roughnessMap: leafROUGHNESS,
   roughness: 0.25,
   normalMap: leafTEST,
-  normalScale: new THREE.Vector2(-0.5, -0.1),
+  normalScale: new THREE.Vector2(1, 0.25),
   // opacity: 0.95,
   // transparent: true,
-  side: THREE.DoubleSide,
+  // side: THREE.DoubleSide,
 }
 
 const leafWave = new THREE.MeshStandardMaterial({
@@ -117,13 +118,24 @@ export const leaf7 = {
   name: 'Year_of_the_Tiger',
 }
 
-const leafswanPeonies = new THREE.MeshStandardMaterial({
-  map: swanPeonies,
+const leafCranePattern = new THREE.MeshStandardMaterial({
+  map: cranePattern,
+  ...leafSetup,
+  // wireframe: true // cool effect with this on
+})
+
+// export const leaf8 = {
+//   design: leafCranePattern,
+//   name: 'Crane_Pattern',
+// }
+
+const leafHorsePattern = new THREE.MeshStandardMaterial({
+  map: horsePattern,
   ...leafSetup,
   // wireframe: true // cool effect with this on
 })
 
 export const leaf8 = {
-  design: leafswanPeonies,
-  name: 'Village_Far',
+  design: leafHorsePattern,
+  name: 'Horses',
 }

@@ -56,7 +56,25 @@ tiger.offset.set( -0.3, -0.3 )
 export const villageFar = textureLoader.load('./properties/leaf_props/designs/village_far.jpg')
 villageFar.offset.set( -0.05, -0.25 )
 
-export const swanPeonies = textureLoader.load('./properties/leaf_props/designs/swan_peony.png')
+export const cranePattern = textureLoader.load('./properties/leaf_props/designs/crane_pattern.jpg')
+cranePattern.wrapS = THREE.RepeatWrapping
+cranePattern.wrapT = THREE.RepeatWrapping
+cranePattern.offset.set( -0.5, -0.5 )
+
+export const horsePattern = textureLoader.load('./properties/leaf_props/designs/horses.jpg')
+horsePattern.wrapS = THREE.RepeatWrapping
+horsePattern.wrapT = THREE.RepeatWrapping
+horsePattern .offset.set( -0.15, 0.1 )
+
+console.log(horsePattern)
+
+
+// export const swanPeonies = textureLoader.load('./properties/leaf_props/designs/swan_peony.png')
+// swanPeonies.center.set(.5, 1)
+// swanPeonies.wrapS = THREE.ClampToEdgeWrapping
+// swanPeonies.wrapT = THREE.ClampToEdgeWrapping
+// swanPeonies.minFilter = THREE.NearestFilter
+// swanPeonies.offset.set( -0.1, -0.1 )
 
 
 

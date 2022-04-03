@@ -4,5 +4,6 @@ export {
     fanCircleCenterGeometry,
     pieWireframe,
     circleWireframe,
-    line
+    halfLine,
+    quarterLine,
 } from './fan_style_creation.js'
