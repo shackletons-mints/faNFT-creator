@@ -43,12 +43,19 @@ const once = (fn, context) => {
 
 export const generateFanGif = (title) => {
     var canvas = document.querySelector("canvas")
-    var ctx = canvas.getContext("experimental-webgl")
+    var ctx = canvas.getContext("webgl")
+
+    console.log(ctx)
 
     var video = document.querySelector("video")
 
-    var videoStream = canvas.captureStream(60)
-    var mediaRecorder = new MediaRecorder(videoStream)
+    var videoStream = canvas.captureStream(120)
+    var options = {
+        // audioBitsPerSecond : 128000,
+        videoBitsPerSecond : 5000000,
+        // mimeType : 'video/mp4'
+      }
+    var mediaRecorder = new MediaRecorder(videoStream, options )
 
     var chunks = []
     mediaRecorder.ondataavailable = function (e) {
@@ -62,11 +69,11 @@ export const generateFanGif = (title) => {
         video.src = videoURL
         setTimeout(() => {
             // we will need to get the title here
-            once(FileSaver.saveAs(videoURL, `test.mp4`))
-        }, 8000)
+            once(FileSaver.saveAs(videoURL, `${title}.mp4`))
+        }, 9000)
     };
 
     setTimeout(() => { mediaRecorder.start() }, 500)
-    setTimeout(function () { mediaRecorder.stop() }, 5000)
+    setTimeout(function () { mediaRecorder.stop() }, 7000)
 
 }

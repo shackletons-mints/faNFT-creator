@@ -19,11 +19,11 @@ const colorPicker = () => {
 }
 
 export const particle = getRandomParticleWithRarityLabel()
-const flakeCount = 50
+const flakeCount = 40
 const flakeGeometry = new THREE.TetrahedronGeometry(0.035) // radius
 const flakeMaterial = new THREE.PointsMaterial({
     color: '#FFC0CB',
-    size: 0.15,
+    size: 0.075,
     sizeAttenuation: true,
     transparent: true,
     alphaMap: particle.particle,
@@ -51,7 +51,7 @@ export const snowFlakes = () => {
     flakeArray[i].rotation.y += 0.01
     flakeArray[i].rotation.x += 0.02
     flakeArray[i].rotation.z += 0.03
-    flakeArray[i].position.y -= 0.0045
+    flakeArray[i].position.y -= 0.0015
     if (flakeArray[i].position.y < -4) {
       flakeArray[i].position.y += 10
     }
@@ -60,7 +60,7 @@ export const snowFlakes = () => {
     flakeArray[i].rotation.y -= 0.03
     flakeArray[i].rotation.x -= 0.03
     flakeArray[i].rotation.z -= 0.02
-    flakeArray[i].position.y -= 0.016
+    flakeArray[i].position.y -= 0.006
     if (flakeArray[i].position.y < -4) {
       flakeArray[i].position.y += 9.5
     }

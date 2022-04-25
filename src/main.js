@@ -17,7 +17,7 @@ import {
   spotLightStraightOnHelper,
   lightHolder,
 } from './utils/lightHelpers'
-import { spinFun } from './utils/rotationHelpers'
+import { spinFun, rotateRight } from './utils/rotationHelpers'
 
 // view size config
 // set to opensea sizes
@@ -61,16 +61,16 @@ scene.add(lightHolder);
 
 // spotLightStraightOn.target.rotation.y -= 4
 
-// const generateOnce = once(
-//   generateFanGif({
-//     title: `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${particle.effect}particleEffect_ID-#${nftID}`,
-//   }),
-// )
-// const logOnce = once(() =>
-//   console.log({
-//     title: `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${particle.effect}particleEffect_ID-#${nftID}`,
-//   })
-// )
+const generateOnce = once(
+  generateFanGif(
+    `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${particle.effect}particleEffect_ID-#${nftID}`
+  ),
+)
+const logOnce = once(() =>
+  console.log(
+    'title: ', `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${particle.effect}particleEffect_ID-#${nftID}`
+  )
+)
 
 renderer.shadowMapEnabled = true
 
@@ -80,10 +80,19 @@ const animate = () => {
   // comment this in if you want to verify the time
   // console.log(elapsedTime)
 
-  // if (elapsedTime >= 2) {
-  //   logOnce()
-  //   generateOnce()
-  // }
+  rotateRight(fanGroup)
+
+
+//   camera.position.setX(camera.position.x += 0.001)
+  if (elapsedTime >= 2) {
+    logOnce()
+    generateOnce()
+  }
+
+// spotLightStraightOn.position.x += 0.001
+
+// console.log(spotLightStraightOn.position.x)
+
   spotLightStraightOn.target.updateMatrixWorld()
   spinFun(fanGroup)
 
@@ -93,4 +102,6 @@ const animate = () => {
   window.requestAnimationFrame(animate)
 }
 
-animate()
+setTimeout(() => {
+    animate()
+}, 1000)

@@ -26,10 +26,10 @@ export const spinFun = (fanGroup) => {
 
 }
 
-// export const rotateRight = (fanGroup) => {
-//   const rotationTheta = 0.2
-//   const rotationPoint = new THREE.Vector3(0, 0.05, 0)
-//   const rotationAxis = new THREE.Vector3(0, 0.05, 0)
-//   rotateAroundPoint(fanGroup, rotationPoint, rotationAxis, rotationTheta, false)
+export const rotateRight = (fanGroup) => {
+  const rotationTheta = 0.15
+  const rotationPoint = new THREE.Vector3(0.05, 0.05, 0.05)
+  const rotationAxis = new THREE.Vector3(0.075, 0.075, 0.075)
+  rotateAroundPoint(fanGroup, rotationPoint, rotationAxis, rotationTheta, false)
 
-// }
+}

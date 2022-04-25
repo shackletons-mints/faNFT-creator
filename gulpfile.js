@@ -17,11 +17,10 @@ gulp.task('sync', function() {
     ui: { port: 3003 }, //UI, can be any port
     reloadDelay: 1000, //Important, otherwise syncing will not work
   })
-  gulp.watch(['./GIFS']).on("change", browserSync.reload)
 })
 
 gulp.task('watch', function() {
-  gulp.watch('./GIFS').on("change", browserSync.reload('server.js'))
+  gulp.watch('./mp4').on("change", () => browserSync.reload('server.js'))
 })
 
-exports.build = gulp.parallel(["gulp_nodemon", "sync"])
+exports.build = gulp.parallel(["gulp_nodemon", "sync", "watch"])

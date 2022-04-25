@@ -59,7 +59,6 @@ const leafWithRarity = getRandomLeafWithRarityLabel()
  *
  */
 
-// fan handle
 const handleWithRarity = getRandomHandleWithRarityLabel()
 const handleGeometry = new THREE.BoxGeometry(0.1, 0.06, 1.05)
 
@@ -75,14 +74,6 @@ export const centerHandleMesh = new THREE.Mesh(fanCircleCenterGeometry, handle5.
 
 const rightHandleHalfMesh = new THREE.Mesh(rightHandleHalfGeometry, handle5.design)
 const leftHandleHalfMesh = new THREE.Mesh(leftHandleHalfGeometry, handle5.design)
-
-/**
- * handle4 = wood
- * handle7 = brass
- * handle8 = futuristic
- * handle9 = marble
- * handle10 = gold
- */
 
 const particleWithRarity = getRandomParticleWithRarityLabel()
 
@@ -145,7 +136,7 @@ export const background = getRandomBackgroundBasedOnFanGroupRarity()
   // |------QUARTER FAN NECESSICITES ------------------------------|
 
     // fan mesh setup
-    const fanMesh = new THREE.Mesh(fanQuarterGeometry, leaf8.design) // quarter fan
+    const fanMesh = new THREE.Mesh(fanQuarterGeometry, leafWithRarity.leaf) // quarter fan
 
     // fan group setup
     fanGroup.add(fanMesh, quarterLine, topHandleMesh, handleMesh )
@@ -157,7 +148,7 @@ export const background = getRandomBackgroundBasedOnFanGroupRarity()
     topHandleMesh.position.set(-0.5, -0.05, 0.52)
     topHandleMesh.rotation.set(1.5, 0.45, 0)
     handleMesh.position.set(0.19, -0.5, 0.53)
-    handleMesh.rotation.y += 1.7
+    handleMesh.rotation.y += 1.6
 
     // wireframe placement
     quarterLine.position.set(-0.3, -0.5, 0.5) // pie line
@@ -187,4 +178,4 @@ export const background = getRandomBackgroundBasedOnFanGroupRarity()
 
 // cool effect
 // fanGroup.rotation.x += 10
-// fanGroup.position.x += 10
+fanGroup.position.x += 2

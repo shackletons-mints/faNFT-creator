@@ -31,7 +31,8 @@ export const lightHolder = new THREE.Group();
 
 const spotLightOne = new THREE.SpotLight( 0xffffff, 1.4 );
 const spotLightHelperOne = new THREE.SpotLightHelper(spotLightOne)
-spotLightOne.position.set( 1, 2.0, 4 );
+spotLightOne.position.set( 0, 1, 4 );
+// spotLightOne.position.set( 1, 2.0, 4 ); // for the other fan
 spotLightOne.angle = Math.PI / 9
 
 spotLightOne.castShadow = true;
@@ -43,12 +44,14 @@ spotLightOne.shadow.camera.near = 100;
 spotLightOne.shadow.camera.far = 400;
 spotLightOne.shadow.camera.fov = 300;
 
-const spotLightTwo = new THREE.SpotLight( 0xffffff, 0.075 );
+const spotLightTwo = new THREE.SpotLight( 0xffffff, 0.25 );
+// const spotLightTwo = new THREE.SpotLight( 0xffffff, 0.075 ); // for the other fan
 const spotLightHelperTwo = new THREE.SpotLightHelper(spotLightTwo)
-spotLightTwo.position.set( 0, -0.55, 1.3 );
-spotLightTwo.angle = Math.PI / 9
+spotLightTwo.position.set( 0, -2, 4 ); // other fan
+// spotLightTwo.position.set( 0, -0.55, 1.3 ); // for the other fan
+spotLightTwo.angle = Math.PI * 9
 
-spotLightTwo.castShadow = false;
+spotLightTwo.castShadow = true;
 
 spotLightTwo.shadow.mapSize.width = 5;
 spotLightTwo.shadow.mapSize.height = 5;
@@ -71,7 +74,7 @@ spotLightThree.shadow.camera.near = 10;
 spotLightThree.shadow.camera.far = 10;
 spotLightThree.shadow.camera.fov = 10;
 
-lightHolder.add(spotLightOne, spotLightHelperOne, spotLightTwo);
+lightHolder.add(spotLightOne, spotLightTwo);
 
 // , spotLightHelperOne, spotLightTwo, spotLightThree,
 
