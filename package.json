@@ -27,7 +27,6 @@
     "@babel/preset-env": "^7.16.5",
     "babel-loader": "^8.2.3",
     "browserify": "^17.0.0",
-    "canvas-capture": "github:amandaghassaei/canvas-capture",
     "css-loader": "^6.5.1",
     "express": "^4.17.1",
     "file-saver": "^2.0.5",

@@ -1,33 +1,5 @@
-// import * as CanvasCapture from 'canvas-capture'
-
-// export const generateFanGif = ({ title }) => {
-//   CanvasCapture.init(document.getElementById('app'), {
-//     verbose: false,
-//     showAlerts: false,
-//     showDialogs: false,
-//     showRecDot: false,
-//   })
-
-//   CanvasCapture.beginGIFRecord({ fps: 60, name: title })
-
-//   setTimeout(() => {
-//     CanvasCapture.stopRecord()
-//   }, 5500)
-// }
-
-// export const recordFramesForGif = () => {
-//   if (CanvasCapture.isRecording()) {
-//     CanvasCapture.recordFrame()
-//   }
-// }
-
 import FileSaver from 'file-saver'
 
-// TODO:
-// we will need to step the html like we have it set up in ticket
-// this will make downloding mp4s way more consistent and less of a headache
-
-// to ensure that we don't get multiple downloads
 const once = (fn, context) => {
 	var result;
 
@@ -43,17 +15,12 @@ const once = (fn, context) => {
 
 export const generateFanGif = (title) => {
     var canvas = document.querySelector("canvas")
-    var ctx = canvas.getContext("webgl")
-
-    console.log(ctx)
 
     var video = document.querySelector("video")
 
     var videoStream = canvas.captureStream(120)
     var options = {
-        // audioBitsPerSecond : 128000,
         videoBitsPerSecond : 5000000,
-        // mimeType : 'video/mp4'
       }
     var mediaRecorder = new MediaRecorder(videoStream, options )
 
