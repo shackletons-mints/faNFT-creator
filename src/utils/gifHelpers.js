@@ -18,7 +18,7 @@ export const generateFanGif = (title) => {
 
     var video = document.querySelector("video")
 
-    var videoStream = canvas.captureStream(120)
+    var videoStream = canvas.captureStream(60)
     var options = {
         videoBitsPerSecond : 5000000,
       }
