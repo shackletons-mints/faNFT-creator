@@ -11,12 +11,21 @@ import {
   villageFar,
   cranePattern,
   horsePattern,
+  afternoonTeaPattern,
+  flowersMoonPattern,
+  mountainSanctuaryPattern,
+  deerColorfulForestPattern,
+  manOnOxPattern,
+  paddlingMerchantPattern,
+  writingInSquarePattern,
+  nightCaravanPattern,
   leafAO,
   leafCOLOR,
   leafHEIGHT,
   leafNORMAL,
   leafROUGHNESS,
   leafTEST,
+  testPattern,
 } from './texture_loader.js'
 
 /**
@@ -118,24 +127,129 @@ export const leaf7 = {
   name: 'Year_of_the_Tiger',
 }
 
+// NEED TO ADD --------------------------------------------------------------
+
 const leafCranePattern = new THREE.MeshStandardMaterial({
   map: cranePattern,
   ...leafSetup,
   // wireframe: true // cool effect with this on
 })
 
+export const leaf8 = {
+  design: leafCranePattern,
+  name: 'Red_Crane',
+}
+
+const leafAfternoonTeaPattern = new THREE.MeshStandardMaterial({
+  map: afternoonTeaPattern,
+  ...leafSetup
+})
+
+export const leaf9 = {
+  design: leafAfternoonTeaPattern,
+  name: 'Afternoon_Tea',
+}
+
+const leafFlowerMoonPattern = new THREE.MeshStandardMaterial({
+  map: flowersMoonPattern,
+  ...leafSetup
+})
+
+export const leaf10 = {
+  design: leafFlowerMoonPattern,
+  name: 'Flowers',
+}
+
+const leafMountainSanctuaryPattern = new THREE.MeshStandardMaterial({
+  map: mountainSanctuaryPattern,
+  ...leafSetup
+})
+
+export const leaf11 = {
+  design: leafMountainSanctuaryPattern,
+  name: 'Mountain_Sanctuary',
+}
+
+const leafForestDeer = new THREE.MeshStandardMaterial({
+  map: deerColorfulForestPattern,
+  ...leafSetup
+})
+
+export const leaf12 = {
+  design: leafForestDeer,
+  name: 'Deers_in_the_Forest',
+}
+
+const leafManOnOx = new THREE.MeshStandardMaterial({
+  map: manOnOxPattern,
+  ...leafSetup
+})
+
+export const leaf13 = {
+  design: leafManOnOx,
+  name: 'Man_Riding_Ox',
+}
+
+const leafPaddlingMerchant = new THREE.MeshStandardMaterial({
+  map: paddlingMerchantPattern,
+  ...leafSetup
+})
+
+export const leaf14 = {
+  design: leafPaddlingMerchant,
+  name: 'Paddling_Merchant',
+}
+
+const leafNightCaravan = new THREE.MeshStandardMaterial({
+  map: nightCaravanPattern,
+  ...leafSetup
+})
+
+export const leaf15 = {
+  design: nightCaravanPattern,
+  name: 'Night_Caravan',
+}
+
+// DONE ADDING --------------------------------------------------------------
+
 // export const leaf8 = {
 //   design: leafCranePattern,
 //   name: 'Crane_Pattern',
 // }
 
-const leafHorsePattern = new THREE.MeshStandardMaterial({
-  map: horsePattern,
+/**
+  wave,
+  mountainBoat,
+  mountain,
+  pagoda,
+  geisha,
+  frog,
+  tiger,
+  villageFar,
+  cranePattern,
+  horsePattern,
+  afternoonTeaPattern,
+  flowersMoonPattern,
+  mountainSanctuaryPattern,
+  deerColorfulForestPattern,
+  manOnOxPattern,
+  paddlingMerchantPattern,
+  nightCaravanPattern
+  ,
+ */
+
+const leafTestPattern = new THREE.MeshStandardMaterial({
+  map: nightCaravanPattern,
   ...leafSetup,
   // wireframe: true // cool effect with this on
 })
 
-export const leaf8 = {
-  design: leafHorsePattern,
-  name: 'Horses',
+// export const leaf8 = {
+//   design: leafHorsePattern,
+//   name: 'Horses',
+// }
+
+export const leafTest = {
+  design: leafTestPattern,
+  name: 'TESTER',
 }

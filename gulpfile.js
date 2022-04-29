@@ -23,4 +23,4 @@ gulp.task('watch', function() {
   gulp.watch('./mp4').on("change", () => browserSync.reload('server.js'))
 })
 
-exports.build = gulp.parallel(["gulp_nodemon", "sync", "watch"])
+exports.build = gulp.parallel(["gulp_nodemon", "sync"])

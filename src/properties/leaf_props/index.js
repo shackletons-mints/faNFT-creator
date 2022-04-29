@@ -7,4 +7,11 @@ export {
   leaf6,
   leaf7,
   leaf8,
+  leaf9,
+  leaf10,
+  leaf11,
+  leaf12,
+  leaf13,
+  leaf14,
+  leafTest,
  } from './mesh_creation.js'

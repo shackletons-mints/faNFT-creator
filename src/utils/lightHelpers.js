@@ -11,14 +11,14 @@ export const light = new THREE.AmbientLight(color, intensity)
   // set variables so when we switch between half and quarter fan
   // we get the correct light configuration
 
-light.position.set(1,1,1)
+light.position.set(1,1,1.5)
 
 export const spotLightStraightOn = new THREE.DirectionalLight(
   'white',
   directLightIntensity
 )
 
-spotLightStraightOn.position.set(1, 2, 3)
+spotLightStraightOn.position.set(1, 2, 3.5)
 
 export const spotLightStraightOnHelper = new THREE.DirectionalLightHelper(
   spotLightStraightOn,
@@ -26,12 +26,12 @@ export const spotLightStraightOnHelper = new THREE.DirectionalLightHelper(
 
 export const pointLight = new THREE.PointLight(0xffffff, 5, 17);
 const pointLightHelper = new THREE.PointLightHelper(pointLight)
-pointLight.position.set(10, 6, 10);
+pointLight.position.set(10, 6, 10.5);
 export const lightHolder = new THREE.Group();
 
 const spotLightOne = new THREE.SpotLight( 0xffffff, 1.4 );
 const spotLightHelperOne = new THREE.SpotLightHelper(spotLightOne)
-spotLightOne.position.set( 0, 1, 4 );
+spotLightOne.position.set( 0, 1, 4.5 );
 // spotLightOne.position.set( 1, 2.0, 4 ); // for the other fan
 spotLightOne.angle = Math.PI / 9
 
@@ -47,7 +47,7 @@ spotLightOne.shadow.camera.fov = 300;
 const spotLightTwo = new THREE.SpotLight( 0xffffff, 0.25 );
 // const spotLightTwo = new THREE.SpotLight( 0xffffff, 0.075 ); // for the other fan
 const spotLightHelperTwo = new THREE.SpotLightHelper(spotLightTwo)
-spotLightTwo.position.set( 0, -2, 4 ); // other fan
+spotLightTwo.position.set( 0, -2, 4.5 ); // other fan
 // spotLightTwo.position.set( 0, -0.55, 1.3 ); // for the other fan
 spotLightTwo.angle = Math.PI * 9
 
@@ -62,7 +62,7 @@ spotLightTwo.shadow.camera.fov = 30;
 
 const spotLightThree = new THREE.SpotLight( 0xffffff, 0.075 );
 const spotLightHelperThree = new THREE.SpotLightHelper(spotLightThree)
-spotLightThree.position.set( 0, 2, 5 );
+spotLightThree.position.set( 0, 2, 5.5 );
 spotLightThree.angle = Math.PI / 9
 
 spotLightThree.castShadow = false;

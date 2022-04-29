@@ -61,11 +61,11 @@ scene.add(lightHolder);
 
 // spotLightStraightOn.target.rotation.y -= 4
 
-const generateOnce = once(
-  generateFanGif(
-    `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${particle.effect}particleEffect_ID-#${nftID}`
-  ),
-)
+// const generateOnce = once(
+//   generateFanGif(
+//     `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${particle.effect}particleEffect_ID-#${nftID}`
+//   ),
+// )
 const logOnce = once(() =>
   console.log(
     'title: ', `${fanRarityLabels.leaf}Leaf_${fanRarityLabels.leafName}LeafName_${fanRarityLabels.handle}Handle_${fanRarityLabels.handleMaterial}HandleMaterial_${particle.rarity}Particle_${particle.effect}particleEffect_ID-#${nftID}`
@@ -86,7 +86,7 @@ const animate = () => {
 //   camera.position.setX(camera.position.x += 0.001)
   if (elapsedTime >= 2) {
     logOnce()
-    generateOnce()
+    // generateOnce()
   }
 
 // spotLightStraightOn.position.x += 0.001

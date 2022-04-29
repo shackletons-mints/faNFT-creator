@@ -16,6 +16,7 @@ export const futureTexture = textureLoader.load('./properties/handle_props/desig
 
 export const marbleRoughness = textureLoader.load('./properties/textures/stringyMarbleRoughness.png')
 export const cherryWoodRoughness = textureLoader.load('./properties/textures/cherryWoodRoughness.png')
+export const bamboo = textureLoader.load('./properties/handle_props/designs/bamboo.png')
 
 export const ornateBrassHeight = textureLoader.load('./properties/textures/ornateBrassHeight.png')
 

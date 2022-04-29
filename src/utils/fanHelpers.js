@@ -12,13 +12,18 @@ import {
   handle1,
   handle2,
   handle3,
+  handle4,
   handle5,
+  handle6,
+  handle7,
+  handle8,
+  handle9,
   handle10,
 } from '../properties/handle_props'
 
 import {
   leaf1,
-  leaf8,
+  leafTest,
 } from '../properties/leaf_props'
 
 import {
@@ -66,9 +71,10 @@ const rightHandleHalfGeometry = new THREE.CircleGeometry(1.53, 28, Math.PI * 2, 
 const leftHandleHalfGeometry = new THREE.BoxGeometry(0.1, 0.03, 1.45)
 
 const topHandleGeometry = new THREE.BoxGeometry(0.05, 0.06, 1)
-const topHandleMesh = new THREE.Mesh(topHandleGeometry, handleWithRarity.handle)
+const topHandleMesh = new THREE.Mesh(topHandleGeometry, handle9.design)
 
-const handleMesh = new THREE.Mesh(handleGeometry, handleWithRarity.handle)
+const handleMesh = new THREE.Mesh(handleGeometry, handle9.design)
+console.log(handle9.material)
 const material = new THREE.MeshBasicMaterial( { color: '#222222' } )
 export const centerHandleMesh = new THREE.Mesh(fanCircleCenterGeometry, handle5.design)
 
@@ -136,22 +142,23 @@ export const background = getRandomBackgroundBasedOnFanGroupRarity()
   // |------QUARTER FAN NECESSICITES ------------------------------|
 
     // fan mesh setup
-    const fanMesh = new THREE.Mesh(fanQuarterGeometry, leafWithRarity.leaf) // quarter fan
+    console.log(leafTest)
+    const fanMesh = new THREE.Mesh(fanQuarterGeometry, leafTest.design) // quarter fan
 
     // fan group setup
     fanGroup.add(fanMesh, quarterLine, topHandleMesh, handleMesh )
 
     // leaf placement
-    fanMesh.position.set(-0.3, -0.5, 0.5)
+    fanMesh.position.set(-0.35, -0.5, 0.95)
 
     // handle placement
-    topHandleMesh.position.set(-0.5, -0.05, 0.52)
+    topHandleMesh.position.set(-0.55, -0.05, 0.97)
     topHandleMesh.rotation.set(1.5, 0.45, 0)
-    handleMesh.position.set(0.19, -0.5, 0.53)
+    handleMesh.position.set(0.14, -0.5, 0.98)
     handleMesh.rotation.y += 1.6
 
     // wireframe placement
-    quarterLine.position.set(-0.3, -0.5, 0.5) // pie line
+    quarterLine.position.set(-0.35, -0.5, 0.95) // pie line
 
 // fanMesh.position.set(0, -0.5, -0.1) // halfFanMesh
 // fanMesh.rotation.z = Math.PI / 13 // only for halfFan

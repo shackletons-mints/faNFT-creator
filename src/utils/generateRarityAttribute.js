@@ -6,6 +6,13 @@ import {
   leaf5,
   leaf6,
   leaf7,
+  leaf8,
+  leaf9,
+  leaf10,
+  leaf11,
+  leaf12,
+  leaf13,
+  leaf14,
 } from '../properties/leaf_props'
 
 import {
@@ -57,6 +64,26 @@ function getRandomFromList(list) {
 }
 
 // get Fan attribute from collection based on rarity prop
+/**
+ * c1
+ * c2
+ * c3
+ * c4
+ * c5
+ * u6
+ * u7
+ * u8
+ * u9
+ * r10
+ * r11
+ * r12
+ * e13
+ * e14
+ * l15
+ *
+ *
+ *
+ */
 const leafAttributeCollection = {
   Common: [leaf1, leaf2],
   Uncommon: [leaf3, leaf4],

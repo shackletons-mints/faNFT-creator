@@ -10,6 +10,7 @@ import {
   brassTexture,
   marbleTexture,
   ornateBrassTexture,
+  bamboo,
   futureTexture,
   marbleRoughness,
   cherryWoodRoughness,
@@ -53,9 +54,9 @@ const volcanic = new THREE.MeshPhysicalMaterial({
   emissive: 'green',
   bumpScale: 1,
   emissiveIntensity: 0.2,
-  clearcoat: 0.5,
-  roughness: 0.5,
-  normalScale: new THREE.Vector2(0.15, 0.15),
+  clearcoat: 0.2,
+  roughness: 0.9,
+  normalScale: new THREE.Vector2(-15, 1),
 })
 
 const speckledMarble = new THREE.MeshPhysicalMaterial({
@@ -81,17 +82,17 @@ const cooper = new THREE.MeshPhysicalMaterial({
   alphaMap: cooperCOLOR,
   map: cooperCOLOR,
   aoMap: cooperAO,
-  aoMapIntensity: 1,
+  aoMapIntensity: 0.5,
   bumpMap: cooperDISPLACEMENT,
-  bumpScale: 1,
+  bumpScale: 0.5,
   normalMap: cooperNORMAL,
-  normalScale: new THREE.Vector2(.5, .5),
+  normalScale: new THREE.Vector2(-5, 0),
   roughnessMap: cooperROUGHNESS,
   clearcoatMap: cooperMETALIC,
   clearcoatRoughness: 0.5,
   clearcoat: 0.5,
-  metalness: 0.1,
-  roughness: 0.5,
+  metalness: 0.3,
+  roughness: 0.1,
 })
 
 const jade = new THREE.MeshPhysicalMaterial({
@@ -141,8 +142,10 @@ const design3 = new THREE.MeshStandardMaterial({
 const design4 = new THREE.MeshStandardMaterial({
   map: handleDesign4,
   roughnessMap: cherryWoodRoughness,
+  normalMap: cherryWoodRoughness,
+  normalScale: new THREE.Vector2(1, 1),
   flatShading: true,
-  roughness: 0.5,
+  roughness: 0.9,
   emissive: 0x0
 })
 
@@ -154,7 +157,8 @@ const design5 = new THREE.MeshStandardMaterial({
   flatShading: true,
   roughness: 0.2,
   // metalness: 0.2,
-  normalScale: new THREE.Vector2(1, 1),
+  normalMap: volcanicHEIGHT,
+  normalScale: new THREE.Vector2(1000, 1000),
   emissiveIntensity: 0.1
 })
 
@@ -189,10 +193,13 @@ const design8 = new THREE.MeshStandardMaterial({
   map: futureTexture,
   bumpScale: 1,
   flatShading: true,
-  roughness: 0.3,
+  roughness: 0.35,
+  // bumpMap: volcanicHEIGHT,
+  emissive: 'pink',
+  bumpScale: 1,
   metalness: 0.5,
-  normalScale: new THREE.Vector2(0.5, 0.5),
-  emissiveIntensity: 0.1
+  normalScale: new THREE.Vector2(-Math.PI, 1),
+  emissiveIntensity: 0.25
 })
 
 const design9 = new THREE.MeshStandardMaterial({
@@ -225,7 +232,7 @@ export const handle1 = {
 // export const handle2 = design2
 export const handle2 = {
   design: cooper,
-  material: 'Brass',
+  material: 'Cooper',
 }
 export const handle3 = {
   design: jade,

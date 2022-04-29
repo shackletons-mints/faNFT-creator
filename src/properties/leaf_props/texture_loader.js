@@ -64,9 +64,47 @@ cranePattern.offset.set( -0.5, -0.5 )
 export const horsePattern = textureLoader.load('./properties/leaf_props/designs/horses.jpg')
 horsePattern.wrapS = THREE.RepeatWrapping
 horsePattern.wrapT = THREE.RepeatWrapping
-horsePattern .offset.set( -0.15, 0.1 )
+horsePattern.offset.set( 0.6, 0.7 )
 
-console.log(horsePattern)
+export const afternoonTeaPattern = textureLoader.load('./properties/leaf_props/designs/afternoon_tea.jpg')
+afternoonTeaPattern.wrapS = THREE.RepeatWrapping
+afternoonTeaPattern.wrapT = THREE.RepeatWrapping
+afternoonTeaPattern.offset.set( -0.25, 0.7 )
+
+export const flowersMoonPattern = textureLoader.load('./properties/leaf_props/designs/flowers_of_the_moon.jpg')
+flowersMoonPattern.wrapS = THREE.RepeatWrapping
+flowersMoonPattern.wrapT = THREE.RepeatWrapping
+flowersMoonPattern.offset.set(0.93,0.68)
+
+export const mountainSanctuaryPattern = textureLoader.load('./properties/leaf_props/designs/mountain_sanctuary.jpg')
+mountainSanctuaryPattern.wrapS = THREE.RepeatWrapping
+mountainSanctuaryPattern.wrapT = THREE.RepeatWrapping
+mountainSanctuaryPattern.offset.set(0.7,1)
+
+export const deerColorfulForestPattern = textureLoader.load('./properties/leaf_props/designs/deer_colorful_forest.jpg')
+deerColorfulForestPattern.wrapS = THREE.RepeatWrapping
+deerColorfulForestPattern.wrapT = THREE.RepeatWrapping
+deerColorfulForestPattern.offset.set(0.8,0.9)
+
+export const manOnOxPattern = textureLoader.load('./properties/leaf_props/designs/flying_a_kite.jpg')
+manOnOxPattern.wrapS = THREE.RepeatWrapping
+manOnOxPattern.wrapT = THREE.RepeatWrapping
+manOnOxPattern.offset.set(1,0.65)
+
+export const paddlingMerchantPattern = textureLoader.load('./properties/leaf_props/designs/paddling_merchant.jpg')
+paddlingMerchantPattern.wrapS = THREE.RepeatWrapping
+paddlingMerchantPattern.wrapT = THREE.RepeatWrapping
+paddlingMerchantPattern.offset.set(0.9,0.50)
+
+export const writingInSquarePattern = textureLoader.load('./properties/leaf_props/designs/city_square.jpg')
+writingInSquarePattern.wrapS = THREE.RepeatWrapping
+writingInSquarePattern.wrapT = THREE.RepeatWrapping
+writingInSquarePattern.offset.set(0.75,0.7)
+
+export const nightCaravanPattern = textureLoader.load('./properties/leaf_props/designs/night_caravan.jpg')
+nightCaravanPattern.wrapS = THREE.RepeatWrapping
+nightCaravanPattern.wrapT = THREE.RepeatWrapping
+nightCaravanPattern.offset.set(0.85,0.7)
 
 
 // export const swanPeonies = textureLoader.load('./properties/leaf_props/designs/swan_peony.png')
