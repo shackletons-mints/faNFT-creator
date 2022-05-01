@@ -1,267 +1,225 @@
 import * as THREE from 'three'
 
 import {
-  handleDesign1,
-  handleDesign2,
-  handleDesign3,
-  handleDesign4,
-  handleDesign5,
-  handleDesign6,
-  brassTexture,
-  marbleTexture,
-  ornateBrassTexture,
-  bamboo,
-  futureTexture,
-  marbleRoughness,
-  cherryWoodRoughness,
-  ornateBrassHeight,
-  ornateBrassAO,
-  jadeAO,
-  jadeCOLOR,
-  jadeHEIGHT,
-  jadeNORMAL,
-  jadeROUGHNESS,
-  volcanicAO,
-  volcanicCOLOR,
-  volcanicHEIGHT,
-  volcanicNORMAL,
-  volcanicROUGHNESS,
-  cooperAO,
-  cooperCOLOR,
-  cooperDISPLACEMENT,
-  cooperMETALIC,
-  cooperNORMAL,
-  cooperROUGHNESS,
-  speckledMarbleAO,
-  speckledMarbleROUGHNESS,
-  speckledMarbleNORMAL,
-  speckledMarbleMAP,
-  shinyMetalAO,
-  shinyMetalCOLOR,
-  shinyMetalMETALLIC,
-  shinyMetalNORMAL,
-  shinyMetalROUGHNESS,
-  shinyMetalHEIGHT,
+    handleDesign3,
+    handleDesign4,
+    handleDesign5,
+    ornateBrassTexture,
+    futureTexture,
+    marbleRoughness,
+    cherryWoodRoughness,
+    ornateBrassHeight,
+    jadeAO,
+    jadeCOLOR,
+    jadeHEIGHT,
+    jadeNORMAL,
+    jadeROUGHNESS,
+    volcanicAO,
+    volcanicCOLOR,
+    volcanicHEIGHT,
+    volcanicNORMAL,
+    volcanicROUGHNESS,
+    cooperAO,
+    cooperCOLOR,
+    cooperDISPLACEMENT,
+    cooperMETALIC,
+    cooperNORMAL,
+    cooperROUGHNESS,
+    tilesAO,
+    tilesCOLOR,
+    tilesHEIGHT,
+    tilesNORMAL,
+    tilesROUGHNESS,
+    woodAO,
+    woodCOLOR,
+    woodHEIGHT,
+    woodsNORMAL,
+    woodROUGHNESS,
+    lazuliAO,
+    lazuliCOLOR,
+    lazuliHEIGHT,
+    lazuliNORMAL,
+    lazuliROUGHNESS,
 } from './texture_loader.js'
 
 const volcanic = new THREE.MeshPhysicalMaterial({
-  aoMap: volcanicAO,
-  map: volcanicCOLOR,
-  bumpMap: volcanicHEIGHT,
-  normalMap: volcanicNORMAL,
-  roughnessMap: volcanicROUGHNESS,
-  clearcoatRoughness: 0.1,
-  emissive: 'green',
-  bumpScale: 1,
-  emissiveIntensity: 0.2,
-  clearcoat: 0.2,
-  roughness: 0.9,
-  normalScale: new THREE.Vector2(-15, 1),
-})
-
-const speckledMarble = new THREE.MeshPhysicalMaterial({
-  // alphaMap: speckledMarbleMAP,
-  map: speckledMarbleMAP,
-  aoMap: speckledMarbleAO,
-  aoMapIntensity: 0.52,
-  // bumpMap: brassDISPLACEMENT,
-  // bumpScale: 1,
-  emissive: 'white',
-  emissiveIntensity: 0.5,
-  normalMap: speckledMarbleNORMAL,
-  normalScale: new THREE.Vector2(15, 15),
-  roughnessMap: speckledMarbleROUGHNESS,
-  roughness: 1,
-  // clearcoatMap: brassMETALIC,
-  clearcoatRoughness: 0.75,
-  clearcoat: 0.5,
-  // metalness: 0.1,
+    aoMap: volcanicAO,
+    map: volcanicCOLOR,
+    bumpMap: volcanicHEIGHT,
+    normalMap: volcanicNORMAL,
+    roughnessMap: volcanicROUGHNESS,
+    clearcoatRoughness: 0.1,
+    emissive: 'green',
+    bumpScale: 1,
+    emissiveIntensity: 0.2,
+    clearcoat: 0.2,
+    roughness: 0.9,
+    normalScale: new THREE.Vector2(-15, 1),
 })
 
 const cooper = new THREE.MeshPhysicalMaterial({
-  alphaMap: cooperCOLOR,
-  map: cooperCOLOR,
-  aoMap: cooperAO,
-  aoMapIntensity: 0.5,
-  bumpMap: cooperDISPLACEMENT,
-  bumpScale: 0.5,
-  normalMap: cooperNORMAL,
-  normalScale: new THREE.Vector2(-5, 0),
-  roughnessMap: cooperROUGHNESS,
-  clearcoatMap: cooperMETALIC,
-  clearcoatRoughness: 0.5,
-  clearcoat: 0.5,
-  metalness: 0.3,
-  roughness: 0.1,
+    alphaMap: cooperCOLOR,
+    map: cooperCOLOR,
+    aoMap: cooperAO,
+    aoMapIntensity: 0.5,
+    bumpMap: cooperDISPLACEMENT,
+    bumpScale: 0.5,
+    normalMap: cooperNORMAL,
+    normalScale: new THREE.Vector2(-25, 0),
+    roughnessMap: cooperROUGHNESS,
+    clearcoatMap: cooperMETALIC,
+    clearcoatRoughness: 0.5,
+    clearcoat: 0.5,
+    metalness: 0.3,
+    roughness: 0.1,
 })
 
 const jade = new THREE.MeshPhysicalMaterial({
-  aoMap: jadeAO,
-  map: jadeCOLOR,
-  bumpMap: jadeHEIGHT,
-  normalMap: jadeNORMAL,
-  roughnessMap: jadeROUGHNESS,
-  clearcoatRoughness: 0.1,
-  emissive: 'green',
-  bumpScale: 1,
-  emissiveIntensity: 0.2,
-  clearcoat: 0.5,
-  roughness: 0.5,
-  normalScale: new THREE.Vector2(0.15, 0.15),
+    aoMap: jadeAO,
+    map: jadeCOLOR,
+    bumpMap: jadeHEIGHT,
+    normalMap: jadeNORMAL,
+    roughnessMap: jadeROUGHNESS,
+    clearcoatRoughness: 0.1,
+    emissive: 'green',
+    bumpScale: 1,
+    emissiveIntensity: 0.2,
+    clearcoat: 0.5,
+    roughness: 0.5,
+    normalScale: new THREE.Vector2(0.15, 0.15),
 })
 
-const design1 = new THREE.MeshPhysicalMaterial({
-  map: handleDesign1,
-  normalMap: brassTexture,
-  clearcoat: 1,
-  metalness: 0.5,
-  roughness: 0.5,
-  normalScale: new THREE.Vector2(0.15, 0.15),
-  clearcoatRoughness: 0.1,
-  emissiveIntensity: 0.5
+const redWood = new THREE.MeshPhysicalMaterial({
+    aoMap: tilesAO,
+    map: tilesCOLOR,
+    bumpMap: tilesHEIGHT,
+    normalMap: tilesNORMAL,
+    roughnessMap: tilesROUGHNESS,
+    bumpScale: 1,
+    clearcoatRoughness: 0.9,
+    aoMapIntensity: 0.9,
+    clearcoat: 0.5,
+    roughness: 0.9,
+    normalScale: new THREE.Vector2(15, 15),
 })
 
-const design2 = new THREE.MeshPhysicalMaterial({
-  map: handleDesign2,
-  normalMap: marbleTexture,
-  clearcoatMap: marbleRoughness,
-  clearcoat: 0.5,
-  roughness: 0.1,
-  sheen: 0.5,
-  normalScale: new THREE.Vector2(0.15, 0.15),
-  clearcoatRoughness: 0.5,
-  emissiveIntensity: 0.5
+const paintedWood = new THREE.MeshPhysicalMaterial({
+    aoMap: woodAO,
+    map: woodCOLOR,
+    bumpMap: woodHEIGHT,
+    normalMap: woodsNORMAL,
+    roughnessMap: woodROUGHNESS,
+    bumpScale: 1,
+    clearcoatRoughness: 0.9,
+    aoMapIntensity: 0.9,
+    clearcoat: 0.1,
+    roughness: 0.9,
+    sheen: 0.1,
+    normalScale: new THREE.Vector2(15, 15),
 })
 
-const design3 = new THREE.MeshStandardMaterial({
-  roughness: 0.4,
-  metalness: 0.4,
-  emissiveIntensity: 0.1
+const lazuli = new THREE.MeshPhysicalMaterial({
+    aoMap: lazuliAO,
+    map: lazuliCOLOR,
+    bumpMap: lazuliHEIGHT,
+    normalMap: lazuliNORMAL,
+    roughnessMap: lazuliROUGHNESS,
+    bumpScale: 0.1,
+    clearcoatRoughness: 0.1,
+    aoMapIntensity: 0.5,
+    clearcoat: 0.75,
+    roughness: 0.1,
+    sheen: 1,
+    normalScale: new THREE.Vector2(-1, -1),
 })
 
 const design4 = new THREE.MeshStandardMaterial({
-  map: handleDesign4,
-  roughnessMap: cherryWoodRoughness,
-  normalMap: cherryWoodRoughness,
-  normalScale: new THREE.Vector2(1, 1),
-  flatShading: true,
-  roughness: 0.9,
-  emissive: 0x0
-})
-
-const design5 = new THREE.MeshStandardMaterial({
-  alphaMap: handleDesign3,
-  roughnessMap: ornateBrassTexture,
-  bumpMap: ornateBrassHeight,
-  bumpScale: 1,
-  flatShading: true,
-  roughness: 0.2,
-  // metalness: 0.2,
-  normalMap: volcanicHEIGHT,
-  normalScale: new THREE.Vector2(1000, 1000),
-  emissiveIntensity: 0.1
-})
-
-// trying to get this handle to resemble the AOMap texture more, can't seem to get it to play nice
-const design6 = new THREE.MeshStandardMaterial({
-  map: handleDesign3,
-  normalMap: ornateBrassTexture,
-  bumpMap: ornateBrassHeight,
-  aoMap: ornateBrassAO,
-  aoMapIntensity: 1,
-  bumpScale: 1,
-  flatShading: true,
-  roughness: 0.2,
-  metalness: 0.2,
-  normalScale: new THREE.Vector2(0.55, 0.55),
-  emissiveIntensity: 1
+    map: handleDesign4,
+    roughnessMap: cherryWoodRoughness,
+    normalMap: cherryWoodRoughness,
+    normalScale: new THREE.Vector2(1, 1),
+    flatShading: true,
+    roughness: 0.9,
+    emissive: 0x0
 })
 
 const design7 = new THREE.MeshStandardMaterial({
-  map: handleDesign3,
-  normalMap: ornateBrassTexture,
-  bumpMap: ornateBrassHeight,
-  bumpScale: 1,
-  flatShading: true,
-  roughness: 0.3,
-  metalness: 0.5,
-  normalScale: new THREE.Vector2(0.5, 0.5),
-  emissiveIntensity: 0.1
+    map: handleDesign3,
+    normalMap: ornateBrassTexture,
+    bumpMap: ornateBrassHeight,
+    bumpScale: 1,
+    flatShading: true,
+    roughness: 0.3,
+    metalness: 0.5,
+    normalScale: new THREE.Vector2(0.5, 0.5),
+    emissiveIntensity: 0.1
 })
 
 const design8 = new THREE.MeshStandardMaterial({
-  map: futureTexture,
-  bumpScale: 1,
-  flatShading: true,
-  roughness: 0.35,
-  // bumpMap: volcanicHEIGHT,
-  emissive: 'pink',
-  bumpScale: 1,
-  metalness: 0.5,
-  normalScale: new THREE.Vector2(-Math.PI, 1),
-  emissiveIntensity: 0.25
-})
-
-const design9 = new THREE.MeshStandardMaterial({
-  map: handleDesign5,
-  bumpMap: marbleRoughness,
-  emissive: '#00a86b',
-  flatShading: true,
-  roughness: 0.1,
-  metalness: 0.9,
-  bumpScale: 1,
-  normalScale: new THREE.Vector2(0.5, 0.5),
-  emissiveIntensity: 0.5
+    map: futureTexture,
+    bumpScale: 1,
+    flatShading: true,
+    roughness: 0.35,
+    emissive: 'pink',
+    bumpScale: 1,
+    metalness: 0.5,
+    normalScale: new THREE.Vector2(-Math.PI, 1),
+    emissiveIntensity: 0.25
 })
 
 const design10 = new THREE.MeshPhysicalMaterial({
-  map: handleDesign5,
-  bumpScale: 1,
-  flatShading: true,
-  roughness: 0.3,
-  metalness: 0.9,
-  normalScale: new THREE.Vector2(0.5, 0.5),
-  emissiveIntensity: 0.5,
-  emissive: 'gold'
+    map: handleDesign5,
+    bumpScale: 1,
+    flatShading: true,
+    roughness: 0.3,
+    metalness: 0.9,
+    normalScale: new THREE.Vector2(0.5, 0.5),
+    emissiveIntensity: 0.5,
+    emissive: 'gold'
 })
 
 export const handle1 = {
-  design: speckledMarble,
-  material: 'Speckled_Marble',
+    design: paintedWood,
+    material: 'Painted_Wood',
 }
-// export const handle2 = design2
 export const handle2 = {
-  design: cooper,
-  material: 'Cooper',
+    design: cooper,
+    material: 'Cooper',
 }
 export const handle3 = {
-  design: jade,
-  material: 'Jade',
+    design: jade,
+    material: 'Jade',
 }
 
-design9
+// can we get more grain?
 export const handle4 = {
-  design: design4,
-  material: 'Wood',
+    design: design4,
+    material: 'Wood',
 }
+// 
 export const handle5 = {
-  design: volcanic,
-  material: 'Volcanic_Rock'
+    design: volcanic,
+    material: 'Volcanic_Rock'
 }
-export const handle6 = design6
+export const handle6 = {
+    design: redWood,
+    material: 'Stacked_Wood'
+}
+
 export const handle7 = {
-  design: design7,
-  material: 'Brass'
+    design: design7,
+    material: 'Brass'
 }
+
 export const handle8 = {
-  design: design3,
-  material: 'Platinum',
+    design: lazuli,
+    material: 'Lapis_Lazuli',
 }
 export const handle9 = {
-  design: design8,
-  material: 'Meteorite',
+    design: design8,
+    material: 'Space_Metal',
 }
 export const handle10 = {
-  design: design10,
-  material: 'Gold',
+    design: design10,
+    material: 'Gold',
 }

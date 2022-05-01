@@ -106,7 +106,28 @@ nightCaravanPattern.wrapS = THREE.RepeatWrapping
 nightCaravanPattern.wrapT = THREE.RepeatWrapping
 nightCaravanPattern.offset.set(0.85,0.7)
 
+export const boatsOnACove = textureLoader.load('./properties/leaf_props/designs/boats_on_a_cove.jpg')
+boatsOnACove.wrapS = THREE.RepeatWrapping
+boatsOnACove.wrapT = THREE.RepeatWrapping
+boatsOnACove.offset.set(0.75,0.5)
 
+export const GOD = textureLoader.load('./properties/leaf_props/designs/badass_gods.jpg')
+GOD.wrapS = THREE.RepeatWrapping
+GOD.wrapT = THREE.RepeatWrapping
+GOD.offset.set(1.01,0.95)
+
+export const opera_dragon = textureLoader.load('./properties/leaf_props/designs/opera_giddup.jpeg')
+opera_dragon.wrapS = THREE.RepeatWrapping
+opera_dragon.wrapT = THREE.RepeatWrapping
+opera_dragon.offset.set(1.05,.6)
+
+export const blue_waves = textureLoader.load('./properties/leaf_props/designs/blue_waves.jpg')
+blue_waves.wrapS = THREE.RepeatWrapping
+blue_waves.wrapT = THREE.RepeatWrapping
+blue_waves.offset.set(0.7,0.7)
+
+
+// paper_0010_color_1k
 // export const swanPeonies = textureLoader.load('./properties/leaf_props/designs/swan_peony.png')
 // swanPeonies.center.set(.5, 1)
 // swanPeonies.wrapS = THREE.ClampToEdgeWrapping

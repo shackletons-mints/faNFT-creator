@@ -41,14 +41,35 @@ export const cooperMETALIC = textureLoader.load('./properties/handle_props/desig
 export const cooperNORMAL = textureLoader.load('./properties/handle_props/designs/cooperNORMAL.jpg')
 export const cooperROUGHNESS = textureLoader.load('./properties/handle_props/designs/cooperROUGHNESS.jpg')
 
-export const speckledMarbleAO = textureLoader.load('./properties/handle_props/designs/speckledMarbleAO.jpg')
-export const speckledMarbleNORMAL = textureLoader.load('./properties/handle_props/designs/speckledMarbleNORMAL.jpg')
-export const speckledMarbleROUGHNESS = textureLoader.load('./properties/handle_props/designs/speckledMarbleROUGHNESS.jpg')
-export const speckledMarbleMAP = textureLoader.load('./properties/handle_props/designs/speckledMarbleROUGHNESS.jpg')
-
 export const shinyMetalAO = textureLoader.load('./properties/handle_props/designs/shinyMetalAO.jpg')
 export const shinyMetalCOLOR = textureLoader.load('./properties/handle_props/designs/shinyMetalCOLOR.jpg')
 export const shinyMetalHEIGHT = textureLoader.load('./properties/handle_props/designs/shinyMetalHEIGHT.png')
 export const shinyMetalMETALLIC = textureLoader.load('./properties/handle_props/designs/shinyMetalMETALLIC.jpg')
 export const shinyMetalNORMAL = textureLoader.load('./properties/handle_props/designs/shinyMetalNORMAL.png')
 export const shinyMetalROUGHNESS = textureLoader.load('./properties/handle_props/designs/shinyMetalROUGHNESS.jpg')
+
+
+export const tilesAO = textureLoader.load('./properties/handle_props/designs/tiles_0039_ao_1k.jpg')
+export const tilesCOLOR = textureLoader.load('./properties/handle_props/designs/tiles_0039_color_1k.jpg')
+export const tilesHEIGHT = textureLoader.load('./properties/handle_props/designs/tiles_0039_height_1k.png')
+export const tilesNORMAL = textureLoader.load('./properties/handle_props/designs/tiles_0039_normal_opengl_1k.png')
+export const tilesROUGHNESS = textureLoader.load('./properties/handle_props/designs/tiles_0039_roughness_1k.jpg')
+
+export const woodAO = textureLoader.load('./properties/handle_props/designs/wood_0045_ambient_occlusion_1k.jpg')
+export const woodCOLOR = textureLoader.load('./properties/handle_props/designs/wood_0045_color_1k.jpg')
+export const woodHEIGHT = textureLoader.load('./properties/handle_props/designs/wood_0045_height_1k.png')
+export const woodsNORMAL = textureLoader.load('./properties/handle_props/designs/wood_0045_normal_opengl_1k.png')
+export const woodROUGHNESS = textureLoader.load('./properties/handle_props/designs/wood_0045_roughness_1k.jpg')
+
+export const lazuliAO = textureLoader.load('./properties/handle_props/designs/Lapis_Lazuli_002_ambientOcclusion.jpg')
+export const lazuliCOLOR = textureLoader.load('./properties/handle_props/designs/Lapis_Lazuli_002_basecolor.jpg')
+export const lazuliHEIGHT = textureLoader.load('./properties/handle_props/designs/Lapis_Lazuli_002_height.png')
+export const lazuliNORMAL = textureLoader.load('./properties/handle_props/designs/Lapis_Lazuli_002_normal.jpg')
+export const lazuliROUGHNESS = textureLoader.load('./properties/handle_props/designs/Lapis_Lazuli_002_roughness.jpg')
+
+// metalPatternAO.offset.set(0,0.25)
+// metalPatternCOLOR.offset.set(0,0.25)
+// metalPatternHEIGHT.offset.set(0,0.25)
+// metalPatternMETALLIC.offset.set(0,0.25)
+// metalPatternNORMAL.offset.set(0,0.25)
+// metalPatternROUGHNESS.offset.set(0,0.25)

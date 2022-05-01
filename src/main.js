@@ -84,10 +84,10 @@ const animate = () => {
 
 
 //   camera.position.setX(camera.position.x += 0.001)
-  if (elapsedTime >= 2) {
-    logOnce()
+logOnce()
+//   if (elapsedTime >= 2) {
     // generateOnce()
-  }
+//   }
 
 // spotLightStraightOn.position.x += 0.001
 

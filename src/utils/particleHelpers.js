@@ -19,11 +19,11 @@ const colorPicker = () => {
 }
 
 export const particle = getRandomParticleWithRarityLabel()
-const flakeCount = 40
-const flakeGeometry = new THREE.TetrahedronGeometry(0.035) // radius
+const flakeCount = 14
+const flakeGeometry = new THREE.TetrahedronGeometry(0.035) // radius // remove 0 in tenths place for cool effect
 const flakeMaterial = new THREE.PointsMaterial({
     color: '#FFC0CB',
-    size: 0.075,
+    size: 0.25,
     sizeAttenuation: true,
     transparent: true,
     alphaMap: particle.particle,

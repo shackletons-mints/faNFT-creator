@@ -26,6 +26,10 @@ import {
   leafROUGHNESS,
   leafTEST,
   testPattern,
+  boatsOnACove,
+  GOD,
+  opera_dragon,
+  blue_waves,
 } from './texture_loader.js'
 
 /**
@@ -129,15 +133,15 @@ export const leaf7 = {
 
 // NEED TO ADD --------------------------------------------------------------
 
-const leafCranePattern = new THREE.MeshStandardMaterial({
-  map: cranePattern,
+const godPattern = new THREE.MeshStandardMaterial({
+  map: GOD,
   ...leafSetup,
   // wireframe: true // cool effect with this on
 })
 
 export const leaf8 = {
-  design: leafCranePattern,
-  name: 'Red_Crane',
+  design: godPattern,
+  name: 'I_don\'t_know_what_gods_these_are',
 }
 
 const leafAfternoonTeaPattern = new THREE.MeshStandardMaterial({
@@ -200,14 +204,14 @@ export const leaf14 = {
   name: 'Paddling_Merchant',
 }
 
-const leafNightCaravan = new THREE.MeshStandardMaterial({
-  map: nightCaravanPattern,
-  ...leafSetup
-})
+const blueWave = new THREE.MeshStandardMaterial({
+    map: blue_waves,
+    ...leafSetup
+  })
 
 export const leaf15 = {
-  design: nightCaravanPattern,
-  name: 'Night_Caravan',
+  design: blueWave,
+  name: 'Blue_Ocean',
 }
 
 // DONE ADDING --------------------------------------------------------------
@@ -225,22 +229,19 @@ export const leaf15 = {
   geisha,
   frog,
   tiger,
-  villageFar,
-  cranePattern,
-  horsePattern,
   afternoonTeaPattern,
   flowersMoonPattern,
   mountainSanctuaryPattern,
   deerColorfulForestPattern,
   manOnOxPattern,
   paddlingMerchantPattern,
-  nightCaravanPattern
-  ,
+  GOD,
+  blue_waves,
  */
 
 const leafTestPattern = new THREE.MeshStandardMaterial({
-  map: nightCaravanPattern,
-  ...leafSetup,
+  map: blue_waves,
+  ...leafSetup
   // wireframe: true // cool effect with this on
 })
 

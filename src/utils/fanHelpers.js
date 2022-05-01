@@ -71,10 +71,10 @@ const rightHandleHalfGeometry = new THREE.CircleGeometry(1.53, 28, Math.PI * 2, 
 const leftHandleHalfGeometry = new THREE.BoxGeometry(0.1, 0.03, 1.45)
 
 const topHandleGeometry = new THREE.BoxGeometry(0.05, 0.06, 1)
-const topHandleMesh = new THREE.Mesh(topHandleGeometry, handle9.design)
+const topHandleMesh = new THREE.Mesh(topHandleGeometry, handleWithRarity.handle)
 
-const handleMesh = new THREE.Mesh(handleGeometry, handle9.design)
-console.log(handle9.material)
+const handleMesh = new THREE.Mesh(handleGeometry, handleWithRarity.handle)
+console.log(handle10.material)
 const material = new THREE.MeshBasicMaterial( { color: '#222222' } )
 export const centerHandleMesh = new THREE.Mesh(fanCircleCenterGeometry, handle5.design)
 
@@ -84,8 +84,17 @@ const leftHandleHalfMesh = new THREE.Mesh(leftHandleHalfGeometry, handle5.design
 const particleWithRarity = getRandomParticleWithRarityLabel()
 
 export const fanGroup = new THREE.Group()
+
+const isItLegendary = (it) => {
+    if(it === 'Legendary') {
+        return 'Legendary'
+    } else {
+        return it.slice(0, -1)
+    }
+}
+
 export const fanRarityLabels = {
-  leaf: leafWithRarity.rarity,
+  leaf: isItLegendary(leafWithRarity.rarity),
   leafName: leafWithRarity.name,
   handle: handleWithRarity.rarity,
   handleMaterial: handleWithRarity.material,
@@ -143,7 +152,7 @@ export const background = getRandomBackgroundBasedOnFanGroupRarity()
 
     // fan mesh setup
     console.log(leafTest)
-    const fanMesh = new THREE.Mesh(fanQuarterGeometry, leafTest.design) // quarter fan
+    const fanMesh = new THREE.Mesh(fanQuarterGeometry, leafWithRarity.leaf) // quarter fan
 
     // fan group setup
     fanGroup.add(fanMesh, quarterLine, topHandleMesh, handleMesh )
