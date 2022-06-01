@@ -13,10 +13,16 @@ import {
   leaf12,
   leaf13,
   leaf14,
+  leaf15,
 } from '../properties/leaf_props'
 
 import {
+  handle1,
+  handle2,
+  handle3,
   handle4,
+  handle5,
+  handle6,
   handle7,
   handle8,
   handle9,
@@ -43,6 +49,12 @@ import {
 const rarityLabels = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary']
 const rarityWeights = [50, 25, 13, 8, 4]
 
+const leafRarityLabels = ['Common1','Common2','Common3','Common4','Common5', 'Uncommon1','Uncommon2','Uncommon3','Uncommon4', 'Rare1','Rare2','Rare3', 'Epic1','Epic2', 'Legendary1']
+const leafRarityWeights = [50, 50, 50, 50, 50, 25, 25, 25, 25, 13, 13, 13, 8, 8, 4]
+
+const handleRarityLabels = ['Common1', 'Common2', 'Common3', 'Uncommon1', 'Uncommon2', 'Uncommon3', 'Rare1', 'Rare2', 'Epic1', 'Legendary1']
+const handleRarityWeights = [50, 50, 50, 25, 25, 25, 13, 13, 8, 4]
+
 function weightedRandom(items, weights) {
   const cumulativeWeights = []
   for (let i = 0; i < weights.length; i += 1) {
@@ -63,33 +75,22 @@ function getRandomFromList(list) {
   return list[Math.floor(Math.random() * list.length)]
 }
 
-// get Fan attribute from collection based on rarity prop
-/**
- * c1
- * c2
- * c3
- * c4
- * c5
- * u6
- * u7
- * u8
- * u9
- * r10
- * r11
- * r12
- * e13
- * e14
- * l15
- *
- *
- *
- */
 const leafAttributeCollection = {
-  Common: [leaf1, leaf2],
-  Uncommon: [leaf3, leaf4],
-  Rare: [leaf5],
-  Epic: [leaf6],
-  Legendary: [leaf7],
+  Common1: leaf1,
+  Common2: leaf2,
+  Common3: leaf3,
+  Common4: leaf4,
+  Common5: leaf5,
+  Uncommon1: leaf6,
+  Uncommon2: leaf7,
+  Uncommon3: leaf8,
+  Uncommon4: leaf9,
+  Rare1: leaf10,
+  Rare2: leaf11,
+  Rare3: leaf12,
+  Epic1: leaf13,
+  Epic2: leaf14,
+  Legendary1: leaf15,
 }
 
 const styleAttributeCollection = {
@@ -98,11 +99,16 @@ const styleAttributeCollection = {
 }
 
 const handleAttributeCollection = {
-  Common: [handle4],
-  Uncommon: [handle7],
-  Rare: [handle8],
-  Epic: [handle9],
-  Legendary: [handle10],
+  Common1: handle1,
+  Common2: handle2,
+  Common3: handle3,
+  Uncommon1: handle4,
+  Uncommon2: handle5,
+  Uncommon3: handle6,
+  Rare1: handle7,
+  Rare2: handle8,
+  Epic1: handle9,
+  Legendary1: handle10,
 }
 
 const particleAttributeCollection = {
@@ -114,8 +120,8 @@ const particleAttributeCollection = {
 }
 
 export const getRandomLeafWithRarityLabel = () => {
-  const rarityLabel = weightedRandom(rarityLabels, rarityWeights)
-  const luckyLeaf = getRandomFromList(leafAttributeCollection[rarityLabel])
+  const rarityLabel = weightedRandom(leafRarityLabels, leafRarityWeights)
+  const luckyLeaf = leafAttributeCollection[rarityLabel]
   return {
     leaf: luckyLeaf.design,
     rarity: rarityLabel,
@@ -124,8 +130,8 @@ export const getRandomLeafWithRarityLabel = () => {
 }
 
 export const getRandomHandleWithRarityLabel = () => {
-  const rarityLabel = weightedRandom(rarityLabels, rarityWeights)
-  const happyHandle = getRandomFromList(handleAttributeCollection[rarityLabel])
+  const rarityLabel = weightedRandom(handleRarityLabels, handleRarityWeights)
+  const happyHandle = handleAttributeCollection[rarityLabel]
   return {
     handle: happyHandle.design,
     rarity: rarityLabel,

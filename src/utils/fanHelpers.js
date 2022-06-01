@@ -71,10 +71,10 @@ const rightHandleHalfGeometry = new THREE.CircleGeometry(1.53, 28, Math.PI * 2, 
 const leftHandleHalfGeometry = new THREE.BoxGeometry(0.1, 0.03, 1.45)
 
 const topHandleGeometry = new THREE.BoxGeometry(0.05, 0.06, 1)
-const topHandleMesh = new THREE.Mesh(topHandleGeometry, handle9.design)
+const topHandleMesh = new THREE.Mesh(topHandleGeometry, handleWithRarity.handle)
 
-const handleMesh = new THREE.Mesh(handleGeometry, handle9.design)
-console.log(handle9.material)
+const handleMesh = new THREE.Mesh(handleGeometry, handleWithRarity.handle)
+console.log(handleWithRarity)
 const material = new THREE.MeshBasicMaterial( { color: '#222222' } )
 export const centerHandleMesh = new THREE.Mesh(fanCircleCenterGeometry, handle5.design)
 
@@ -103,10 +103,28 @@ const bgAttributeCollection = {
 
 const rarityLabels = ['Common', 'Uncommon', 'Rare', 'Epic', 'Legendary']
 
+const lastCharIsNumber = word => {
+    const lastChar = word[word.length - 1]
+
+    if (Number(lastChar)) {
+        return true
+    }
+
+    return false
+}
+
 const getRandomBackgroundBasedOnFanGroupRarity = () => {
+  let leafRarity = fanRarityLabels.leaf
+  let handleRarity = fanRarityLabels.handle
+  if (lastCharIsNumber(leafRarity)) {
+      leafRarity = leafRarity.slice(0, -1)
+  }
+  if (lastCharIsNumber(handleRarity)) {
+    handleRarity = handleRarity.slice(0, -1)
+  }
   const backgroundRarityIndex = Math.max(
-    rarityLabels.indexOf(fanRarityLabels.leaf),
-    rarityLabels.indexOf(fanRarityLabels.handle)
+    rarityLabels.indexOf(leafRarity),
+    rarityLabels.indexOf(handleRarity)
   )
 
   return bgAttributeCollection[rarityLabels[backgroundRarityIndex]]
@@ -142,8 +160,8 @@ export const background = getRandomBackgroundBasedOnFanGroupRarity()
   // |------QUARTER FAN NECESSICITES ------------------------------|
 
     // fan mesh setup
-    console.log(leafTest)
-    const fanMesh = new THREE.Mesh(fanQuarterGeometry, leafTest.design) // quarter fan
+    // console.log(leafTest)
+    const fanMesh = new THREE.Mesh(fanQuarterGeometry, leafWithRarity.leaf) // quarter fan
 
     // fan group setup
     fanGroup.add(fanMesh, quarterLine, topHandleMesh, handleMesh )

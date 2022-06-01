@@ -239,7 +239,6 @@ export const handle3 = {
   material: 'Jade',
 }
 
-design9
 export const handle4 = {
   design: design4,
   material: 'Wood',
