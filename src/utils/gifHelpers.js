@@ -20,7 +20,7 @@ export const generateFanGif = (title) => {
 
     var videoStream = canvas.captureStream(60)
     var options = {
-        videoBitsPerSecond : 5000000,
+        videoBitsPerSecond : 100000000,
       }
     var mediaRecorder = new MediaRecorder(videoStream, options )
 
