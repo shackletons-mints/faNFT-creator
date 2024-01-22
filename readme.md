@@ -88,22 +88,3 @@
     * diagonal drift
     * downward drift - might be too simple
     * fire-like updrift  
-
-
-## useful links
-###### textures
-**useful articles**
-* https://discoverthreejs.com/book/first-steps/textures-intro/
-* https://threejsfundamentals.org/threejs/lessons/threejs-textures.html
-*download ue version*
-
-**downloadable textures**
-* https://freepbr.com/c/wood/
-* https://github.com/mrdoob/three.js/tree/dev/examples/textures
-
-*this course is great, if the threejs docs don't help, this is my go-to*
-
-**THREEjs Course, feel free to use my info to login**
-* https://threejs-journey.com/
-  * email: bcaliva21@gmail.com
-  * password: D!CKSd1cksdicks
